@@ -24,7 +24,8 @@ class Intro extends Component {
       return sendData('http://www.vacations.cafe/api/customers/', 'POST', data)
     }).then((response) => {
       component.props.addLeadMember(response.ageGroup);
-      component.props.nextStep();
+      console.log(response);
+      //component.props.nextStep();
     })
   }
 

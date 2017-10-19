@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'font-awesome/css/font-awesome.min.css';
-// import PropTypes from 'prop-types';
 import stepActions from '../actions/step.action';
-import membersActions from '../actions/members.action';
+import membersAction from '../actions/members.action';
 import Intro from './Intro';
-import FirstStep from './FirstStep';
-import SecondStep from './SecondStep';
 import './main.scss';
 
 class Steps extends Component {
