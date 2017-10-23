@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import getData from '../services/getData';
 import sendData from '../services/sendData';
+import SendButton from './SendButton';
 
 class FourthQuestion extends Component {
   constructor(props) {
     super(props);
     this.state = {
       childrenGroups: {},
+      loading: true,
     };
     this.save = this.save.bind(this);
     this.getAgeGroups = this.getAgeGroups.bind(this);
@@ -14,6 +16,7 @@ class FourthQuestion extends Component {
     this.removeChild = this.removeChild.bind(this);
     this.addToTravelGroup = this.addToTravelGroup.bind(this);
     this.createCustomers = this.createCustomers.bind(this);
+    this.extractName = this.extractName.bind(this);
   }
   componentDidMount() {
     this.props.addQuestion('Good. What kids have you got that will travel with you on your vacation?');
@@ -37,6 +40,7 @@ class FourthQuestion extends Component {
         });
         this.setState({
           childrenGroups: groupNames,
+          loading: false,
         });
         this.props.addChildrenGroups(newGroups);
       });
@@ -56,10 +60,23 @@ class FourthQuestion extends Component {
     });
   }
   save() {
+    this.setState({
+      loading: true,
+    });
     this.createCustomers().then(this.addToTravelGroup).then(() => {
-      alert('Kids have been created and added to the travel group. Next step is coming soon...');
-      // if(!this.response.length) return this.props.goToQuestion(6);
-      // this.props.nextQuestion();
+      const chosenGroups = [];
+      Object.keys(this.state.childrenGroups).forEach((group) => {
+        if (!this.state.childrenGroups[group]) return;
+        chosenGroups.push(group);
+      });
+      if (!chosenGroups.length) {
+        this.props.addAnswer('I travel without children');
+        return this.props.goToQuestion(6);
+      }
+      this.props.addChosenGroups(chosenGroups);
+      const extractedNames = chosenGroups.map(name => this.extractName(name));
+      this.props.addAnswer(`I am traveling with: ${extractedNames.join(', ')}`);
+      this.props.nextQuestion();
     });
   }
   addToTravelGroup(customers) {
@@ -81,12 +98,16 @@ class FourthQuestion extends Component {
       for (let i = 0; i < childrenCount; i++) {
         const data = {
           ageGroup: this.props.childrenGroups[groupName].id,
+          travelGroup: this.props.travelGroupId,
         };
-
         promises.push(sendData('http://api.vacations.cafe:81/customers', 'POST', data));
       }
     });
     return Promise.all(promises);
+  }
+
+  extractName(name) {
+    return name.slice(0, name.indexOf(' ')).toLowerCase();
   }
 
   render() {
@@ -112,9 +133,7 @@ class FourthQuestion extends Component {
             }
           </div>
         </div>
-        <div className="send">
-          <button className="sen-btn" onClick={this.save}>Send</button>
-        </div>
+        <SendButton loading={this.state.loading} handler={this.save} />
       </div>
     );
   }

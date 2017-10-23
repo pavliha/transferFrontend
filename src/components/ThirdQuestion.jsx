@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import getData from '../services/getData';
 import sendData from '../services/sendData';
+import SendButton from './SendButton';
 
 class ThirdQuestion extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class ThirdQuestion extends Component {
     this.state = {
       activities: {},
       chosenActivities: {},
-      isDisabled: true,
+      loading: true,
     };
     this.toggleActivity = this.toggleActivity.bind(this);
     this.save = this.save.bind(this);
@@ -26,6 +27,7 @@ class ThirdQuestion extends Component {
       });
       this.setState({
         activities,
+        loading: false,
       });
     });
   }
@@ -53,6 +55,9 @@ class ThirdQuestion extends Component {
   save() {
     const activities = Object.keys(this.state.chosenActivities);
     if (!activities.length) return;
+    this.setState({
+      loading: true,
+    });
     sendData(`http://www.vacations.cafe/api/customers/?_id=${this.props.partner}`, 'PATCH', {
       preferredActivities: activities,
     }).then(() => {
@@ -95,9 +100,7 @@ class ThirdQuestion extends Component {
             }
           </div>
         </div>
-        <div className="send">
-          <button className="sen-btn" onClick={this.save}>Send</button>
-        </div>
+        <SendButton loading={this.state.loading} handler={this.save} />
       </div>
     );
   }

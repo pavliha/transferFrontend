@@ -8,10 +8,8 @@ import FirstQuestion from './FirstQuestion';
 import SecondQuestion from './SecondQuestion';
 import ThirdQuestion from './ThirdQuestion';
 import FourthQuestion from './FourthQuestion';
-// import FifthQuestion from './FifthQuestion';
-// import SixthQuestion from './SixthQuestion';
 
-import './main.scss';
+import './styles/main.scss';
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +22,7 @@ class App extends Component {
     this.addAnswer = this.addAnswer.bind(this);
     this.getQuestion = this.getQuestion.bind(this);
     this.renderChatBody = this.renderChatBody.bind(this);
+    this.scrollChat = this.scrollChat.bind(this);
   }
 
   getQuestion() {
@@ -71,6 +70,7 @@ class App extends Component {
             addQuestion={this.addQuestion}
             addAnswer={this.addAnswer}
             addChildrenGroups={this.props.addChildrenGroups}
+            addChosenGroups={this.props.addChosenGroups}
             childrenGroups={this.props.childrenGroups}
             travelGroupId={this.props.travelGroupId}
           />
@@ -78,6 +78,10 @@ class App extends Component {
       }
       default: return false;
     }
+  }
+
+  scrollChat() {
+    this.chatBody.scrollTop = this.chatBody.scrollHeight;
   }
 
   addQuestion(question) {
@@ -93,9 +97,12 @@ class App extends Component {
       </div>
     );
     questions.push(newQuestion);
-    this.setState({
-      questions,
-    });
+    setTimeout(() => {
+      this.setState({
+        questions,
+      });
+      this.scrollChat();
+    }, 700);
   }
 
   addAnswer(answer) {
@@ -114,6 +121,7 @@ class App extends Component {
     this.setState({
       answers,
     });
+    this.scrollChat();
   }
 
   renderChatBody() {
@@ -140,7 +148,7 @@ class App extends Component {
             />
           :
             <div className="scroll-fix">
-              <div className="chat-body">
+              <div className="chat-body" ref={(chatBody) => { this.chatBody = chatBody; }}>
                 {this.renderChatBody()}
               </div>
               <div>
@@ -160,6 +168,7 @@ const mapStateToProps = (state) => {
     partner: state.membersReducer.partner,
     travelGroupId: state.membersReducer.travelGroupId,
     childrenGroups: state.membersReducer.childrenGroups,
+    chosenGroups: state.membersReducer.chosenGroups,
   };
 };
 
@@ -179,6 +188,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addChildrenGroups: (groups) => {
       dispatch(membersAction.addChildrenGroups(groups));
+    },
+    addChosenGroups: (groups) => {
+      dispatch(membersAction.addChosenGroups(groups));
     },
   };
 };

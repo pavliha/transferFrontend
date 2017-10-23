@@ -1,0 +1,36 @@
+.intro {
+  padding: 92px 30px 0;
+  background-image: url('/assets/intro-bg.png');
+  background-repeat: no-repeat;
+  background-size: 1000px auto;
+
+  @media screen and (max-width: 425px) {
+    background-size: 1100px auto;
+    background-position-x: -170px;
+  }
+
+  .snowman {
+    width: 210px;
+  }
+
+  .next-btn {
+    float: right;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: box-shadow 400ms;
+    
+    &:hover {
+      box-shadow: 0px 0px 20px 9px #e6e3e3;
+    }
+   
+    img {
+      width: 67px;
+    }
+  }
+
+  h1 {
+    margin-top: 32px;
+    color: $purple;
+    font-size: 18px;
+  }
+}

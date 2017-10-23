@@ -10,7 +10,10 @@ const membersReducer = (state = {}, action) => {
       });
     }
     case 'ADD_CHILDREN_GROUPS': {
-      return Object.assign({}, state, { childrenGroups: action.payload })
+      return Object.assign({}, state, { childrenGroups: action.payload });
+    }
+    case 'ADD_CHOSEN_GROUPS': {
+      return Object.assign({}, state, { chosenGroups: action.payload });
     }
     default: {
       return state;

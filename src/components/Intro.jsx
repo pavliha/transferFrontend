@@ -17,7 +17,7 @@ class Intro extends Component {
       const data = {
         ageGroup: id,
       };
-      return sendData('http://api.vacations.cafe:81/customers/', 'POST', data);
+      return sendData('http://api.vacations.cafe:81/customers', 'POST', data);
     }).then((response) => {
       this.props.addLeadMember(response._id);
       this.props.nextQuestion();

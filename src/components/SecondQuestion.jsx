@@ -6,6 +6,7 @@ class SecondQuestion extends Component {
     super(props);
     this.state = {
       hasPartner: true,
+      loading: false,
     };
     this.save = this.save.bind(this);
   }
@@ -36,6 +37,10 @@ class SecondQuestion extends Component {
     const data = {
       leadMember: this.props.leadMember,
     };
+    if (this.state.loading) return;
+    this.setState({
+      loading: true,
+    });
     sendData('http://api.vacations.cafe:81/travel-groups', 'POST', data)
       .then((response) => {
         if (hasPartner) {

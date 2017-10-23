@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import getData from '../services/getData';
 import sendData from '../services/sendData';
+import SendButton from './SendButton';
 
 class FirstQuestion extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class FirstQuestion extends Component {
     this.state = {
       activities: {},
       chosenActivities: {},
-      isDisabled: true,
+      loading: true,
     };
     this.toggleActivity = this.toggleActivity.bind(this);
     this.save = this.save.bind(this);
@@ -26,6 +27,7 @@ class FirstQuestion extends Component {
       });
       this.setState({
         activities,
+        loading: false,
       });
     });
   }
@@ -33,26 +35,22 @@ class FirstQuestion extends Component {
   toggleActivity(e) {
     const clickedActivity = e.currentTarget.id;
     const activities = Object.assign({}, this.state.chosenActivities);
-    let isDisabled;
     if (!activities[clickedActivity]) {
       activities[clickedActivity] = 1;
     } else {
       delete activities[clickedActivity];
     }
-    if (Object.keys(activities).length) {
-      isDisabled = false;
-    } else {
-      isDisabled = true;
-    }
     this.setState({
       chosenActivities: activities,
-      isDisabled,
     });
   }
 
   save() {
     const activities = Object.keys(this.state.chosenActivities);
     if (!activities.length) return;
+    this.setState({
+      loading: true,
+    });
     sendData(`http://api.vacations.cafe:81/customers/?_id=${this.props.leadMember}`, 'PATCH', {
       preferredActivities: activities,
     }).then(() => {
@@ -95,9 +93,7 @@ class FirstQuestion extends Component {
             }
           </div>
         </div>
-        <div className="send">
-          <button onClick={this.save}>Send</button>
-        </div>
+        <SendButton loading={this.state.loading} handler={this.save} />
       </div>
     );
   }

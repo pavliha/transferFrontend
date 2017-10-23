@@ -10,8 +10,13 @@ const addChildrenGroups = (groups) => {
   return { type: 'ADD_CHILDREN_GROUPS', payload: groups };
 };
 
+const addChosenGroups = (groups) => {
+  return { type: 'ADD_CHOSEN_GROUPS', payload: groups };
+};
+
 export default {
   addLeadMember,
   createTravelGroup,
   addChildrenGroups,
+  addChosenGroups,
 };
