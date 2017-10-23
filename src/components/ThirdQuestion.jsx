@@ -58,7 +58,7 @@ class ThirdQuestion extends Component {
     this.setState({
       loading: true,
     });
-    sendData(`http://www.vacations.cafe/api/customers/?_id=${this.props.partner}`, 'PATCH', {
+    sendData(`http://www.vacations.cafe/api/customers?_id=${this.props.partner}`, 'PATCH', {
       preferredActivities: activities,
     }).then(() => {
       const answer = (
