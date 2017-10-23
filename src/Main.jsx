@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import Steps from './components/Steps';
+import App from './components/App';
 import store from './store';
 
 class Main extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Steps />
+        <App />
       </Provider>
     );
   }

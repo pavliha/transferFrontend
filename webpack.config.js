@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const VENDOR_LIST = ['jquery', 'react', 'react-dom'];
+const VENDOR_LIST = ['react', 'react-dom'];
 
 module.exports = {
   entry: {
@@ -18,6 +18,7 @@ module.exports = {
     compress: true,
     port: 3000,
   },
+  devtool: 'source-map',
   resolve: {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx'],

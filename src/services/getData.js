@@ -5,7 +5,7 @@ const getData = (url) => {
     xhr.send();
     
     xhr.onreadystatechange = () => {
-      if (xhr.readyState != 4) return;
+      if (xhr.readyState !== 4) return;
       if (xhr.status !== 200) {
         reject(new Error(`${xhr.status}: ${xhr.statusText}`));
       } else {

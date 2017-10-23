@@ -8,37 +8,38 @@ class Intro extends Component {
     this.createLeadMember = this.createLeadMember.bind(this);
   }
 
-  componentDidMount() {
-    this.props.setCallback(this.createLeadMember);
-  }
-
-  createLeadMember(component) {
-    if(component.props.leadMember) {
-     return component.props.nextStep();
+  createLeadMember() {
+    if (this.props.leadMember) {
+      return this.props.nextQuestion();
     }
-    getData('http://www.vacations.cafe/api/age-groups?text=Adult&$select=id').then((response) => {
+    getData('http://api.vacations.cafe:81/age-groups?text=Adult&$select=id').then((response) => {
       const id = response.data[0]._id;
       const data = {
         ageGroup: id,
       };
-      return sendData('http://www.vacations.cafe/api/customers/', 'POST', data)
+      return sendData('http://api.vacations.cafe:81/customers/', 'POST', data);
     }).then((response) => {
-      component.props.addLeadMember(response.ageGroup);
-      console.log(response);
-      //component.props.nextStep();
-    })
+      this.props.addLeadMember(response._id);
+      this.props.nextQuestion();
+    });
   }
 
   render() {
     return (
       <div className="intro">
-        <div className="intro-text">
-          <img src="/assets/snowman.png" />
-          <h1>Lets get started</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
+        <img src="/assets/snowman.png" className="snowman"/>
+        <h1>Lets get started</h1>
+        <p>
+          Hey, I'm Peru, COO ("Chef" Coordinating Officer) at vacations cafe. I'll guide you today to let us unserstand a little about your family's likes and dislikes for vacations. It takes just around 5 minutes.
+        </p>
+        <p>
+          Claimer: Nobody else in this world cares better for your precious vacations than my vacation chefs that handbook vacations experiances for your tastes.
+        </p>
+        <p>
+          Shall we begin?
+        </p>
+        <div className="next-btn" onClick={this.createLeadMember}>
+          <img src="/assets/next-btn.png" />
         </div>
       </div>
     );
