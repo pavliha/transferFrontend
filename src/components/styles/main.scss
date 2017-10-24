@@ -1,28 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
 @import './varriables';
 @import './intro';
 @import './second-question';
 @import './fourth-question';
+@import './seventh-question';
+@import './eighth-question';
 
  body {
-   margin: 0;
-   padding: 0;
-   height: 100%;
-   background-color: $main-background;
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  background-color: $main-background;
  }
 
 .container {
+  position: relative;
+  height: 100%;
   max-width: $container-width;
   margin: 0 auto;
-  font-family: 'Open Sans';
-  font-size: $default-size;
+  font: $default-size $default-font;
   line-height: 23px;
-  position: relative;
   color: $dark-grey;
-  height: 100%;
+  
 
   &.white-bg {
-    background-color: #FFF;
+    background-color: $white;
   }
 
   .scroll-fix {
@@ -32,28 +34,26 @@
   }
 
   .chat-body {
-    padding: 72px 30px 0;
     height: 100%;
+    padding: 72px 30px 0;
     overflow: auto;
 
     .question, .answer {
       position: relative;
-      padding: 12px;
-      background: #FFF;
-      box-shadow: 0px 0px 20px 9px #eaeaea;
-      font-size: 13px;
-      margin-bottom: 20px;
       max-width: 300px;
-      animation-name: newMessage;
-      animation-duration: 250ms;
-      animation-timing-function: linear;
+      margin-bottom: 20px;
+      padding: 12px;
+      background: $white;
+      box-shadow: 0px 0px 20px 9px $light-grey;
+      animation: 250ms linear newMessage;
+
       &:before {
-        padding: 16px;
-        background-color: #f7f7f7;
-        position: absolute;
-        border-radius: 50%;
-        bottom: 5px;
         content: ' ';
+        position: absolute;
+        bottom: 5px;
+        padding: 16px;
+        background-color: $light-grey;
+        border-radius: 50%;
         z-index: 3;
       }
 
@@ -64,14 +64,13 @@
         width: 0;
         height: 0;
         border-style: solid;
-        border-color: transparent transparent #fff transparent;
+        border-color: transparent transparent $white transparent;
         z-index: 2;
       }      
     }
 
     .question {
       margin-left: 34px;
-      transform-origin: 0% 0%;
 
       &:before {
         left: -38px;
@@ -89,7 +88,6 @@
     .answer {
       margin-right: 34px;
       margin-left: auto;
-      transform-origin: 100% 100%;
 
       &:before {
         right: -38px;
@@ -106,39 +104,41 @@
   .answer-panel {
     display: flex;
     padding: 15px 30px 0;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $light-grey;
 
     .answer-variants {
       width: 100%;
+      position: relative;
     }
+
     .send {
       display: flex;
       align-items: flex-end;
-      border-left: 1px solid #ddd;
       padding: 0 10px 20px;
-      cursor: pointer;
       min-width: 116px;
-
+      border-left: 1px solid $light-grey;
+      cursor: pointer;
+      
       div {
-        padding: 7px;
-        border: 1px solid #ddd;
-        border-radius: 30px;
-        background-color: #fff;
-        margin: 0 auto;
         width: 100px;
+        margin: 0 auto;
+        padding: 7px;
         text-align: center;
+        border: 1px solid $light-grey;
+        border-radius: 30px;
+        background-color: $white;
         
         &:before {
           content: 'Send';
         }
 
         &.loading {
-          border: 4px solid #fff;
+          width: 8px;
+          height: 8px;
+          border: 4px solid $white;
           border-radius: 50%;
           border-top: 4px solid $pink;
           border-bottom: 4px solid $pink;
-          width: 8px;
-          height: 8px;
           animation: spin 2s linear infinite;
 
           &:before {
@@ -152,20 +152,19 @@
 
 .activities, .countries {
   .activity, .country {
+    display: inline-block;
     padding: 7px 13px;
     margin: 5px;
-    display: inline-block;
-    border: 1px solid #ECECEC;
+    border: 1px solid $light-grey;
     border-radius: 13px;
-    margin-right: 5px;
-    background-color: #F6F6F6;
-    color: #8B8E96;
-    font-weight: 400;
+    background-color: $white;
+    color: $dark-grey;
+    font-weight: $bold;
     cursor: pointer;
 
     &.active {
-      background-color: #FFFFFF;
-      border: 1px solid #4F5D5D;
+      background-color: $white;
+      border: 1px solid $dark-grey;
     }
 
   }

@@ -8,6 +8,10 @@ import FirstQuestion from './FirstQuestion';
 import SecondQuestion from './SecondQuestion';
 import ThirdQuestion from './ThirdQuestion';
 import FourthQuestion from './FourthQuestion';
+import FifthQuestion from './FifthQuestion';
+import SixthQuestion from './SixthQuestion';
+import SeventhQuestion from './SeventhQuestion';
+import EighthQuestion from './EighthQuestion';
 
 import './styles/main.scss';
 
@@ -76,6 +80,49 @@ class App extends Component {
           />
         );
       }
+      case 5: {
+        return (
+          <FifthQuestion
+            nextQuestion={this.props.nextQuestion}
+            goToQuestion={this.props.goToQuestion}
+            addQuestion={this.addQuestion}
+            addAnswer={this.addAnswer}
+            chosenGroups={this.props.chosenGroups}
+            travelGroupId={this.props.travelGroupId}
+            childrenGroups={this.props.childrenGroups}
+          />
+        );
+      }
+      case 6: {
+        return (
+          <SixthQuestion
+            nextQuestion={this.props.nextQuestion}
+            goToQuestion={this.props.goToQuestion}
+            addQuestion={this.addQuestion}
+            addAnswer={this.addAnswer}
+            travelGroupId={this.props.travelGroupId}
+          />
+        );
+      }
+      case 7: {
+        return (
+          <SeventhQuestion
+            nextQuestion={this.props.nextQuestion}
+            addQuestion={this.addQuestion}
+            addAnswer={this.addAnswer}
+            travelGroupId={this.props.travelGroupId}
+          />
+        );
+      }
+      case 8: {
+        return (
+          <EighthQuestion
+            nextQuestion={this.props.nextQuestion}
+            addQuestion={this.addQuestion}
+            addAnswer={this.addAnswer}
+          />
+        );
+      }
       default: return false;
     }
   }
@@ -127,9 +174,9 @@ class App extends Component {
   renderChatBody() {
     const chatBody = [];
     for (let i = 0; i < this.state.questions.length; i++) {
-      chatBody.push(<div key={`question-${i}`}>{this.state.questions[i]}</div>);
+      chatBody.push(this.state.questions[i]);
       if (this.state.answers[i]) {
-        chatBody.push(<div key={`answer-${i}`}>{this.state.answers[i]}</div>);
+        chatBody.push(this.state.answers[i]);
       }
     }
     return chatBody;
