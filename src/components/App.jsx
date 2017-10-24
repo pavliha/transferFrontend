@@ -127,9 +127,9 @@ class App extends Component {
   renderChatBody() {
     const chatBody = [];
     for (let i = 0; i < this.state.questions.length; i++) {
-      chatBody.push(this.state.questions[i]);
+      chatBody.push(<div key={`question-${i}`}>{this.state.questions[i]}</div>);
       if (this.state.answers[i]) {
-        chatBody.push(this.state.answers[i]);
+        chatBody.push(<div key={`answer-${i}`}>{this.state.answers[i]}</div>);
       }
     }
     return chatBody;

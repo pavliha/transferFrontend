@@ -21,7 +21,7 @@ class ThirdQuestion extends Component {
 
   getActivities() {
     const activities = {};
-    getData('http://www.vacations.cafe/api/age-groups?text=Adult&$populate=activities&$select=activities').then((response) => {
+    getData('http://api.vacations.cafe:81/age-groups?text=Adult&$populate=activities&$select=activities').then((response) => {
       response.data[0].activities.forEach((activity) => {
         activities[activity._id] = activity.text;
       });
@@ -58,7 +58,7 @@ class ThirdQuestion extends Component {
     this.setState({
       loading: true,
     });
-    sendData(`http://www.vacations.cafe/api/customers/?_id=${this.props.partner}`, 'PATCH', {
+    sendData(`http://api.vacations.cafe:81/customers?_id=${this.props.partner}`, 'PATCH', {
       preferredActivities: activities,
     }).then(() => {
       const answer = (

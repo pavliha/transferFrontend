@@ -51,7 +51,7 @@ class FirstQuestion extends Component {
     this.setState({
       loading: true,
     });
-    sendData(`http://api.vacations.cafe:81/customers/?_id=${this.props.leadMember}`, 'PATCH', {
+    sendData(`http://api.vacations.cafe:81/customers?_id=${this.props.leadMember}`, 'PATCH', {
       preferredActivities: activities,
     }).then(() => {
       const answer = (
