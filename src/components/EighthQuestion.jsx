@@ -7,9 +7,9 @@ class EighthQuestion extends Component {
     super(props);
     this.state = {
       userData: {
-        name: 'test name',
-        email: 'email@mail.com',
-        password: '123456',
+        name: '',
+        email: '',
+        password: '',
       },
       loading: false,
       showPassword: 0,

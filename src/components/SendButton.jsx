@@ -9,7 +9,7 @@ function SendButton(props) {
 
   return (
     <div className="send" onClick={handler}>
-      <div className={props.loading ? 'loading' : ''} />
+      <div className={props.loading ? 'loading' : 'loaded'} />
     </div>
   );
 }

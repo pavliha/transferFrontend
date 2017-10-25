@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const VENDOR_LIST = ['react', 'react-dom'];
+const VENDOR_LIST = ['react', 'react-dom', 'babel-polyfill'];
 
 module.exports = {
   entry: {
@@ -67,6 +67,9 @@ module.exports = {
     // new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
+    }),
+    new webpack.ProvidePlugin({
+      Promise: 'bluebird',
     }),
   ],
 };

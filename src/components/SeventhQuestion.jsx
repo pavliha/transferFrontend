@@ -14,6 +14,7 @@ class SeventhQuestion extends Component {
         minimumBudget: 2500,
         maximumBudget: 35000,
       },
+      loading: false,
     };
     this.setBudget = this.setBudget.bind(this);
     this.save = this.save.bind(this);

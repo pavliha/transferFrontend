@@ -145,6 +145,10 @@
             content: '';
           }
         }
+
+        &.loaded {
+          animation: none;
+        }
       }
     }
   }
