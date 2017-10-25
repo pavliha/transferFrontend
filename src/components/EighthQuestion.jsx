@@ -84,9 +84,13 @@ class EighthQuestion extends Component {
     });
 
     this.createUser().then(this.auth).then((response) => {
-      // add to store
       this.props.nextQuestion();
       this.props.addAnswer('Congratulations! You are now an official member of vacations cafe. Now go ahead and setup your first travel to get to our band of specialists design your next trip.');
+    }, (error) => {
+      this.setState({
+        errors: [error.message],
+        loading: false,
+      });
     });
   }
 

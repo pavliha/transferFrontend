@@ -9,10 +9,13 @@ const getData = (url) => {
       if (xhr.readyState !== 4) return;
       const hasError = (xhr.status + '')[0] !== '2';
       if (hasError) {
-        reject(new Error(`${xhr.status}: ${xhr.statusText}`));
+        reject(JSON.parse(xhr.responseText));
       } else {
         resolve(JSON.parse(xhr.responseText));
       }
+    };
+    xhr.onerror = () => {
+      throw new Error(`${xhr.status}: ${xhr.statusText}`);
     };
   });
 };
