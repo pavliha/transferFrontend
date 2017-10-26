@@ -128,6 +128,15 @@ class App extends Component {
   }
 
   scrollChat() {
+    // if (this.state.prevQuestion) this.state.prevQuestion.style.marginBottom = '';
+    // const lastQuestion = this.chatBody.querySelector('div.question:last-child');
+    // if (lastQuestion) {
+    //   lastQuestion.style.marginBottom = this.chatBody.offsetHeight - lastQuestion.clientHeight;
+    //   this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    //   this.setState({
+    //     prevQuestion: lastQuestion,
+    //   });
+    // }
     this.chatBody.scrollTop = this.chatBody.scrollHeight;
   }
 

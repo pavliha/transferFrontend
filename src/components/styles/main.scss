@@ -107,8 +107,10 @@
     border-top: 1px solid $light-grey;
 
     .answer-variants {
-      width: 100%;
       position: relative;
+      width: 100%;
+      max-height: 250px;
+      overflow: auto;
     }
 
     .send {

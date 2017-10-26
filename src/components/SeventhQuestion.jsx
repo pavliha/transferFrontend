@@ -15,13 +15,18 @@ class SeventhQuestion extends Component {
         maximumBudget: 35000,
       },
       loading: false,
+      positions: {},
     };
     this.setBudget = this.setBudget.bind(this);
+    this.calcPositions = this.calcPositions.bind(this);
     this.save = this.save.bind(this);
   }
 
   componentDidMount() {
     this.props.addQuestion('What is the average budget for your trips? Not sure about this? Just set a random interval. You can adjust this fro each trip, later on.');
+    this.setState({
+      positions: this.calcPositions(this.state.rangeValues),
+    });
   }
 
   setBudget(e) {
@@ -41,10 +46,26 @@ class SeventhQuestion extends Component {
         rangeValues.minimum = +element.value;
       }
     }
+
     this.setState({
       budget: this.calcBudget(rangeValues),
       rangeValues,
+      positions: this.calcPositions(rangeValues),
     });
+  }
+
+  calcPositions(rangeValues) {
+    const rangeBoxWidth = this.rangeBox.clientWidth;
+    let leftPricePosition = (rangeValues.minimum * rangeBoxWidth) / 100;
+    let rightPricePosition = ((rangeValues.maximum * rangeBoxWidth) / 100) - 45;
+
+    if (leftPricePosition + 45 > rightPricePosition) {
+      const shift = (leftPricePosition - rightPricePosition + 50) / 2;
+      leftPricePosition -= shift;
+      rightPricePosition += shift;
+    }
+    const positions = { leftPricePosition, rightPricePosition };
+    return positions;
   }
 
   calcBudget(values) {
@@ -71,11 +92,11 @@ class SeventhQuestion extends Component {
       <div className="answer-panel">
         <div className="answer-variants">
           <div className="budget">
-            <div className="range-values">
-              <div className="from" style={{ left: this.state.rangeValues.minimum + '%' }}>
+            <div className="range-values" ref={(rangeBox) => this.rangeBox = rangeBox}>
+              <div className="from" style={{ left: this.state.positions.leftPricePosition }} ref={(from) => this.from = from}>
                 ${this.state.budget.minimumBudget}
               </div>
-              <div className="to" style={{ right: (100 - this.state.rangeValues.maximum) + '%' }}>
+              <div className="to" style={{ left: this.state.positions.rightPricePosition }} ref={(to) => this.to = to}>
                 ${this.state.budget.maximumBudget}
               </div>
             </div>
