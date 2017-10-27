@@ -106,16 +106,16 @@ class FourthQuestion extends Component {
   }
   createCustomers() {
     const promises = [];
-    // Object.keys(this.state.childrenGroups).forEach((groupName) => {
-    //   const childrenCount = this.state.childrenGroups[groupName];
-    //   for (let i = 0; i < childrenCount; i++) {
-    //     const data = {
-    //       ageGroup: this.props.childrenGroups[groupName].id,
-    //       travelGroup: this.props.travelGroupId,
-    //     };
-    //     promises.push(sendData('http://api.vacations.cafe:81/customers', 'POST', data));
-    //   }
-    // });
+    Object.keys(this.state.childrenGroups).forEach((groupName) => {
+      const childrenCount = this.state.childrenGroups[groupName];
+      for (let i = 0; i < childrenCount; i++) {
+        const data = {
+          ageGroup: this.props.childrenGroups[groupName].id,
+          travelGroup: this.props.travelGroupId,
+        };
+        promises.push(sendData('http://api.vacations.cafe:81/customers', 'POST', data));
+      }
+    });
     return Promise.all(promises);
   }
 
