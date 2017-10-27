@@ -1,9 +1,9 @@
 .send-form {
-  padding-right: 10px;
   box-sizing: border-box;
-
+  padding-right: 15px;
+  
   .input-field {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     font-family: 'Open Sans';
     font-weight: 400;
 
@@ -14,11 +14,11 @@
     input {
       border: none;
       width: 100%;
-      border-bottom: 1px solid rgb(197, 197, 197);
+      border-bottom: 1px solid #c5c5c5;
       padding: 4px;
-      margin: 5px 0;
       background: transparent;
-      color: $dark-grey;
+      color: #3E4A57;
+      font-size: 14px;
 
       &:focus {
         outline: none;

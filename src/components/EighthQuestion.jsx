@@ -44,12 +44,13 @@ class EighthQuestion extends Component {
   validateForm() {
     const errors = [];
     const userData = this.state.userData;
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const passwordRE = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
     if (!userData.name || !userData.email || !userData.password) errors.push('All fields must be filled');
     if (userData.name.indexOf(' ') === -1) errors.push('Please, enter your full name');
-    if (!re.test(userData.email)) errors.push('Email is not valid');
-    if (userData.password.length < 6) errors.push('Password should contail at least 6 characters');
+    if (!emailRE.test(userData.email)) errors.push('Email is not valid');
+    if (!passwordRE.test(userData.password)) errors.push('Password should contail at least 8 characters, at least one letter and one number');
 
     return errors;
   }

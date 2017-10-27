@@ -15,7 +15,10 @@ class FirstQuestion extends Component {
     this.save = this.save.bind(this);
   }
   componentDidMount() {
-    this.props.addQuestion('Good. Thanks. Now close your eyes and imagine about your vacations for the next 2 years. What do you typically fancy doing? Forget about your family for this moment.');
+    this.props.addQuestion(`
+      Good. Thanks. Now close your eyes and imagine about your vacations for the next 2 years. 
+      What do you typically fancy doing? Forget about your family for this moment.
+    `);
     this.getActivities();
   }
 

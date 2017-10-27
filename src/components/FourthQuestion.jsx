@@ -65,8 +65,18 @@ class FourthQuestion extends Component {
     });
     this.createCustomers().then(this.addToTravelGroup).then(() => {
       const chosenGroups = [];
+      const answer = ['I am traveling with '];
       Object.keys(this.state.childrenGroups).forEach((group) => {
         if (!this.state.childrenGroups[group]) return;
+        if (this.state.childrenGroups[group] > 1) {
+          if (this.extractName(group) === 'baby') {
+            answer.push(`${this.state.childrenGroups[group]} of my babies, `);
+          } else {
+            answer.push(`${this.state.childrenGroups[group]} of my ${this.extractName(group)}s, `);
+          }
+        } else {
+          answer.push(`my ${this.extractName(group)}, `);
+        }
         chosenGroups.push(group);
       });
       if (!chosenGroups.length) {
@@ -74,8 +84,11 @@ class FourthQuestion extends Component {
         return this.props.goToQuestion(6);
       }
       this.props.addChosenGroups(chosenGroups);
-      const extractedNames = chosenGroups.map(name => this.extractName(name));
-      this.props.addAnswer(`I am traveling with: ${extractedNames.join(', ')}`);
+      if (answer.length > 2) {
+        answer.splice(-1, 0, ' and ');
+      }
+      const stringAnswer = answer.join('');
+      this.props.addAnswer(stringAnswer.slice(0, stringAnswer.length - 2) + '.');
       this.props.nextQuestion();
     });
   }
@@ -93,16 +106,16 @@ class FourthQuestion extends Component {
   }
   createCustomers() {
     const promises = [];
-    Object.keys(this.state.childrenGroups).forEach((groupName) => {
-      const childrenCount = this.state.childrenGroups[groupName];
-      for (let i = 0; i < childrenCount; i++) {
-        const data = {
-          ageGroup: this.props.childrenGroups[groupName].id,
-          travelGroup: this.props.travelGroupId,
-        };
-        promises.push(sendData('http://api.vacations.cafe:81/customers', 'POST', data));
-      }
-    });
+    // Object.keys(this.state.childrenGroups).forEach((groupName) => {
+    //   const childrenCount = this.state.childrenGroups[groupName];
+    //   for (let i = 0; i < childrenCount; i++) {
+    //     const data = {
+    //       ageGroup: this.props.childrenGroups[groupName].id,
+    //       travelGroup: this.props.travelGroupId,
+    //     };
+    //     promises.push(sendData('http://api.vacations.cafe:81/customers', 'POST', data));
+    //   }
+    // });
     return Promise.all(promises);
   }
 

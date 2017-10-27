@@ -128,16 +128,15 @@ class App extends Component {
   }
 
   scrollChat() {
-    // if (this.state.prevQuestion) this.state.prevQuestion.style.marginBottom = '';
-    // const lastQuestion = this.chatBody.querySelector('div.question:last-child');
-    // if (lastQuestion) {
-    //   lastQuestion.style.marginBottom = this.chatBody.offsetHeight - lastQuestion.clientHeight;
-    //   this.chatBody.scrollTop = this.chatBody.scrollHeight;
-    //   this.setState({
-    //     prevQuestion: lastQuestion,
-    //   });
-    // }
-    this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    const lastQuestion = this.chat.querySelector('.question:last-child');
+    const answerPanel = document.querySelector('.answer-panel');
+    if (lastQuestion.getBoundingClientRect().bottom + 100 >= answerPanel.getBoundingClientRect().top) {
+      this.chatBody.scroll({
+        top: this.chatBody.scrollHeight,
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
   }
 
   addQuestion(question) {
@@ -156,9 +155,12 @@ class App extends Component {
     setTimeout(() => {
       this.setState({
         questions,
+      }, () => {
+        setTimeout(() => {
+          this.scrollChat();
+        }, 500);
       });
-      this.scrollChat();
-    }, 700);
+    }, 600);
   }
 
   addAnswer(answer) {
@@ -177,11 +179,27 @@ class App extends Component {
     this.setState({
       answers,
     });
-    this.scrollChat();
   }
 
   renderChatBody() {
-    const chatBody = [];
+    const chatBody = [
+      <div className="question" key='intro'>
+        <div className="title">
+          <b>Chef Bot</b>
+        </div>
+        <div className="text">
+          <p>
+            Hey, I'm Peru, COO ("Chef" Coordinating Officer) at vacations cafe. I'll guide you today to let us unserstand a little about your family's likes and dislikes for vacations. It takes just around 5 minutes.
+          </p>
+          <p>
+            Claimer: Nobody else in this world cares better for your precious vacations than my vacation chefs that handbook vacations experiances for your tastes.
+          </p>
+          <p>
+            Shall we begin?
+          </p>
+        </div>
+      </div>,
+    ];
     for (let i = 0; i < this.state.questions.length; i++) {
       chatBody.push(this.state.questions[i]);
       if (this.state.answers[i]) {
@@ -203,13 +221,13 @@ class App extends Component {
               addLeadMember={this.props.addLeadMember}
             />
           :
-            <div className="scroll-fix">
-              <div className="chat-body" ref={(chatBody) => { this.chatBody = chatBody; }}>
-                {this.renderChatBody()}
+            <div>
+              <div className="chat-body" ref={(chatBody) => { this.chatBody = chatBody; }} onWheel={this.shiftPosition}>
+                <div className="messages-list" ref={(chat) => { this.chat = chat; }}>
+                  {this.renderChatBody()}
+                </div>
               </div>
-              <div>
-                {this.getQuestion()}
-              </div>
+              {this.getQuestion()}
             </div>
         }
       </div>

@@ -5,6 +5,9 @@ import sendData from '../services/sendData';
 class Intro extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: false,
+    };
     this.createLeadMember = this.createLeadMember.bind(this);
   }
 
@@ -12,6 +15,11 @@ class Intro extends Component {
     if (this.props.leadMember) {
       return this.props.nextQuestion();
     }
+
+    this.setState({
+      loading: true,
+    });
+
     getData('http://api.vacations.cafe:81/age-groups?text=Adult&$select=id').then((response) => {
       const id = response.data[0]._id;
       const data = {
@@ -38,9 +46,7 @@ class Intro extends Component {
         <p>
           Shall we begin?
         </p>
-        <div className="next-btn" onClick={this.createLeadMember}>
-          <img src="/assets/next-btn.png" />
-        </div>
+        <div className={`next-btn ${this.state.loading ? 'loading' : ''}`} onClick={this.createLeadMember} />
       </div>
     );
   }
