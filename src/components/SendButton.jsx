@@ -1,7 +1,6 @@
 import React from 'react';
 
 function SendButton(props) {
-
   function handler() {
     if (props.loading) return;
     props.handler();

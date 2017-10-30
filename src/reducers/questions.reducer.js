@@ -1,16 +1,18 @@
+import * as actions from '../constants/constants';
+
 const initialState = {
   questionNumber: 0,
 };
 
 function questionsReducer(state = initialState, action) {
   switch (action.type) {
-    case 'NEXT_QUESTION': {
+    case actions.NEXT_QUESTION: {
       return Object.assign({}, state, { questionNumber: ++state.questionNumber });
     }
-    case 'PREV_QUESTION': {
+    case actions.PREV_QUESTION: {
       return Object.assign({}, state, { questionNumber: --state.questionNumber });
     }
-    case 'GO_TO_QUESTION': {
+    case actions.GO_TO_QUESTION: {
       return Object.assign({}, state, { questionNumber: action.payload });
     }
     default: {

@@ -1,15 +1,19 @@
+import * as actions from '../constants/constants';
+
 const nextQuestion = () => {
-  return { type: 'NEXT_QUESTION' };
+  return { type: actions.NEXT_QUESTION };
 };
 
 const goToQuestion = (number) => {
-  return { type: 'GO_TO_QUESTION', payload: number };
+  return { type: actions.GO_TO_QUESTION, payload: number };
 };
 
 const prevQuestion = () => {
-  return { type: 'PREV_QUESTION' };
+  return { type: actions.PREV_QUESTION };
 };
 
 export default {
-  nextQuestion, goToQuestion, prevQuestion,
+  nextQuestion,
+  goToQuestion,
+  prevQuestion,
 };

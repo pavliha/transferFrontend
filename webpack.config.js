@@ -16,6 +16,7 @@ module.exports = {
   },
   devServer: {
     compress: true,
+    host: '0.0.0.0',
     port: 3000,
   },
   devtool: 'source-map',
@@ -41,15 +42,15 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env', 'react']
+            presets: ['env', 'react'],
           },
         },
         test: /\.(js|jsx)$/,
-        exclude: /(node_modules)/,
+        // exclude: /(node_modules)/,
       }, {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
+          use: ['css-loader', 'postcss-loader', 'sass-loader'],
         }),
         test: /\.(scss|css)$/,
       },

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import sendData from '../services/sendData';
-import SendButton from './SendButton';
+import SendButton from '../components/SendButton';
 
 class EighthQuestion extends Component {
   constructor(props) {
@@ -19,12 +18,34 @@ class EighthQuestion extends Component {
     this.showPassword = this.showPassword.bind(this);
     this.save = this.save.bind(this);
     this.validateForm = this.validateForm.bind(this);
-    this.auth = this.auth.bind(this);
-    this.createUser = this.createUser.bind(this);
   }
 
   componentDidMount() {
     this.props.addQuestion('One final step. Let\'s setup user login info for your account.');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.signUpData) {
+      if (!nextProps.isLogged) {
+        this.props.logIn({
+          email: this.state.userData.email,
+          password: this.state.userData.password,
+          strategy: 'local',
+        });
+      } else {
+        this.props.addQuestion(`
+          Congratulations! You are now an official member of vacations cafe. 
+          Now go ahead and setup your first travel to get to our band of specialists design your next trip.
+        `);
+        this.props.addOffsetBlock();
+        this.props.questionsNavigation.next();
+      }
+    } else if (nextProps.signUpError) {
+      this.setState({
+        loading: false,
+        errors: [nextProps.signUpError.message],
+      });
+    }
   }
 
   setValue(e) {
@@ -55,24 +76,6 @@ class EighthQuestion extends Component {
     return errors;
   }
 
-  createUser() {
-    const [firstName, lastName] = this.state.userData.name.split(' ');
-    return sendData('http://api.vacations.cafe:81/users', 'POST', {
-      firstName,
-      lastName,
-      email: this.state.userData.email,
-      password: this.state.userData.password,
-    });
-  }
-
-  auth() {
-    return sendData('http://api.vacations.cafe:81/auth', 'POST', {
-      email: this.state.userData.email,
-      password: this.state.userData.password,
-      strategy: 'local',
-    });
-  }
-
   save() {
     if (this.state.loading) return;
     const errors = this.validateForm();
@@ -84,14 +87,13 @@ class EighthQuestion extends Component {
       loading: true,
     });
 
-    this.createUser().then(this.auth).then((response) => {
-      this.props.nextQuestion();
-      this.props.addAnswer('Congratulations! You are now an official member of vacations cafe. Now go ahead and setup your first travel to get to our band of specialists design your next trip.');
-    }, (error) => {
-      this.setState({
-        errors: [error.message],
-        loading: false,
-      });
+    const [firstName, lastName] = this.state.userData.name.split(' ');
+
+    this.props.signUp({
+      firstName,
+      lastName,
+      email: this.state.userData.email,
+      password: this.state.userData.password,
     });
   }
 
@@ -115,7 +117,7 @@ class EighthQuestion extends Component {
               <div className="login-error">
                 {
                   this.state.errors.map((error) => {
-                    return <div>{error}</div>;
+                    return <div key={Math.random()}>{error}</div>;
                   })
                 }
               </div>

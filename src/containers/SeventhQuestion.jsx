@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import sendData from '../services/sendData';
-import SendButton from './SendButton';
+import Checkboxes from '../components/Checkboxes';
+import SendButton from '../components/SendButton';
 
 class SeventhQuestion extends Component {
   constructor(props) {
@@ -23,10 +23,22 @@ class SeventhQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion('What is the average budget for your trips? Not sure about this? Just set a random interval. You can adjust this fro each trip, later on.');
+    this.props.addQuestion(`
+      What is the average budget for your trips? 
+      Not sure about this? Just set a random interval. You can adjust this fro each trip, later on.
+    `);
     this.setState({
       positions: this.calcPositions(this.state.rangeValues),
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.travelGroup.budget) {
+      this.props.addAnswer(`
+        From £${this.state.budget.minimumBudget} to £${this.state.budget.maximumBudget}
+      `);
+      this.props.questionsNavigation.next();
+    }
   }
 
   setBudget(e) {
@@ -80,11 +92,7 @@ class SeventhQuestion extends Component {
     this.setState({
       loading: true,
     });
-    sendData(`http://api.vacations.cafe:81/travel-groups?_id=${this.props.travelGroupId}`, 'PATCH', this.state.budget)
-      .then(() => {
-        this.props.addAnswer(`From $${this.state.budget.minimumBudget} to $${this.state.budget.maximumBudget}.`);
-        this.props.nextQuestion();
-      });
+    this.props.setBudget(this.state.budget);
   }
 
   render() {
@@ -94,10 +102,10 @@ class SeventhQuestion extends Component {
           <div className="budget">
             <div className="range-values" ref={(rangeBox) => this.rangeBox = rangeBox}>
               <div className="from" style={{ left: this.state.positions.leftPricePosition }} ref={(from) => this.from = from}>
-                ${this.state.budget.minimumBudget}
+                £{this.state.budget.minimumBudget}
               </div>
               <div className="to" style={{ left: this.state.positions.rightPricePosition }} ref={(to) => this.to = to}>
-                ${this.state.budget.maximumBudget}
+                £{this.state.budget.maximumBudget}
               </div>
             </div>
             <div className="range-sliders">
@@ -117,13 +125,14 @@ class SeventhQuestion extends Component {
                 step="0.02"
                 style={{
                   background: `
-                    linear-gradient(to right, #c7c5c5 0%, #c7c5c5 ${this.state.rangeValues.minimum}%, ${this.state.rangeValues.minimum}%, #CE7D9E ${this.state.rangeValues.maximum}%, #c7c5c5 ${this.state.rangeValues.maximum}%)
+                    linear-gradient(to right, #c7c5c5 0%, #c7c5c5 ${this.state.rangeValues.minimum}%, ${this.state.rangeValues.minimum}%, 
+                    #CE7D9E ${this.state.rangeValues.maximum}%, #c7c5c5 ${this.state.rangeValues.maximum}%)
                   `,
                 }}
               />
             </div>
             <div className="text">
-              <span>10$</span>
+              <span>10£</span>
               <span>Go crazy chef!</span>
             </div>
           </div>

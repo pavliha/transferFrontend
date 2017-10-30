@@ -1,19 +1,19 @@
 @mixin customTrack() {
   width: 100%;
   height: 8.4px;
-  cursor: pointer;
   border-radius: 1.3px;
+  cursor: pointer;
 }
 
 @mixin customThumb() {
+  width: 23px;
+  height: 23px;
   position: relative;
   top: 6px;
   z-index: 1;
   border: 3px solid $pink;
-  width: 23px;
-  height: 23px;
   border-radius: 50%;
-  background: #ffffff;
+  background: $white;
   cursor: pointer;
 }
 
@@ -22,13 +22,13 @@
   margin: 0 auto;
 
   .range-values {
-    position: relative;
     height: 20px;
+    position: relative;
     padding: 15px;
 
     .from, .to {
-      position: absolute;
       width: 45px;
+      position: absolute;
       text-align: center;
     }
   }
@@ -85,10 +85,9 @@
   }
 
   .text {
-    margin: 10px 0;
-    font-size: 11px;
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
+    font-size: 11px;
   }
-  
 }
