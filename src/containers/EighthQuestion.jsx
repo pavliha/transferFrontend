@@ -51,8 +51,18 @@ class EighthQuestion extends Component {
   setValue(e) {
     const userData = Object.assign({}, this.state.userData);
     userData[e.currentTarget.id] = e.currentTarget.value;
+    const errors = Object.assign({}, this.state.errors);
+
+    const result = this.validateField(e.currentTarget.id, e.currentTarget.value);
+    if (result === true) {
+      delete errors[e.currentTarget.id];
+    } else {
+      errors[e.currentTarget.id] = result;
+    }
+
     this.setState({
       userData,
+      errors,
     });
   }
 
@@ -62,17 +72,31 @@ class EighthQuestion extends Component {
     });
   }
 
+  validateField(fieldName, value) {
+    switch (fieldName) {
+      case 'name': {
+        const fullName = value.split(' ');
+        return fullName.length >= 2 && fullName[1] ? true : 'Please, enter your full name';
+      }
+      case 'email': {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(value) ? true : 'Email is not valid';
+      }
+      case 'password': {
+        const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        return re.test(value) ? true : 'Password should contail at least 8 characters, at least one letter and one number';
+      }
+      default: return false;
+    }
+  }
+
   validateForm() {
-    const errors = [];
-    const userData = this.state.userData;
-    const emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const passwordRE = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-    if (!userData.name || !userData.email || !userData.password) errors.push('All fields must be filled');
-    if (userData.name.indexOf(' ') === -1) errors.push('Please, enter your full name');
-    if (!emailRE.test(userData.email)) errors.push('Email is not valid');
-    if (!passwordRE.test(userData.password)) errors.push('Password should contail at least 8 characters, at least one letter and one number');
-
+    const errors = {};
+    Object.keys(this.state.userData).forEach((field) => {
+      const result = this.validateField(field, this.state.userData[field]);
+      if (result === true) return;
+      errors[field] = result;
+    });
     return errors;
   }
 
@@ -82,7 +106,7 @@ class EighthQuestion extends Component {
     this.setState({
       errors,
     });
-    if (errors.length) return;
+    if (Object.keys(errors).length) return;
     this.setState({
       loading: true,
     });
@@ -116,8 +140,8 @@ class EighthQuestion extends Component {
               <div className="show-password" onClick={this.showPassword}>{ this.state.showPassword ? 'Hide' : 'Show' }</div>
               <div className="login-error">
                 {
-                  this.state.errors.map((error) => {
-                    return <div key={Math.random()}>{error}</div>;
+                  Object.keys(this.state.errors).map((error) => {
+                    return <div key={Math.random()}>{this.state.errors[error]}</div>;
                   })
                 }
               </div>
