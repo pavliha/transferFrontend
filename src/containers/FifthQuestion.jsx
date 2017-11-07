@@ -17,7 +17,7 @@ class FifthQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion(`What do you think your ${this.extractName(this.state.groupNames[this.state.index])} would like to do?`);
+    this.props.addQuestion(this.getQuestion(this.state.index));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,7 +38,7 @@ class FifthQuestion extends Component {
         chosenActivities: {},
       });
       if (this.state.groupNames[this.state.index + 1]) {
-        this.props.addQuestion(`What do you think your ${this.extractName(this.state.groupNames[this.state.index + 1])} would like to do?`);
+        this.props.addQuestion(this.getQuestion(this.state.index + 1));
         this.setState({
           index: this.state.index + 1,
         });
@@ -59,6 +59,23 @@ class FifthQuestion extends Component {
 
   extractName(name) {
     return name.slice(0, name.indexOf(' ')).toLowerCase();
+  }
+
+  getQuestion(stateIndex) {
+    switch (this.extractName(this.state.groupNames[stateIndex])) {
+      case "toddler":
+        return `I know this is difficult but what do you think your little toddler wants to do on their vacations?`;
+      case "schoolgoer":
+        return `This is very difficult but what do you think your little schoolgoer wants to do on their vacations?`;
+      case "teen":
+        return `Teens wander in their own new world. Hoping that you understand them better, what do you think
+        yours will want to do on their vacations?`;
+      case "baby":
+        return `A babysitter would do a great help to take care of your baby while you want to take a fresh breath out.
+        Do you think it is better to arrange a babysitter for your trips?`;
+      case "adult":
+        return `What do you think your grownup kid would like to do on their vacations?`;
+    }
   }
 
   toggleActivities(e) {

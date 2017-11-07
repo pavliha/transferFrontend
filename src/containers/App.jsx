@@ -146,7 +146,7 @@ class App extends Component {
     const newQuestion = (
       <div className="question" key={`question-${questions.length + 1}`}>
         <div className="title">
-          <b>Chef Bot</b>
+          <b>Peru</b>
         </div>
         <div className="text">
           {question}

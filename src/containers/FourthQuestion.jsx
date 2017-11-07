@@ -19,7 +19,7 @@ class FourthQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion('Good. What kids have you got that will travel with you on your vacation?');
+    this.props.addQuestion('Good. How many kids have you got that will travel with you on your vacations?');
     this.getChildrenGroups();
   }
 

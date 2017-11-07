@@ -15,7 +15,8 @@ class ThirdQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion('Who knows your partner better than you? Now think about your partner and what do they typically fancy doing?');
+    this.props.addQuestion(`Who knows your partner better than you? Now think about your partner and what do
+    they typically fancy doing on a trip?`);
   }
 
   componentWillReceiveProps(nextProps) {

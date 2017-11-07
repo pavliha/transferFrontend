@@ -14,10 +14,14 @@ class IntroContainer extends Component {
     this.props.addQuestion(
       <div>
         <p>
-          Hey, I'm Peru, COO ("Chef" Coordinating Officer) at vacations cafe. I'll guide you today to let us unserstand a little about your family's likes and dislikes for vacations. It takes just around 5 minutes.
+          Hey, I'm Peru, CCO ("Chef" Coordinating Officer) at Vacations Café.
+          I'll guide you today to let us unserstand a little about your family's
+          likes and dislikes for vacations. It takes less than 5 minutes.
         </p>
         <p>
-          Claimer: Nobody else in this world cares better for your precious vacations than my vacation chefs that handbook vacations experiances for your tastes.
+          <strong>Claimer</strong>: Nobody else in this world cares better for your
+          precious vacations than my vacation chefs that hand-cook vacation experiences
+          for your tastes.
         </p>
         <p>
           Shall we begin?
