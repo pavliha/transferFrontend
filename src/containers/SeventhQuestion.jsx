@@ -5,14 +5,23 @@ import SendButton from '../components/SendButton';
 class SeventhQuestion extends Component {
   constructor(props) {
     super(props);
+    //TODO for Anastasia
+    //Provide a const here for:
+    //stepIncrement: how much is increased in each step when user drags the range towards right
+    //    My preferred value: 100
+    //rangeMinimum: What is the minimum budget that can be set
+    //    My preferred value: 200
+    //rangeMaximum: What is the maximum budget that can be set
+    //    My preferred value: 30000
+    
     this.state = {
       rangeValues: {
-        minimum: 5,
-        maximum: 70,
+        minimum: 1,
+        maximum: 40,
       },
       budget: {
-        minimumBudget: 2500,
-        maximumBudget: 35000,
+        minimumBudget: 500,
+        maximumBudget: 20000,
       },
       loading: false,
       positions: {},
@@ -24,8 +33,8 @@ class SeventhQuestion extends Component {
 
   componentDidMount() {
     this.props.addQuestion(`
-      What is the average budget for your trips? 
-      Not sure about this? Just set a random interval. You can adjust this fro each trip, later on.
+      For the next 2 years, what is the average budget for your trips? 
+      Not sure about this? Fret not. You can adjust this for each trip, later on.
     `);
     this.setState({
       positions: this.calcPositions(this.state.rangeValues),

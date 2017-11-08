@@ -15,7 +15,7 @@ class SixthQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion('What countries to visit within the next 2 years?');
+    this.props.addQuestion('Awesome. Pick the countries that your family fancies visiting in the next 2 years.');
     this.props.getCountries();
   }
 
