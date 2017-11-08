@@ -15,10 +15,12 @@ class FirstQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion(`
+    this.props.addQuestion(
+      <div>
       Good. Thanks. Now close your eyes and imagine about your vacations for the next 2 years. 
-      What do you typically fancy doing? Forget about your family for this moment.
-    `);
+      What do <strong>you</strong> typically fancy doing? Forget about your family for this moment.
+      </div>
+    );
   }
 
   componentWillReceiveProps(nextProps) {

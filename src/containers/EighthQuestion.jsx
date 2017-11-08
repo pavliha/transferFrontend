@@ -21,7 +21,18 @@ class EighthQuestion extends Component {
   }
 
   componentDidMount() {
-    this.props.addQuestion('One final step. Let\'s setup user login info for your account.');
+    this.props.addQuestion(
+      <div>
+        <p>Great, we have enough information about your family's tastes for vacations.</p>
+        <p>
+          We are a community of travellers that help each other. We have some influencing
+          family travellers who had witnessed years of travelling to exotic countries.
+        </p>
+        <p>Become a part of this close-knit community and enjoy unique trips that your
+          friends may have not experienced.</p>
+        <p>Sign up and see those inspiring trips for yourselves.</p>
+      </div>
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,16 +45,20 @@ class EighthQuestion extends Component {
         });
       } else {
         this.props.addQuestion(`
-          Congratulations! You are now an official member of vacations cafe. 
+          Congratulations! You are now an official member of Vacations Café.
           Now go ahead and setup your first travel to get to our band of specialists design your next trip.
         `);
         this.props.addOffsetBlock();
         this.props.questionsNavigation.next();
       }
     } else if (nextProps.signUpError) {
+      var errorMessage = nextProps.signUpError.message;
+      if (nextProps.signUpError.name === 'Conflict') {
+        errorMessage = "The email you entered already has an account. Try a different email."
+      }
       this.setState({
         loading: false,
-        errors: [nextProps.signUpError.message],
+        errors: [errorMessage],
       });
     }
   }
