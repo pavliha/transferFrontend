@@ -66,7 +66,7 @@ class FourthQuestion extends Component {
   }
 
   createAnswer() {
-    let answer = ['I am traveling with '];
+    let answer = ['I am travelling with '];
     Object.keys(this.state.childrenGroupsCount).forEach((groupName) => {
       if (!this.state.childrenGroupsCount[groupName]) return;
       if (this.state.childrenGroupsCount[groupName] > 1) {

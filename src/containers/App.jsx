@@ -11,6 +11,7 @@ import FifthQuestion from './FifthQuestion';
 import SixthQuestion from './SixthQuestion';
 import SeventhQuestion from './SeventhQuestion';
 import EighthQuestion from './EighthQuestion';
+import LastPageContainer from './LastPageContainer';
 
 import './styles/main.scss';
 
@@ -212,30 +213,38 @@ class App extends Component {
   }
 
   render() {
+    if (this.props.questionNumber === 0) {
+      return (
+        <div className="container white-bg" ref={container => this.container = container}>
+          <IntroContainer
+            questionsNavigation={this.props.questionsNavigation}
+            ageGroups={this.props.ageGroups}
+            getAgeGroups={this.props.getAgeGroups}
+            leadMember={this.props.leadMember}
+            addLeadMember={this.props.addLeadMember}
+            addQuestion={this.addQuestion}
+            addAnswer={this.addAnswer}
+          />
+        </div>  
+      )
+    } else if (this.props.questionNumber === 9) {
+      return (
+        <div className="container white-bg" ref={container => this.container = container}>
+          <LastPageContainer />
+        </div>
+      )
+    }
     return (
-      <div className={`container ${this.props.questionNumber === 0 ? 'white-bg' : ''}`} ref={container => this.container = container}>
-        {
-          this.props.questionNumber === 0 ?
-
-            <IntroContainer
-              questionsNavigation={this.props.questionsNavigation}
-              ageGroups={this.props.ageGroups}
-              getAgeGroups={this.props.getAgeGroups}
-              leadMember={this.props.leadMember}
-              addLeadMember={this.props.addLeadMember}
-              addQuestion={this.addQuestion}
-              addAnswer={this.addAnswer}
-            />
-          :
-            <div className="scroll-fix">
-              <div className="chat" ref={chat => this.chat = chat}>
-                {this.renderChatBody()}
-              </div>
-              <div>
-                {this.getQuestion()}
-              </div>
-            </div>
-        }
+      <div className="container" ref={container => this.container = container}>
+        <div className="scroll-fix">
+          <div className="chat" ref={chat => this.chat = chat}>
+            {this.renderChatBody()}
+          </div>
+          <div>
+            {this.props.questionNumber}
+            {this.getQuestion()}
+          </div>
+        </div>
       </div>
     );
   }

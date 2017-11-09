@@ -7,7 +7,7 @@ const Intro = (props) => {
       <h1>Lets get started</h1>
       <p>
         Hey, I'm Peru, CCO ("Chef" Coordinating Officer) at Vacations Café.
-        I'll guide you today to let us unserstand a little about your family's
+        I'll guide you today to let us understand a little about your family's
         likes and dislikes for vacations. It takes less than 5 minutes.
       </p>
       <p>
