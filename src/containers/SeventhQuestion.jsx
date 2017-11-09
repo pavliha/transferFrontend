@@ -5,30 +5,22 @@ import SendButton from '../components/SendButton';
 class SeventhQuestion extends Component {
   constructor(props) {
     super(props);
-    //TODO for Anastasia
-    //Provide a const here for:
-    //stepIncrement: how much is increased in each step when user drags the range towards right
-    //    My preferred value: 100
-    //rangeMinimum: What is the minimum budget that can be set
-    //    My preferred value: 200
-    //rangeMaximum: What is the maximum budget that can be set
-    //    My preferred value: 30000
-    
+
+    this.stepIncrement = 100;
+    this.rangeMinimum = 200;
+    this.rangeMaximum = 30000;
+
     this.state = {
-      rangeValues: {
-        minimum: 1,
-        maximum: 40,
-      },
-      budget: {
-        minimumBudget: 500,
-        maximumBudget: 20000,
-      },
       loading: false,
+      budget: {},
+      rangeValues: {},
       positions: {},
     };
+
     this.setBudget = this.setBudget.bind(this);
     this.calcPositions = this.calcPositions.bind(this);
     this.save = this.save.bind(this);
+    this.getInitialValues = this.getInitialValues.bind(this);
   }
 
   componentDidMount() {
@@ -36,9 +28,8 @@ class SeventhQuestion extends Component {
       For the next 2 years, what is the average budget for your trips? 
       Not sure about this? Fret not. You can adjust this for each trip, later on.
     `);
-    this.setState({
-      positions: this.calcPositions(this.state.rangeValues),
-    });
+
+    this.getInitialValues();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,19 +41,33 @@ class SeventhQuestion extends Component {
     }
   }
 
+  getInitialValues() {
+    const minValue = (this.rangeMinimum * 100) / this.rangeMaximum;
+    const maxValue = 20;
+
+    const rangeValues = {
+      minimum: minValue,
+      maximum: maxValue,
+    };
+    const budget = this.calcBudget({ minimum: minValue, maximum: maxValue });
+    const positions = this.calcPositions({ minimum: minValue, maximum: maxValue });
+
+    this.setState({ rangeValues, budget, positions });
+  }
+
   setBudget(e) {
     const element = e.currentTarget;
     const rangeValues = Object.assign({}, this.state.rangeValues);
 
     if (element.id === 'maximumBudget') {
-      if (+element.value - rangeValues.minimum < 10) {
-        rangeValues.maximum = rangeValues.minimum + 10;
+      if (+element.value - rangeValues.minimum < 4) {
+        rangeValues.maximum = rangeValues.minimum + 4;
       } else {
         rangeValues.maximum = +element.value;
       }
     } else {
-      if (rangeValues.maximum - +element.value < 10) {
-        rangeValues.minimum = rangeValues.maximum - 10;
+      if (rangeValues.maximum - +element.value < 4) {
+        rangeValues.minimum = rangeValues.maximum - 4;
       } else {
         rangeValues.minimum = +element.value;
       }
@@ -91,8 +96,8 @@ class SeventhQuestion extends Component {
 
   calcBudget(values) {
     return {
-      minimumBudget: ((values.minimum / 100) * 50000).toFixed(0),
-      maximumBudget: ((values.maximum / 100) * 50000).toFixed(0),
+      minimumBudget: ((values.minimum * this.rangeMaximum) / 100).toFixed(0),
+      maximumBudget: ((values.maximum * this.rangeMaximum) / 100).toFixed(0),
     };
   }
 
@@ -123,15 +128,15 @@ class SeventhQuestion extends Component {
                 id="minimumBudget"
                 value={this.state.rangeValues.minimum}
                 onChange={this.setBudget}
-                step="0.02"
-                min="0.02"
+                step={(this.stepIncrement*100)/this.rangeMaximum}
+                min={(this.rangeMinimum*100)/this.rangeMaximum}
               />
               <input
                 type="range"
                 id="maximumBudget"
                 value={this.state.rangeValues.maximum}
                 onChange={this.setBudget}
-                step="0.02"
+                step={(this.stepIncrement*100)/this.rangeMaximum}
                 style={{
                   background: `
                     linear-gradient(to right, #c7c5c5 0%, #c7c5c5 ${this.state.rangeValues.minimum}%, ${this.state.rangeValues.minimum}%, 
@@ -141,7 +146,7 @@ class SeventhQuestion extends Component {
               />
             </div>
             <div className="text">
-              <span>10£</span>
+              <span>{this.rangeMinimum}£</span>
               <span>Go crazy chef!</span>
             </div>
           </div>
