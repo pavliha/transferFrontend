@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const VENDOR_LIST = ['react', 'react-dom', 'babel-polyfill'];
+const VENDOR_LIST = ['react', 'react-dom', 'babel-polyfill', 'smoothscroll-polyfill'];
 
 module.exports = {
   entry: {
