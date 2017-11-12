@@ -3,7 +3,7 @@ import React from 'react';
 const LastPage = (props) => {
   return (
     <div className="intro last-page">
-      <img src="/assets/snowman.png" className="snowman"/>
+      <img src="assets/snowman.png" className="snowman"/>
       <h1>Congratulations!</h1>
       <p>
         You are now an official member of Vacations Café community.
@@ -24,13 +24,13 @@ const LastPage = (props) => {
           href="#"
           title="Available on the App Store"
         >
-          <img src="/assets/ios-download.svg" />
+          <img src="assets/ios-download.svg" />
         </a>
         <a 
           href="#"
           title="Get it on Google Play"
         >
-          <img src="/assets/android-download.png" />
+          <img src="assets/android-download.png" />
         </a>
       </div>
       <p className="last-page__email-info">

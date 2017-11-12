@@ -241,7 +241,6 @@ class App extends Component {
             {this.renderChatBody()}
           </div>
           <div>
-            {this.props.questionNumber}
             {this.getQuestion()}
           </div>
         </div>

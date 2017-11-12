@@ -3,7 +3,7 @@ import React from 'react';
 const Intro = (props) => {
   return (
     <div className="intro">
-      <img src="/assets/snowman.png" className="snowman"/>
+      <img src="assets/snowman.png" className="snowman"/>
       <h1>Lets get started</h1>
       <p>
         Hey, I'm Peru, CCO ("Chef" Coordinating Officer) at Vacations Café.

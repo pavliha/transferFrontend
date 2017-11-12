@@ -41,7 +41,8 @@
     "webpack-dev-server": "^2.9.2"
   },
   "scripts": {
-    "serve": "webpack-dev-server"
+    "serve": "webpack-dev-server",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
