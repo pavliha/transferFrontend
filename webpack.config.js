@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 const VENDOR_LIST = ['react', 'react-dom', 'babel-polyfill', 'smoothscroll-polyfill'];
@@ -69,8 +70,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
+    new CopyWebpackPlugin([{
+      from: 'assets',
+      to: 'assets'
+    }]),
     new webpack.ProvidePlugin({
       Promise: 'bluebird',
+      SmoothScroll: 'smoothscroll-polyfill',
     }),
   ],
 };

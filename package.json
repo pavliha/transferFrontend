@@ -19,7 +19,9 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.2.0",
     "css-loader": "^0.28.7",
+    "es6-map": "^0.1.5",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-loader": "^1.9.0",
@@ -41,8 +43,9 @@
     "webpack-dev-server": "^2.9.2"
   },
   "scripts": {
+    "clean": "rimraf dist",
     "serve": "webpack-dev-server",
-    "build": "webpack"
+    "build": "npm run clean && webpack"
   },
   "keywords": [],
   "author": "",

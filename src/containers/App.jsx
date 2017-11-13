@@ -14,6 +14,7 @@ import EighthQuestion from './EighthQuestion';
 import LastPageContainer from './LastPageContainer';
 
 import './styles/main.scss';
+SmoothScroll.polyfill();
 
 class App extends Component {
   constructor(props) {
