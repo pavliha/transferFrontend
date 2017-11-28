@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
-@import './varriables';
-@import './intro';
-@import './second-question';
-@import './fourth-question';
-@import './seventh-question';
-@import './eighth-question';
-@import './last-page';
+@import 'varriables';
+@import 'intro';
+@import 'second-question';
+@import 'fourth-question';
+@import 'seventh-question';
+@import 'eighth-question';
+@import 'last-page';
 
- body {
-  height: 100%; 
+body {
+  height: 100%;
   margin: 0;
   padding: 0;
   background-color: $main-background;
- }
+}
 
 .container {
   position: relative;
@@ -23,7 +23,7 @@
   font: $default-size $default-font;
   line-height: 23px;
   color: $dark-grey;
-  
+
   @media screen and (max-width: 425px) {
     font-size: $small-size;
   }
@@ -31,7 +31,7 @@
   &.white-bg {
     background-color: $white;
   }
-  
+
   .scroll-fix {
     display: flex;
     flex-direction: column;
@@ -47,24 +47,24 @@
     &::-webkit-scrollbar {
       -webkit-appearance: none;
     }
-  
+
     &::-webkit-scrollbar:vertical {
       width: 11px;
     }
-    
+
     &::-webkit-scrollbar:horizontal {
       height: 11px;
     }
-    
+
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
       border: 2px solid #FFF;
       background-color: rgba(0, 0, 0, 0.2);
     }
-    
-    &::-webkit-scrollbar-track { 
-      background-color: #FFF; 
-      border-radius: 8px; 
+
+    &::-webkit-scrollbar-track {
+      background-color: #FFF;
+      border-radius: 8px;
     }
 
     .question, .answer {
@@ -95,7 +95,7 @@
         border-style: solid;
         border-color: transparent transparent $white transparent;
         z-index: 2;
-      }      
+      }
     }
 
     .question {
@@ -103,7 +103,7 @@
 
       &:before {
         left: -38px;
-        background-image: url(../../../assets/snowman-head.png);
+        background-image: url(../assets/snowman-head.png);
         background-repeat: no-repeat;
         background-size: 33px 33px;
       }
@@ -146,24 +146,24 @@
       &::-webkit-scrollbar {
         -webkit-appearance: none;
       }
-    
+
       &::-webkit-scrollbar:vertical {
         width: 11px;
       }
-      
+
       &::-webkit-scrollbar:horizontal {
         height: 11px;
       }
-      
+
       &::-webkit-scrollbar-thumb {
         border-radius: 8px;
         border: 2px solid white;
         background-color: rgba(0, 0, 0, 0.2);
       }
-      
-      &::-webkit-scrollbar-track { 
-        background-color: #fff; 
-        border-radius: 8px; 
+
+      &::-webkit-scrollbar-track {
+        background-color: #fff;
+        border-radius: 8px;
       }
     }
 
@@ -176,12 +176,12 @@
 
       border-left: 1px solid $light-grey;
       cursor: pointer;
-      
+
       div {
         width: 70px;
         margin: 0 auto;
         text-align: center;
-        
+
         &:before {
           content: 'Send';
         }
@@ -240,6 +240,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

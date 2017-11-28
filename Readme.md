@@ -1,2 +1,2 @@
 # To start the project run:
-## npm run serve
+## npm run dev

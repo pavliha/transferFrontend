@@ -1,3 +1,5 @@
-node_modules/
-.vscode/
-package-lock.jsonnpm-debug.log
+# Created by .ignore support plugin (hsz.mobi)
+/node_modules
+/.idea
+/yarn.lock
+/package-lock.json
