@@ -6,8 +6,9 @@ import store, {history} from './store';
 import { ConnectedRouter} from 'react-router-redux'
 import Route from "react-router/es/Route";
 import {Switch} from "react-router-dom";
-import LastPage from "./components/LastPage";
+import WelcomePageContainer from "./containers/WelcomePageContainer";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.scss';
 
 
@@ -19,7 +20,7 @@ class App extends Component {
                 <ConnectedRouter history={history}>
                     <Switch>
                         <Route exact path="/join/chat-with-peru" component={ChatPage}/>
-                        <Route exact path="/join/welcome" component={LastPage}/>
+                        <Route exact path="/join/welcome" component={WelcomePageContainer}/>
                     </Switch>
                 </ConnectedRouter>
             </Provider>

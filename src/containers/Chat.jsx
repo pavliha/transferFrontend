@@ -11,7 +11,7 @@ import FifthQuestion from './FifthQuestion';
 import SixthQuestion from './SixthQuestion';
 import SeventhQuestion from './SeventhQuestion';
 import EighthQuestion from './EighthQuestion';
-import LastPageContainer from './LastPageContainer';
+import LastPageContainer from './WelcomePageContainer';
 
 
 SmoothScroll.polyfill();

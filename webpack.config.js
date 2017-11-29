@@ -29,12 +29,7 @@ module.exports = {
     module: {
         rules: [
             {
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env', 'react'],
-                    },
-                },
+                use: {loader: 'babel-loader',},
                 test: /\.(js|jsx)$/,
                 // exclude: /(node_modules)/,
             }, {
@@ -64,8 +59,11 @@ module.exports = {
             to: './assets',
         }]),
         new webpack.ProvidePlugin({
-            Promise: 'bluebird',
             SmoothScroll: 'smoothscroll-polyfill',
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default'],
         }),
     ],
 };
