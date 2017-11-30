@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Checkboxes from '../components/Checkboxes';
-import SendButton from '../components/SendButton';
+import SendButton from "./SendButton";
+import Checkboxes from "./Checkboxes";
 
 class FifthQuestion extends Component {
   constructor(props) {

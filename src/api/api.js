@@ -64,3 +64,6 @@ export const addMember = (travelGroupId, memberId) => {
 export const getCountries = () => {
   return getData('/countries?isServed=true&$limit=50');
 };
+export const getTrips = () =>{
+  return getData('/trips?$limit=20&$populate=designer')
+}

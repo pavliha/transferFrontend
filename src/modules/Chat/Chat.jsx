@@ -230,7 +230,8 @@ class Chat extends Component {
             );
         }
         return (
-            <div className="Chat container" ref={container => this.container = container}>
+            <div className="Chat
+             container" ref={container => this.container = container}>
                 <div className="scroll-fix">
                     <div className="chat" ref={chat => this.chat = chat}>
                         {this.renderChatBody()}

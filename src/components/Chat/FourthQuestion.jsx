@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SendButton from '../components/SendButton';
-import ChildrenGroups from '../components/ChildrenGroups';
+import SendButton from './SendButton';
+import ChildrenGroups from './ChildrenGroups';
 
 class FourthQuestion extends Component {
   constructor(props) {

@@ -24,3 +24,8 @@ export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const GO_TO_QUESTION = 'GO_TO_QUESTION';
 export const PREV_QUESTION = 'PREV_QUESTION';
+
+
+//Trips Actions
+
+export const GET_TRIPS = 'GET_TRIPS'

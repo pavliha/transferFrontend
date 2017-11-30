@@ -1,0 +1,36 @@
+.last-page {
+  &__downloads {
+    text-align: center;
+    margin-top: 40px;
+
+    a {
+      img {
+        max-width: 120px;
+      }
+      display: inline-block;
+      padding-right: 10px;
+    }
+  }
+
+  &__email-info {
+    font-size: 0.9em;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 320px) {
+  .last-page {
+    font-size: 12px;
+    
+    &__downloads {
+      margin-top: 30px;
+      a img {
+        max-width: 100px;
+      }
+    }
+
+    &__email-info {
+      margin-top: 30px;
+    }
+  }
+}

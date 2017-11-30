@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Partners from '../components/Partners';
+import Partners from './Partners';
 
 class SecondQuestion extends Component {
   constructor(props) {

@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
 @import 'varriables';
-@import 'intro';
-@import 'second-question';
-@import 'fourth-question';
-@import 'seventh-question';
-@import 'eighth-question';
-@import 'last-page';
-@import "bg";
+@import 'chat/intro';
+@import 'chat/second-question';
+@import 'chat/fourth-question';
+@import 'chat/seventh-question';
+@import 'chat/eighth-question';
+@import 'chat/last-page';
+@import "theme/bg";
+@import "theme/text";
+@import "theme/navbar";
+@import "theme/dummy";
+@import "theme/icon";
+@import "components/TripCard";
 
 body {
   height: 100%;
@@ -16,7 +23,7 @@ body {
   background-color: $main-background;
 }
 
-.container {
+.chat-container {
   position: relative;
   height: 100%;
   max-width: $container-width;
@@ -229,13 +236,6 @@ body {
     }
 
   }
-}
-
-.bg-planes{
-  background: #1A0841;
-  background-image: url("../assets/bg-planes.svg");
-  background-size: 100%;
-  background-repeat: no-repeat;
 }
 
 @keyframes newMessage {
