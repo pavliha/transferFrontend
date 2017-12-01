@@ -1,4 +1,5 @@
 import getData from '../services/getData';
+
 import sendData from '../services/sendData';
 import param from 'jquery-param'
 
@@ -65,9 +66,8 @@ export const addMember = (travelGroupId, memberId) => {
 export const getCountries = () => {
     return getData('/countries?isServed=true&$limit=50');
 };
-export const getTrips = (limit = 10, skip = 0, populate = 'designer') => {
-
-    const params = param({$limit: limit, $skip: skip, $populate: populate})
+export const getTrips = (obj) => {
+    const params = param({...obj, $populate: 'designer'})
 
     return getData('/trips?' + params)
 }

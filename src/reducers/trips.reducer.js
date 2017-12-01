@@ -2,7 +2,9 @@ import {GET_TRIPS} from '../constants/constants';
 
 const initialState = {
     trips: [],
-    total: null,
+    total: 0,
+    skip: 0,
+    limit: 9,
     loading: false,
 };
 
@@ -11,15 +13,19 @@ export default (state = initialState, {type, payload}) => {
         case GET_TRIPS + '_PENDING':
             return {
                 ...state,
-                loading: true,
+
             };
         case GET_TRIPS + '_FULFILLED':
-            return {
+            let newState = {
                 ...state,
                 loading: false,
+                skip: payload.skip,
+                limit: payload.limit,
                 total: payload.total,
-                trips: payload.data
-            };
+            }
+            newState.trips = newState.trips.concat(payload.data)
+
+            return newState;
 
         case GET_TRIPS + '_REJECTED':
             return {

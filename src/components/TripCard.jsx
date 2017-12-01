@@ -7,9 +7,8 @@ export default ({trip, style}) => <div>
             <CardTitle className="h5 trip-card-title">$3434 to $4512</CardTitle>
             <CardSubtitle className="h6 trip-card-subtitle mb-2">{trip.name}</CardSubtitle>
             <div className='dummy-block'>
-                <img
-                    src={`https://s3-eu-west-1.amazonaws.com/vacations-cafe-thumb/designers/${trip.designer.user._id}​/profile.jpg`}
-                    width='100%'/>
+                <img src='' width='100%'/>
+
             </div>
             <div className='pt-3 px-1'>
                 <small>
@@ -29,7 +28,10 @@ export default ({trip, style}) => <div>
         <hr/>
         <div className='d-flex px-3 pb-3'>
             <div>
-                <div className='dummy-avatar mt-1 mr-2'/>
+                <div className='dummy-avatar mt-1 mr-2'>
+                    <img src={`https://s3-eu-west-1.amazonaws.com/vacations-cafe-thumb/designers/${trip.designer.user._id}/profile.jpg`}
+                        width='100%'/>
+                </div>
             </div>
             <div>
                 <div>
