@@ -1,8 +1,8 @@
 import React from "react"
-import {Button, Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
+import {Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
 
-export default ({trip}) => <div>
-    <Card className='mb-3' style={{width: 380}}>
+export default ({trip, style}) => <div>
+    <Card className='mb-3' style={style}>
         <div className='px-3 pt-3'>
             <CardTitle className="h5 trip-card-title">$3434 to $4512</CardTitle>
             <CardSubtitle className="h6 trip-card-subtitle mb-2">{trip.name}</CardSubtitle>
@@ -33,7 +33,9 @@ export default ({trip}) => <div>
             </div>
             <div>
                 <div>
-                    <small>By {trip.designer.user.firstName} {trip.designer.user.lastName}@{trip.designer.agencyName}</small>
+                    <small>
+                        By {trip.designer.user.firstName} {trip.designer.user.lastName}@{trip.designer.agencyName}
+                    </small>
                 </div>
                 <div>
                     <small>Top 2% · Independent designer · Blogger</small>

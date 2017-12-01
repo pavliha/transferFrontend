@@ -28,11 +28,5 @@ export default ({total, children, user}) => <div>
         </div>
     </nav>
 
-    <section className='container mt-4 '>
-        <h4 className='text-muted'>Matching trips</h4>
-        <p className='pt-3 pb-2'>{total ? total + ' results' : ''}</p>
-        <div className='d-flex flex-wrap justify-content-between animated ZoomIn'>
-            {children}
-        </div>
-    </section>
+    {children}
 </div>
