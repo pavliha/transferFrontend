@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Checkboxes from '../components/Checkboxes';
-import SendButton from '../components/SendButton';
+import SendButton from './SendButton';
 
 class SeventhQuestion extends Component {
   constructor(props) {
@@ -90,8 +89,7 @@ class SeventhQuestion extends Component {
       leftPricePosition -= shift;
       rightPricePosition += shift;
     }
-    const positions = { leftPricePosition, rightPricePosition };
-    return positions;
+      return {leftPricePosition, rightPricePosition};
   }
 
   calcBudget(values) {

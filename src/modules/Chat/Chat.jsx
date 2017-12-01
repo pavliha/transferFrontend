@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import questionsAction from '../actions/questions.action';
 import membersAction from '../actions/members.action';
-import IntroContainer from './IntroContainer';
-import FirstQuestion from './FirstQuestion';
-import SecondQuestion from './SecondQuestion';
-import ThirdQuestion from './ThirdQuestion';
-import FourthQuestion from './FourthQuestion';
-import FifthQuestion from './FifthQuestion';
-import SixthQuestion from './SixthQuestion';
-import SeventhQuestion from './SeventhQuestion';
-import EighthQuestion from './EighthQuestion';
-import LastPageContainer from './WelcomePageContainer';
+import IntroContainer from '../components/Chat/IntroContainer';
+import FirstQuestion from '../components/Chat/FirstQuestion';
+import SecondQuestion from '../components/Chat/SecondQuestion';
+import ThirdQuestion from '../components/Chat/ThirdQuestion';
+import FourthQuestion from '../components/Chat/FourthQuestion';
+import FifthQuestion from '../components/Chat/FifthQuestion';
+import SixthQuestion from '../components/Chat/SixthQuestion';
+import SeventhQuestion from '../components/Chat/SeventhQuestion';
+import EighthQuestion from '../components/Chat/EighthQuestion';
 
 
 SmoothScroll.polyfill();
@@ -217,7 +216,7 @@ class Chat extends Component {
     render() {
         if (this.props.questionNumber === 0) {
             return (
-                <div className="container white-bg" ref={container => this.container = container}>
+                <div className="Chat container white-bg" ref={container => this.container = container}>
                     <IntroContainer
                         questionsNavigation={this.props.questionsNavigation}
                         ageGroups={this.props.ageGroups}
@@ -229,15 +228,10 @@ class Chat extends Component {
                     />
                 </div>
             );
-        } else if (this.props.questionNumber === 9) {
-            return (
-                <div className="container white-bg" ref={container => this.container = container}>
-                    <LastPageContainer/>
-                </div>
-            );
         }
         return (
-            <div className="container" ref={container => this.container = container}>
+            <div className="Chat
+             container" ref={container => this.container = container}>
                 <div className="scroll-fix">
                     <div className="chat" ref={chat => this.chat = chat}>
                         {this.renderChatBody()}

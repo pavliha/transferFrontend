@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import SendButton from '../components/SendButton';
 import {Route} from 'react-router-dom'
+import SendButton from "./SendButton";
 
 class EighthQuestion extends Component {
     constructor(props) {
@@ -52,7 +52,7 @@ class EighthQuestion extends Component {
                 this.props.questionsNavigation.next();
             }
         } else if (nextProps.signUpError) {
-            var errorMessage = nextProps.signUpError.message;
+            let errorMessage = nextProps.signUpError.message;
             if (nextProps.signUpError.name === 'Conflict') {
                 errorMessage = "The email you entered already has an account. Try a different email."
             }

@@ -1,0 +1,35 @@
+.children {
+  .child {
+    display: flex;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 374px) {
+      flex-wrap: wrap;
+    }
+    
+    .child-group {
+      width: 100%;
+    }
+    .child-counter {
+      display: flex;
+      color: $purple;
+      font-size: 20px;
+
+      .plus, .minus {
+        margin: 0 15px;
+        font-size: 30px;
+        cursor: pointer;
+       
+        &.hidden {
+          display: none;
+        }
+      }
+
+      .minus {
+        @media screen and (max-width: 424px) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

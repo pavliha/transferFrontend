@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
 import React, {Component} from 'react';
-import Checkboxes from '../components/Checkboxes';
-import SendButton from '../components/SendButton';
+import Checkboxes from './Checkboxes';
+import SendButton from './SendButton';
 
 class FirstQuestion extends Component {
     constructor(props) {
