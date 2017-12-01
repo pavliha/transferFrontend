@@ -1,24 +1,44 @@
 import React from "react"
-import {Card, Col, Row} from 'reactstrap'
+import {Button, Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
 
 export default ({trip}) => <div>
-    <Card className='TripCard p-2 mb-3'>
-        <h5 className='text-green'>$3434 to $4512</h5>
-        <p>{trip.name}</p>
-        <div className='dummy-block'/>
-        <small className='pt-2'>
-            <Row>
-                <Col xs={7}>
-                    {trip.highlightedLocations}
-                </Col>
-                <Col xs={5} className='text-right'>
-                    {trip.isFlightIncluded ? <i className='fa fa-plane icon'/> : ''} {' '}
-                    {trip.isLocalTravelIncluded ? <i className='fa fa-car icon'/> : ''}{' '}
-                    80% match
-                </Col>
-            </Row>
-        </small>
+    <Card className='mb-3' style={{width: 380}}>
+        <div className='px-3 pt-3'>
+            <CardTitle className="h5 trip-card-title">$3434 to $4512</CardTitle>
+            <CardSubtitle className="h6 trip-card-subtitle mb-2">{trip.name}</CardSubtitle>
+            <div className='dummy-block'>
+                <img
+                    src={`https://s3-eu-west-1.amazonaws.com/vacations-cafe-thumb/designers/${trip.designer.user._id}​/profile.jpg`}
+                    width='100%'/>
+            </div>
+            <div className='pt-3 px-1'>
+                <small>
+                    <Row>
+                        <Col xs={7}>
+                            {trip.highlightedLocations}
+                        </Col>
+                        <Col xs={5} className='text-right'>
+                            {trip.isFlightIncluded ? <i className='fa fa-plane icon'/> : ''} {' '}
+                            {trip.isLocalTravelIncluded ? <i className='fa fa-car icon'/> : ''}{' '}
+                            80% match
+                        </Col>
+                    </Row>
+                </small>
+            </div>
+        </div>
         <hr/>
-        <div className='dummy-avatar'/>
+        <div className='d-flex px-3 pb-3'>
+            <div>
+                <div className='dummy-avatar mt-1 mr-2'/>
+            </div>
+            <div>
+                <div>
+                    <small>By {trip.designer.user.firstName} {trip.designer.user.lastName}@{trip.designer.agencyName}</small>
+                </div>
+                <div>
+                    <small>Top 2% · Independent designer · Blogger</small>
+                </div>
+            </div>
+        </div>
     </Card>
 </div>

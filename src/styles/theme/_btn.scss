@@ -1,0 +1,16 @@
+.btn{
+  font-weight: bold;
+  border-radius: 110px;
+  border: 0;
+  padding: 12px 40px;
+
+}
+.btn-primary{
+  background-color: #CE7D9E;
+}
+.btn-primary:hover{
+  background-color: #93546e;
+}
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle{
+  background-color: #93546e;
+}

@@ -216,7 +216,7 @@ class Chat extends Component {
     render() {
         if (this.props.questionNumber === 0) {
             return (
-                <div className="Chat container white-bg" ref={container => this.container = container}>
+                <div className="chat-container white-bg" ref={container => this.container = container}>
                     <IntroContainer
                         questionsNavigation={this.props.questionsNavigation}
                         ageGroups={this.props.ageGroups}
@@ -230,7 +230,7 @@ class Chat extends Component {
             );
         }
         return (
-            <div className="Chat container" ref={container => this.container = container}>
+            <div className="chat-container" ref={container => this.container = container}>
                 <div className="scroll-fix">
                     <div className="chat" ref={chat => this.chat = chat}>
                         {this.renderChatBody()}

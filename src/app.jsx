@@ -10,6 +10,7 @@ import WelcomePageContainer from "./containers/WelcomePageContainer";
 import MatchingTripsContainer from "./containers/MatchingTripsContainer";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'animate.css'
 import './styles/app.scss';
 
 class App extends Component {

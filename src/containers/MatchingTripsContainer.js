@@ -3,11 +3,10 @@ import MatchingTrips from '../components/MatchingTrips'
 import {connect} from 'react-redux'
 import TripCard from "../components/TripCard";
 import {getTrips} from "../actions/trips.action";
+import Spinner from 'react-spinkit';
+import Delay from 'react-delay'
 
-@connect((store) => ({
-    trips: store.tripsReducer.trips,
-    total: store.tripsReducer.total
-}))
+@connect((store) => store.tripsReducer)
 export default class MatchingTripsContainer extends Component {
 
     componentDidMount() {
@@ -15,9 +14,15 @@ export default class MatchingTripsContainer extends Component {
     }
 
     render() {
-        const {trips,total} = this.props
+        const {trips, total, loading} = this.props
+
+        if (loading) {
+            return <MatchingTrips total={total}>
+                <Spinner name='double-bounce' />
+            </MatchingTrips>
+        }
         return <MatchingTrips total={total}>
-            {trips.map((trip, key) => <TripCard key={key} trip={trip}/>)}
+            {trips.map((trip, key) => <Delay wait={250}><TripCard key={key} trip={trip}/></Delay>)}
         </MatchingTrips>
     }
 }
