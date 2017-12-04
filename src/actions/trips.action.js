@@ -1,4 +1,4 @@
-import {GET_TRIPS} from '../constants/constants';
+import {GET_TRIPS} from './constants';
 import * as API from '../api/api';
 
 export const getTrips = (obj)=>{

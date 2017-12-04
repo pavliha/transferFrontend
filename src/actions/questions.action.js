@@ -1,4 +1,4 @@
-import * as actions from '../constants/constants';
+import * as actions from './constants';
 
 const nextQuestion = () => {
   return { type: actions.NEXT_QUESTION };

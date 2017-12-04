@@ -11,11 +11,17 @@ import InfiniteScroll from "react-infinite-scroller"
 export default class MatchingTripsContainer extends Component {
 
     componentWillMount() {
-        this.props.dispatch(getTrips({$skip: this.props.skip, $limit: this.props.limit}))
+
+        const {limit, skip, dispatch} = this.props
+
+        dispatch(getTrips({limit, skip}))
     }
 
-    loadFunc(e) {
-        this.props.dispatch(getTrips({$skip: this.props.skip + 9, $limit: this.props.limit + 9}))
+    onScrollLoad(e) {
+
+        const {limit, skip, dispatch} = this.props
+
+        dispatch(getTrips({skip: skip + 9, limit: limit + 9}))
     }
 
     render() {
@@ -31,17 +37,22 @@ export default class MatchingTripsContainer extends Component {
                 <InfiniteScroll
                     pageStart={0}
                     initialLoad={false}
-                    loadMore={this.loadFunc.bind(this)}
+                    loadMore={this.onScrollLoad.bind(this)}
                     hasMore={hasMore}
                     className={'row justify-content-start animated ZoomIn'}
-                    loader={<Col xs={12} className="d-flex justify-content-center align-items-center"><Spinner
-                        name='double-bounce'/></Col>}>
+                    loader={
+                        <Col xs={12} className="d-flex justify-content-center align-items-center">
+                            <Spinner name='double-bounce'/>
+                        </Col>
+                    }>
                     {trips.map((trip, key) =>
                         <Col key={key} lg={4} md={6} xs={12} sm={12}>
-                            <TripCard style={{}} trip={trip}/>
+                            <TripCard trip={trip}/>
                         </Col>
                     )}
-                    {!hasMore ? <Col xs={12} className={'p-2 pb-4 text-center'}>“That’s all for now. Cooking more trips. Coming soon.” I do not have any designs for this. Feel free to be creative!</Col> : ''}
+                    {!hasMore ?
+                        <Col xs={12} className={'p-2 pb-4 text-center'}>“That’s all for now. Cooking more trips. Coming
+                            soon.” I do not have any designs for this. Feel free to be creative!</Col> : ''}
                 </InfiniteScroll>
 
             </section>

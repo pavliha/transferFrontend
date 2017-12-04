@@ -1,4 +1,4 @@
-import {GET_TRIPS} from '../constants/constants';
+import {GET_TRIPS} from '../actions/constants';
 
 const initialState = {
     trips: [],

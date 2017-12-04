@@ -1,4 +1,4 @@
-import * as actions from '../constants/constants';
+import * as actions from '../actions/constants';
 
 const initialState = {
     leadMember: {},
