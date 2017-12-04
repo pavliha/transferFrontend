@@ -6,6 +6,7 @@ import {getTrips} from "../actions/trips.action";
 import Spinner from 'react-spinkit';
 import {Col} from "reactstrap";
 import InfiniteScroll from "react-infinite-scroller"
+import animateScrollTo from 'animated-scroll-to';
 
 @connect((store) => store.tripsReducer)
 export default class MatchingTripsContainer extends Component {
@@ -17,15 +18,29 @@ export default class MatchingTripsContainer extends Component {
         dispatch(getTrips({limit, skip}))
     }
 
-    onScrollLoad(e) {
+    componentDidUpdate() {
+        const cardPosition = this.props.limit - 9;
+
+        if (cardPosition === 0) return //if this card is card from fist load
+
+        const card = document.querySelector('.js-TripCard-' + cardPosition)
+        //check to prevent from scrolling to non-existent card
+        if (card) animateScrollTo(card, {speed: 2000,})
+
+
+    }
+
+    handleLoadMore(e) {
 
         const {limit, skip, dispatch} = this.props
 
         dispatch(getTrips({skip: skip + 9, limit: limit + 9}))
+
     }
 
     render() {
-        const {trips, total, loading, skip} = this.props
+        const {trips, total, skip,} = this.props
+
 
         const hasMore = (skip <= total)
 
@@ -37,7 +52,7 @@ export default class MatchingTripsContainer extends Component {
                 <InfiniteScroll
                     pageStart={0}
                     initialLoad={false}
-                    loadMore={this.onScrollLoad.bind(this)}
+                    loadMore={this.handleLoadMore.bind(this)}
                     hasMore={hasMore}
                     className={'row justify-content-start animated ZoomIn'}
                     loader={
@@ -47,7 +62,7 @@ export default class MatchingTripsContainer extends Component {
                     }>
                     {trips.map((trip, key) =>
                         <Col key={key} lg={4} md={6} xs={12} sm={12}>
-                            <TripCard trip={trip}/>
+                            <TripCard trip={trip} className={'js-TripCard-' + key}/>
                         </Col>
                     )}
                     {!hasMore ?
