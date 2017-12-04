@@ -8,6 +8,7 @@ import Route from "react-router/es/Route";
 import {Switch} from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Trips from "./pages/Trips";
+import Trip from "./pages/Trip";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css'
@@ -22,6 +23,7 @@ class App extends Component {
                         <Route exact path="/join/chat-with-peru" component={Chat}/>
                         <Route exact path="/join/welcome" component={Welcome}/>
                         <Route exact path="/me/matching-trips" component={Trips}/>
+                        <Route exact path="/me/matching-trips/:trip" component={Trip}/>
                     </Switch>
                 </ConnectedRouter>
             </Provider>

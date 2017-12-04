@@ -1,15 +1,21 @@
 import React from "react"
 import {Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
+import Link from "react-router-dom/es/Link";
 
 export default ({trip, className}) => <div className={'mb-3 ' + className}>
     <Card>
         <section className='px-3 pt-3'>
-            <CardTitle className="h5 trip-card-title">$3434 to $4512</CardTitle>
-            <CardSubtitle className="h6 trip-card-subtitle mb-2">{trip.name}</CardSubtitle>
-            <div className='dummy-block'>
-                <img src='' width='100%'/>
-
-            </div>
+            <CardTitle className="h5">
+                <Link className='trip-card-title' to={'/me/matching-trips/' + trip.urlSlug}>$3434 to $4512</Link>
+            </CardTitle>
+            <CardSubtitle className="h6  mb-2">
+                <Link className='trip-card-subtitle' to={'/me/matching-trips/' + trip.urlSlug}>{trip.name}</Link>
+            </CardSubtitle>
+            <Link to={'/me/matching-trips/' + trip.urlSlug}>
+                <div className='dummy-block'>
+                    <img src='' width='100%'/>
+                </div>
+            </Link>
             <div className='pt-3 px-1'>
                 <small>
                     <Row>

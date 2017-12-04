@@ -19,15 +19,17 @@ export default class MatchingTripsContainer extends Component {
     }
 
     componentDidUpdate() {
-        const cardPosition = this.props.limit - 9;
+        this.handleAutoScroll(this.props.limit)
+    }
+
+    handleAutoScroll(limit) {
+        const cardPosition = limit - 9;
 
         if (cardPosition === 0) return //if this card is card from fist load
 
         const card = document.querySelector('.js-TripCard-' + cardPosition)
         //check to prevent from scrolling to non-existent card
-        if (card) animateScrollTo(card, {speed: 2000,})
-
-
+        if (card) animateScrollTo(card, {speed: 1000,})
     }
 
     handleLoadMore(e) {
