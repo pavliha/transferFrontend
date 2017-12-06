@@ -2,6 +2,7 @@
 
 export const API_URL = 'http://api.vacations.cafe:81';
 
+export const CARD_LOAD_LIMIT = 18
 // Members Actions
 
 export const GET_AGE_GROUPS = 'GET_AGE_GROUPS';
