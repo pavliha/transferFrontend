@@ -87,9 +87,9 @@ export default class MatchingTripsContainer extends Component {
                         <Col xs={12} className={'p-2 pb-4 text-center'}>“That’s all for now. Cooking more trips. Coming
                             soon.” I do not have any designs for this. Feel free to be creative!</Col> : ''}
                 </InfiniteScroll>
-                {limit >= 18 ? <Chef/> : null}
-            </Container>
 
+            </Container>
+            {limit >= 18 ? <Chef/> : null}
         </Layout>
     }
 }
