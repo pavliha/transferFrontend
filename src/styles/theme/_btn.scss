@@ -1,16 +1,55 @@
-.btn{
+.btn {
   font-weight: bold;
   border-radius: 110px;
   border: 0;
-  padding: 12px 40px;
+  padding: 9px 31px
 
 }
-.btn-primary{
+.btn-lg{
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 12px 40px;
+}
+.btn-primary {
   background-color: #CE7D9E;
 }
-.btn-primary:hover{
+
+.btn-primary:hover {
   background-color: #93546e;
 }
-.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle{
+
+.btn-primary.focus, .btn-primary:focus .btn-outline-secondary:focus {
+  box-shadow: none;
+
+}
+
+.btn-outline-secondary.focus, .btn-outline-primary:focus {
+  box-shadow: none;
+
+}
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
   background-color: #93546e;
+}
+
+.btn-round {
+  border-radius: 100%;
+}
+
+.btn-outline-primary {
+  color: white;
+  background-color: #CE7D9E;
+}
+
+.btn-outline-primary:hover {
+  background-color: #93546e;
+}
+
+.btn-outline-secondary {
+  border: 1px #DDD solid
+}
+
+.btn-outline-secondary:hover {
+  color: inherit;
+  background-color: transparent;
+  border-color: #868e96;
 }
