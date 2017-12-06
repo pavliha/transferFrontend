@@ -2,7 +2,7 @@ import React from "react"
 import {Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
 import Link from "react-router-dom/es/Link";
 
-export default ({trip, className}) =>
+export default ({user, trip, className}) =>
     <Card className={className}>
         <section className='px-3 pt-3'>
             <CardTitle className="h5">
@@ -25,7 +25,7 @@ export default ({trip, className}) =>
                         <Col xs={5} className='text-right'>
                             {trip.isFlightIncluded ? <i className='fa fa-plane icon'/> : ''} {' '}
                             {trip.isLocalTravelIncluded ? <i className='fa fa-car icon'/> : ''}{' '}
-                            80% match
+                            {user ? '80% match' : null}
                         </Col>
                     </Row>
                 </small>

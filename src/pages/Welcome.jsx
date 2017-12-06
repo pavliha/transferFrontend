@@ -29,7 +29,7 @@ export default class WelcomePageContainer extends Component {
                         <img src='/assets/girl.svg'/>
                     </div>
                     <div className='pt-5'>
-                        <Link className='btn btn-primary btn-block' to='/me/matching-trips'>
+                        <Link className='btn btn-primary btn-block btn-lg' to='/me/matching-trips'>
                             Next: Browse matching trips</Link>
                     </div>
                 </div>

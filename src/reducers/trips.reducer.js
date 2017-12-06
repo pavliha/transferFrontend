@@ -1,10 +1,10 @@
-import {GET_TRIPS} from '../actions/constants';
+import {CARD_LOAD_LIMIT, GET_TRIPS} from '../actions/constants';
 
 const initialState = {
     trips: [],
     total: 0,
     skip: 0,
-    limit: 9,
+    limit: CARD_LOAD_LIMIT,
     loading: false,
 };
 

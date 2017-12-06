@@ -7,6 +7,8 @@ import Spinner from 'react-spinkit';
 import {Col, Container} from "reactstrap";
 import InfiniteScroll from "react-infinite-scroller"
 import animateScrollTo from 'animated-scroll-to';
+import Chef from "../components/Chef";
+import {CARD_LOAD_LIMIT} from "../actions/constants";
 
 @connect((store) => store.tripsReducer)
 export default class MatchingTripsContainer extends Component {
@@ -33,7 +35,7 @@ export default class MatchingTripsContainer extends Component {
         else {
             let i = 0;
             const intervalId = setInterval(() => {
-                $(cards[i]).removeClass('hidden').addClass('animated ZoomIn')
+                $(cards[i]).removeClass('hidden').addClass('animated animated-fast ZoomIn')
                 i++
             }, 200);
         }
@@ -41,7 +43,7 @@ export default class MatchingTripsContainer extends Component {
 
 
     handleAutoScroll(limit) {
-        const cardPosition = limit - 9;
+        const cardPosition = limit - CARD_LOAD_LIMIT;
         if (cardPosition === 0) return //if this card from the fist load - do nothing
         const card = document.querySelector('.js-TripCard-' + cardPosition)
         //check to prevent from scrolling to non-existent card
@@ -50,16 +52,16 @@ export default class MatchingTripsContainer extends Component {
 
     handleLoadMore(e) {
         const {limit, skip, dispatch} = this.props
-        dispatch(getTrips({skip: skip + 9, limit: limit + 9}))
+        dispatch(getTrips({skip: skip + CARD_LOAD_LIMIT, limit: limit + CARD_LOAD_LIMIT}))
     }
 
     render() {
-        const {trips, total, skip,} = this.props
+        const {trips, total, skip, limit} = this.props
 
         const hasMore = (skip <= total)
 
         return <Layout>
-            <Container className={'mt-4 '}>
+            <Container className='mt-4'>
                 <h4 className='text-muted'>Matching trips</h4>
                 <p className='pt-3 pb-2'>{total ? total + ' results' : ''}</p>
 
@@ -74,9 +76,10 @@ export default class MatchingTripsContainer extends Component {
                             <Spinner name='double-bounce'/>
                         </Col>
                     }>
+
                     {trips.map((trip, key) => {
                             return <Col className='pb-3' key={key} lg={4} md={6} xs={12} sm={12}>
-                                <TripCard trip={trip} className={`hidden js-TripCard js-TripCard-${key}`}/>
+                                <TripCard trip={trip} index={key} className={`hidden js-TripCard js-TripCard-${key}`}/>
                             </Col>
                         }
                     )}
@@ -84,8 +87,9 @@ export default class MatchingTripsContainer extends Component {
                         <Col xs={12} className={'p-2 pb-4 text-center'}>“That’s all for now. Cooking more trips. Coming
                             soon.” I do not have any designs for this. Feel free to be creative!</Col> : ''}
                 </InfiniteScroll>
-
+                {limit >= 18 ? <Chef/> : null}
             </Container>
+
         </Layout>
     }
 }
