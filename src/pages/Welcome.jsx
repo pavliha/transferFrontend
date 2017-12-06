@@ -21,14 +21,14 @@ export default class WelcomePageContainer extends Component {
             <section className='mt-5 d-flex justify-content-center align-items-center text-center'>
                 <div>
                     <h2 className='p-4'>Welcome{name ? ", " + name + '.' : ''}</h2>
-                    <div className='lead' style={{width: 450}}>
+                    <div className='lead px-5' style={{maxWidth: 600}}>
                         My chefs are looking at your family profile and will suggest trips soon.
                         Meanwhile...
                     </div>
                     <div className='mt-5'>
                         <img src='/assets/girl.svg'/>
                     </div>
-                    <div className='pt-5'>
+                    <div className='pt-5 p-3'>
                         <Link className='btn btn-primary btn-block btn-lg' to='/me/matching-trips'>
                             Next: Browse matching trips</Link>
                     </div>

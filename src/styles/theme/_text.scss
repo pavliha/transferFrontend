@@ -4,3 +4,8 @@
 .text-muted{
   color: #999999;
 }
+@media (max-width: 600px) {
+  .lead{
+    font-size: 1rem;
+  }
+}
