@@ -23,6 +23,7 @@ class App extends Component {
                         <Route exact path="/join/chat-with-peru" component={Chat}/>
                         <Route exact path="/join/welcome" component={Welcome}/>
                         <Route exact path="/me/matching-trips" component={Trips}/>
+                        <Route exact path="/personalised-holidays" component={Trips}/>
                         <Route exact path="/me/matching-trips/:trip" component={Trip}/>
                     </Switch>
                 </ConnectedRouter>
