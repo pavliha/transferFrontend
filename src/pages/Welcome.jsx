@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
+import Link from "react-router-dom/es/Link";
 
 @connect((state) => {
     return {
@@ -26,6 +27,9 @@ export default class WelcomePageContainer extends Component {
                     </div>
                     <div className='mt-5'>
                         <img src='/assets/girl.svg'/>
+                    </div>
+                    <div className='pt-5'>
+                        <Link className='btn btn-primary btn-block' to='/me/matching-trips'>Next: Browse matching trips</Link>
                     </div>
                 </div>
             </section>
