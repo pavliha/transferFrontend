@@ -2,8 +2,8 @@ import React from "react"
 import {Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
 import Link from "react-router-dom/es/Link";
 
-export default ({trip, className}) => <div className={'mb-3 ' + className}>
-    <Card>
+export default ({user, trip, className}) =>
+    <Card className={className}>
         <section className='px-3 pt-3'>
             <CardTitle className="h5">
                 <Link className='trip-card-title' to={'/me/matching-trips/' + trip.urlSlug}>$3434 to $4512</Link>
@@ -25,7 +25,7 @@ export default ({trip, className}) => <div className={'mb-3 ' + className}>
                         <Col xs={5} className='text-right'>
                             {trip.isFlightIncluded ? <i className='fa fa-plane icon'/> : ''} {' '}
                             {trip.isLocalTravelIncluded ? <i className='fa fa-car icon'/> : ''}{' '}
-                            80% match
+                            {user ? '80% match' : null}
                         </Col>
                     </Row>
                 </small>
@@ -52,4 +52,3 @@ export default ({trip, className}) => <div className={'mb-3 ' + className}>
             </div>
         </section>
     </Card>
-</div>

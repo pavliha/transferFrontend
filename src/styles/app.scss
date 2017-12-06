@@ -10,6 +10,7 @@
 @import "theme/icon";
 @import "theme/btn";
 @import "theme/card";
+@import "theme/badge";
 @import "components/TripCard";
 @import 'chat/chat';
 @import "animated";
@@ -23,4 +24,17 @@ body {
 }
 .container{
   max-width:1200px
+}
+.hidden{
+  opacity: 0;
+}
+.visible{
+  opacity: 1;
+}
+
+.fixed-bottom-right{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 1030;;
 }
