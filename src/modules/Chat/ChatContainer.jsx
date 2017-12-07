@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import questionsAction from '../actions/questions.action';
-import membersAction from '../actions/members.action';
-import IntroContainer from '../components/Chat/IntroContainer';
-import FirstQuestion from '../components/Chat/FirstQuestion';
-import SecondQuestion from '../components/Chat/SecondQuestion';
-import ThirdQuestion from '../components/Chat/ThirdQuestion';
-import FourthQuestion from '../components/Chat/FourthQuestion';
-import FifthQuestion from '../components/Chat/FifthQuestion';
-import SixthQuestion from '../components/Chat/SixthQuestion';
-import SeventhQuestion from '../components/Chat/SeventhQuestion';
-import EighthQuestion from '../components/Chat/EighthQuestion';
-
+import questionsAction from './actions/questions.action';
+import membersAction from './actions/members.action';
+import IntroContainer from './components/IntroContainer';
+import FirstQuestion from './components/FirstQuestion';
+import SecondQuestion from './components/SecondQuestion';
+import ThirdQuestion from './components/ThirdQuestion';
+import FourthQuestion from './components/FourthQuestion';
+import FifthQuestion from './components/FifthQuestion';
+import SixthQuestion from './components/SixthQuestion';
+import SeventhQuestion from './components/SeventhQuestion';
+import EighthQuestion from './components/EighthQuestion';
+import './styles/style.scss'
 
 SmoothScroll.polyfill();
 

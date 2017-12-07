@@ -2,8 +2,8 @@ import React from 'react'
 import Layout from '../components/Layout'
 import {connect} from 'react-redux'
 import {Container} from "reactstrap";
-import TripList from "../containers/TripList";
-import Chef from "../containers/Chef";
+import TripList from "../modules/Trips/TripListContainer";
+import Chef from "../modules/Chef/ChefContainer";
 
 const Holidays = () =>
     <Layout>

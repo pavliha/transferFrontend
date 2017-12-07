@@ -2,7 +2,7 @@ import React from "react";
 import Link from "react-router-dom/es/Link";
 import {Badge} from "reactstrap";
 import {connect} from "react-redux";
-import {updateTitle} from "../actions/trips.action";
+import {updateTitle} from "../Trips/trips.action";
 
 @connect(state => state.chefReducer)
 export default class Chef extends React.Component {

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-@import 'varriables';
-
 @import "theme/bg";
 @import "theme/text";
 @import "theme/navbar";
@@ -11,16 +9,14 @@
 @import "theme/btn";
 @import "theme/card";
 @import "theme/badge";
-@import "components/TripCard";
-@import 'chat/chat';
-@import "animated";
+@import "varriables";
 
 body {
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: $main-background;
+  background-color: #F7F7F7;
 }
 .container{
   max-width:1200px
@@ -38,6 +34,11 @@ body {
   right: 0;
   z-index: 99999;
 }
+
+.animated-fast{
+  animation-duration: 100ms;
+}
+
 @media (max-width: 768px){
   .card-columns{
     column-count: 2;

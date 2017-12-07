@@ -1,4 +1,4 @@
-import {UPDATE_TITLE} from './constants';
+import {UPDATE_TITLE} from '../../api/constants';
 
 
 export const updateTitle = (name) => {

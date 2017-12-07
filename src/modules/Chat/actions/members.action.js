@@ -1,11 +1,29 @@
-import * as actions from './constants';
-import * as API from '../api/api';
+import * as API from '../../../api/api';
+
+
+// Members Actions
+
+export const GET_AGE_GROUPS = 'GET_AGE_GROUPS';
+export const ADD_AGE_GROUPS = 'ADD_AGE_GROUPS';
+export const ADD_LEAD_MEMBER = 'ADD_LEAD_MEMBER';
+export const ADD_PARTNER = 'ADD_PARTNER';
+export const CREATE_TRAVEL_GROUP = 'CREATE_TRAVEL_GROUP';
+export const SET_ACTIVITIES = 'SET_ACTIVITIES';
+export const ADD_CHILDREN = 'ADD_CHILDREN';
+export const ADD_COUNTRIES = 'ADD_COUNTRIES';
+export const SET_COUNTRIES = 'SET_COUNTRIES';
+export const SET_BUDGET = 'SET_BUDGET';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS';
+export const LOG_IN_ERROR = 'LOG_IN_ERROR';
+
 
 const addLeadMember = () => {
   return (dispatch, getState) => {
     const adultGroupId = getState().membersReducer.ageGroups.Adult.id;
     API.createCustomer(adultGroupId).then((response) => {
-      dispatch({ type: actions.ADD_LEAD_MEMBER, payload: response._id });
+      dispatch({ type: ADD_LEAD_MEMBER, payload: response._id });
     });
   };
 };
@@ -20,7 +38,7 @@ const getAgeGroups = () => {
           activities: group.activities,
         };
       });
-      dispatch({ type: actions.ADD_AGE_GROUPS, payload: ageGroups });
+      dispatch({ type: ADD_AGE_GROUPS, payload: ageGroups });
     });
   };
 };
@@ -36,7 +54,7 @@ const addPartner = () => {
         return API.addMember(travelGroupId, response._id);
       })
       .then(() => {
-        dispatch({ type: actions.ADD_PARTNER, payload: partnerId });
+        dispatch({ type: ADD_PARTNER, payload: partnerId });
       });
   };
 };
@@ -45,7 +63,7 @@ const createTravelGroup = () => {
   return (dispatch, getState) => {
     const leadMemberId = getState().membersReducer.leadMember.id;
     API.createTravelGroup(leadMemberId).then((response) => {
-      dispatch({ type: actions.CREATE_TRAVEL_GROUP, payload: response._id });
+      dispatch({ type: CREATE_TRAVEL_GROUP, payload: response._id });
     });
   };
 };
@@ -62,7 +80,7 @@ const setActivities = (id, activities, memberType) => {
       });
     }
     API.setActivities(...args).then(() => {
-      dispatch({ type: actions.SET_ACTIVITIES, payload: { memberType, activities } });
+      dispatch({ type: SET_ACTIVITIES, payload: { memberType, activities } });
     });
   };
 };
@@ -97,7 +115,7 @@ const addChildren = (childrenCount) => {
         return addToTravelGroup(response, getState);
       })
       .then(() => {
-        dispatch({ type: actions.ADD_CHILDREN, payload: childrenCount });
+        dispatch({ type: ADD_CHILDREN, payload: childrenCount });
       });
   };
 };
@@ -109,7 +127,7 @@ const getCountries = () => {
       response.data.forEach((country) => {
         countries.push({ _id: country._id, text: country.text });
       });
-      dispatch({ type: actions.ADD_COUNTRIES, payload: countries });
+      dispatch({ type: ADD_COUNTRIES, payload: countries });
     });
   };
 };
@@ -118,7 +136,7 @@ const setCountries = (countries) => {
   return (dispatch, getState) => {
     const travelGroupId = getState().membersReducer.travelGroup.id;
     API.setCountries(travelGroupId, countries).then(() => {
-      dispatch({ type: actions.SET_COUNTRIES, payload: countries });
+      dispatch({ type: SET_COUNTRIES, payload: countries });
     });
   };
 };
@@ -127,7 +145,7 @@ const setBudget = (budget) => {
   return (dispatch, getState) => {
     const travelGroupId = getState().membersReducer.travelGroup.id;
     API.setBudget(travelGroupId, budget).then(() => {
-      dispatch({ type: actions.SET_BUDGET, payload: budget });
+      dispatch({ type: SET_BUDGET, payload: budget });
     });
   };
 };
@@ -136,10 +154,10 @@ const signUp = (data) => {
   return (dispatch) => {
     API.signUp(data).then(
       () => {
-        dispatch({ type: actions.SIGN_UP_SUCCESS, payload: data });
+        dispatch({ type: SIGN_UP_SUCCESS, payload: data });
       },
       (error) => {
-        dispatch({ type: actions.SIGN_UP_ERROR, payload: error });
+        dispatch({ type: SIGN_UP_ERROR, payload: error });
       },
     );
   };
@@ -149,10 +167,10 @@ const logIn = (data) => {
   return (dispatch) => {
     API.logIn(data).then(
       (response) => {
-        dispatch({ type: actions.LOG_IN_SUCCESS, payload: response });
+        dispatch({ type: LOG_IN_SUCCESS, payload: response });
       },
       (error) => {
-        dispatch({ type: actions.LOG_IN_ERROR, payload: error });
+        dispatch({ type: LOG_IN_ERROR, payload: error });
       },
     );
   };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Intro from '../../components/Chat/Intro';
+import Intro from './Intro';
 
 class IntroContainer extends Component {
   constructor(props) {

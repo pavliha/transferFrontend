@@ -1,4 +1,4 @@
-import {ANIMATE_CARDS, GET_TRIPS, UPDATE_TITLE} from '../actions/constants';
+import {ANIMATE_CARDS, GET_TRIPS, UPDATE_TITLE} from './trips.action'
 
 const initialState = {
     trips: [],

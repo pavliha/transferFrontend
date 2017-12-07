@@ -2,9 +2,8 @@ import React from 'react'
 import Layout from '../components/Layout'
 import {connect} from 'react-redux'
 import {Container} from "reactstrap";
-import Chef from "../containers/Chef";
-import TripList from "../containers/TripList";
-import {CARD_LOAD_LIMIT} from "../actions/constants";
+import Chef from "../modules/Chef/ChefContainer";
+import TripList, {CARD_LOAD_LIMIT} from "../modules/Trips/TripListContainer";
 
 const Trips = ({limit}) =>
     <Layout>

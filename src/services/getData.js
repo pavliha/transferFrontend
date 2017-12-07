@@ -1,4 +1,4 @@
-import * as constants from '../actions/constants';
+import * as constants from '../api/constants';
 
 const getData = (url) => {
   return new Promise((resolve, reject) => {

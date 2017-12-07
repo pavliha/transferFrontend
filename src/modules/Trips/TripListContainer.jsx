@@ -1,17 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import TripCard from "../components/TripCard";
-import {animateCards, getTrips} from "../actions/trips.action";
+import TripCard from "./TripCard";
+import {animateCards, getTrips} from "./trips.action";
 import Spinner from 'react-spinkit';
 import Mansory from "react-masonry-infinite"
 import animateScrollTo from 'animated-scroll-to';
-import {CARD_LOAD_LIMIT} from "../actions/constants";
+
+export const CARD_LOAD_LIMIT = 9
 
 @connect((store) => store.tripsReducer)
 export default class MatchingTripsContainer extends Component {
 
     componentDidUpdate() {
-        const {skip, animated, dispatch} = this.props
+        const {skip, dispatch} = this.props
 
         this.animateCardsInSequence(skip)
         dispatch(animateCards())

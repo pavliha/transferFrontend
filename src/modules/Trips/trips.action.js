@@ -1,5 +1,8 @@
-import {ANIMATE_CARDS, GET_TRIPS, UPDATE_TITLE} from './constants';
-import * as API from '../api/api';
+export const GET_TRIPS = 'GET_TRIPS'
+export const ANIMATE_CARDS = 'ANIMATE_CARDS'
+export const UPDATE_TITLE = 'UPDATE_TITLE'
+
+import * as API from '../../api/api';
 
 export const getTrips = (obj) => {
     return {

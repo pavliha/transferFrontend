@@ -1,8 +1,9 @@
 import React from "react"
 import {Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
 import Link from "react-router-dom/es/Link";
+import './style.scss'
 
-export default ({user, trip, className,index}) =>
+export default ({user, trip, className}) =>
     <Card className={className}>
         <section className='px-3 pt-3'>
             <CardTitle className="h5">

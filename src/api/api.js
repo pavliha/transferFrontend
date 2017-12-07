@@ -2,7 +2,7 @@ import getData from '../services/getData';
 
 import sendData from '../services/sendData';
 import param from 'jquery-param'
-import {CARD_LOAD_LIMIT} from "../actions/constants";
+import {CARD_LOAD_LIMIT} from "../modules/Trips/TripListContainer";
 
 export const createCustomer = (ageGroupId, travelGroupId) => {
     const data = {

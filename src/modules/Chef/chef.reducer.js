@@ -1,4 +1,4 @@
-import {UPDATE_TITLE} from '../actions/constants';
+import {UPDATE_TITLE} from '../../api/constants';
 
 const initialState = {
     original: document.title,

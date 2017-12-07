@@ -1,4 +1,7 @@
-import * as actions from '../actions/constants';
+import {
+    ADD_AGE_GROUPS, ADD_CHILDREN, ADD_COUNTRIES, ADD_LEAD_MEMBER, ADD_PARTNER, CREATE_TRAVEL_GROUP, LOG_IN_ERROR,
+    LOG_IN_SUCCESS, SET_ACTIVITIES, SET_BUDGET, SET_COUNTRIES, SIGN_UP_ERROR, SIGN_UP_SUCCESS
+} from "../actions/members.action";
 
 const initialState = {
     leadMember: {},
@@ -13,16 +16,16 @@ const initialState = {
 
 const membersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actions.ADD_LEAD_MEMBER: {
+        case ADD_LEAD_MEMBER: {
             return Object.assign({}, state, {leadMember: {id: action.payload}});
         }
-        case actions.ADD_PARTNER: {
+        case ADD_PARTNER: {
             return Object.assign({}, state, {partner: {id: action.payload}});
         }
-        case actions.ADD_AGE_GROUPS: {
+        case ADD_AGE_GROUPS: {
             return Object.assign({}, state, {ageGroups: action.payload});
         }
-        case actions.SET_ACTIVITIES: {
+        case SET_ACTIVITIES: {
             const newState = {};
             if (action.payload.memberType === 'lead') {
                 newState.leadMember = Object.assign({}, state.leadMember);
@@ -36,36 +39,36 @@ const membersReducer = (state = initialState, action) => {
             }
             return Object.assign({}, state, newState);
         }
-        case actions.CREATE_TRAVEL_GROUP: {
+        case CREATE_TRAVEL_GROUP: {
             return Object.assign({}, state, {travelGroup: {id: action.payload}});
         }
-        case actions.SET_COUNTRIES: {
+        case SET_COUNTRIES: {
             const travelGroup = Object.assign({}, state.travelGroup);
             travelGroup.preferredCountries = action.payload;
             return Object.assign({}, state, {travelGroup});
         }
-        case actions.ADD_CHILDREN: {
+        case ADD_CHILDREN: {
             return Object.assign({}, state, {children: action.payload});
         }
-        case actions.ADD_COUNTRIES: {
+        case ADD_COUNTRIES: {
             return Object.assign({}, state, {countries: action.payload});
         }
-        case actions.SET_BUDGET: {
+        case SET_BUDGET: {
             const travelGroup = Object.assign({}, state.travelGroup);
             travelGroup.budget = action.payload;
             return Object.assign({}, state, {travelGroup});
         }
-        case actions.SIGN_UP_SUCCESS: {
+        case SIGN_UP_SUCCESS: {
             return Object.assign({}, state, {signUpData: action.payload, signUpError: ''});
         }
-        case actions.SIGN_UP_ERROR: {
+        case SIGN_UP_ERROR: {
             return Object.assign({}, state, {signUpError: action.payload});
         }
-        case actions.LOG_IN_SUCCESS: {
+        case LOG_IN_SUCCESS: {
             const newState = Object.assign({}, state, {isLogged: true, logInError: '', userData: action.payload});
             return newState;
         }
-        case actions.LOG_IN_ERROR: {
+        case LOG_IN_ERROR: {
             return Object.assign({}, state, {logInError: action.payload});
         }
         default: {

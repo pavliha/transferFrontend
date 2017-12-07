@@ -4,6 +4,7 @@
 @import 'seventh-question';
 @import 'eighth-question';
 @import 'last-page';
+@import "varriables";
 
 .chat-container {
   position: relative;
@@ -94,7 +95,7 @@
 
       &:before {
         left: -38px;
-        background-image: url(../assets/snowman-head.png);
+        background-image: url(/assets/snowman-head.png);
         background-repeat: no-repeat;
         background-size: 33px 33px;
       }
