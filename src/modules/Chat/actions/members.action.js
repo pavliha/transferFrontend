@@ -21,7 +21,7 @@ export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 
 const addLeadMember = () => {
   return (dispatch, getState) => {
-    const adultGroupId = getState().membersReducer.ageGroups.Adult.id;
+    const adultGroupId = getState().chatReducer.members.ageGroups.Adult.id;
     API.createCustomer(adultGroupId).then((response) => {
       dispatch({ type: ADD_LEAD_MEMBER, payload: response._id });
     });
@@ -45,8 +45,8 @@ const getAgeGroups = () => {
 
 const addPartner = () => {
   return (dispatch, getState) => {
-    const adultGroupId = getState().membersReducer.ageGroups.Adult.id;
-    const travelGroupId = getState().membersReducer.travelGroup.id;
+    const adultGroupId = getState().chatReducer.members.ageGroups.Adult.id;
+    const travelGroupId = getState().chatReducer.members.travelGroup.id;
     let partnerId;
     API.createCustomer(adultGroupId)
       .then((response) => {
@@ -61,7 +61,7 @@ const addPartner = () => {
 
 const createTravelGroup = () => {
   return (dispatch, getState) => {
-    const leadMemberId = getState().membersReducer.leadMember.id;
+    const leadMemberId = getState().chatReducer.members.leadMember.id;
     API.createTravelGroup(leadMemberId).then((response) => {
       dispatch({ type: CREATE_TRAVEL_GROUP, payload: response._id });
     });
@@ -72,8 +72,8 @@ const setActivities = (id, activities, memberType) => {
   return (dispatch, getState) => {
     const args = [id, activities];
     if (memberType !== 'lead' && memberType !== 'partner') {
-      const ageGroup = getState().membersReducer.ageGroups[memberType].id;
-      const travelGroup = getState().membersReducer.travelGroup.id;
+      const ageGroup = getState().chatReducer.members.ageGroups[memberType].id;
+      const travelGroup = getState().chatReducer.members.travelGroup.id;
       args.push({
         ageGroup,
         travelGroup,
@@ -86,8 +86,8 @@ const setActivities = (id, activities, memberType) => {
 };
 
 const createChilren = (childrenCount, getState) => {
-  const ageGroups = getState().membersReducer.ageGroups;
-  const travelGroupId = getState().membersReducer.travelGroup.id;
+  const ageGroups = getState().chatReducer.members.ageGroups;
+  const travelGroupId = getState().chatReducer.members.travelGroup.id;
 
   const promises = [];
   Object.keys(childrenCount).forEach((groupName) => {
@@ -100,7 +100,7 @@ const createChilren = (childrenCount, getState) => {
 };
 
 const addToTravelGroup = (children, getState) => {
-  const travelGroupId = getState().membersReducer.travelGroup.id;
+  const travelGroupId = getState().chatReducer.members.travelGroup.id;
   const promises = [];
   children.forEach((child) => {
     promises.push(API.addMember(travelGroupId, child._id));
@@ -134,7 +134,7 @@ const getCountries = () => {
 
 const setCountries = (countries) => {
   return (dispatch, getState) => {
-    const travelGroupId = getState().membersReducer.travelGroup.id;
+    const travelGroupId = getState().chatReducer.members.travelGroup.id;
     API.setCountries(travelGroupId, countries).then(() => {
       dispatch({ type: SET_COUNTRIES, payload: countries });
     });
@@ -143,7 +143,7 @@ const setCountries = (countries) => {
 
 const setBudget = (budget) => {
   return (dispatch, getState) => {
-    const travelGroupId = getState().membersReducer.travelGroup.id;
+    const travelGroupId = getState().chatReducer.members.travelGroup.id;
     API.setBudget(travelGroupId, budget).then(() => {
       dispatch({ type: SET_BUDGET, payload: budget });
     });

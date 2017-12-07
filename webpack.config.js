@@ -70,7 +70,7 @@ module.exports = {
         }),
         // new webpack.optimize.UglifyJsPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: './index.html',
         }),
         new CopyWebpackPlugin([{
             from: './src/assets',

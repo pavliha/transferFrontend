@@ -4,7 +4,7 @@ import Link from "react-router-dom/es/Link";
 
 @connect((state) => {
     return {
-        firstName: state.membersReducer.signUpData.firstName,
+        firstName: state.chatReducer.members.signUpData.firstName,
     };
 })
 export default class WelcomePageContainer extends Component {

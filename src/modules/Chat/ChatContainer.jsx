@@ -216,7 +216,7 @@ class Chat extends Component {
     render() {
         if (this.props.questionNumber === 0) {
             return (
-                <div className="Chat container white-bg" ref={container => this.container = container}>
+                <div className="chat-container white-bg" ref={container => this.container = container}>
                     <IntroContainer
                         questionsNavigation={this.props.questionsNavigation}
                         ageGroups={this.props.ageGroups}
@@ -230,8 +230,7 @@ class Chat extends Component {
             );
         }
         return (
-            <div className="Chat
-             container" ref={container => this.container = container}>
+            <div className="chat-container" ref={container => this.container = container}>
                 <div className="scroll-fix">
                     <div className="chat" ref={chat => this.chat = chat}>
                         {this.renderChatBody()}
@@ -247,16 +246,16 @@ class Chat extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ageGroups: state.membersReducer.ageGroups,
-        questionNumber: state.questionsReducer.questionNumber,
-        leadMember: state.membersReducer.leadMember,
-        partner: state.membersReducer.partner,
-        travelGroup: state.membersReducer.travelGroup,
-        children: state.membersReducer.children,
-        countries: state.membersReducer.countries,
-        isLogged: state.membersReducer.isLogged,
-        signUpError: state.membersReducer.signUpError,
-        signUpData: state.membersReducer.signUpData,
+        ageGroups: state.chatReducer.members.ageGroups,
+        questionNumber: state.chatReducer.questions.questionNumber,
+        leadMember: state.chatReducer.members.leadMember,
+        partner: state.chatReducer.members.partner,
+        travelGroup: state.chatReducer.members.travelGroup,
+        children: state.chatReducer.members.children,
+        countries: state.chatReducer.members.countries,
+        isLogged: state.chatReducer.members.isLogged,
+        signUpError: state.chatReducer.members.signUpError,
+        signUpData: state.chatReducer.members.signUpData,
     };
 };
 
