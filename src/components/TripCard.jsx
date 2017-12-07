@@ -2,18 +2,18 @@ import React from "react"
 import {Card, CardSubtitle, CardTitle, Col, Row} from 'reactstrap'
 import Link from "react-router-dom/es/Link";
 
-export default ({user, trip, className}) =>
+export default ({user, trip, className,index}) =>
     <Card className={className}>
         <section className='px-3 pt-3'>
             <CardTitle className="h5">
-                <Link className='trip-card-title' to={'/me/matching-trips/' + trip.urlSlug}>$3434 to $4512</Link>
+                <Link className='trip-card-title' to={'/me/matching-trips/' + trip.urlSlug}>£3,434 to £4,512</Link>
             </CardTitle>
             <CardSubtitle className="h6  mb-2">
                 <Link className='trip-card-subtitle' to={'/me/matching-trips/' + trip.urlSlug}>{trip.name}</Link>
             </CardSubtitle>
             <Link to={'/me/matching-trips/' + trip.urlSlug}>
                 <div className='dummy-block'>
-                    <img src='' width='100%'/>
+                    {/*<img src={`https://s3-eu-west-1.amazonaws.com/vacations-cafe-thumb/trips/${trip.urlSlug}/hero.jpg`} height='100%'/>*/}
                 </div>
             </Link>
             <div className='pt-3 px-1'>

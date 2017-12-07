@@ -5,11 +5,13 @@
   padding: 9px 31px
 
 }
-.btn-lg{
+
+.btn-lg {
   font-size: inherit;
   font-weight: inherit;
   padding: 12px 40px;
 }
+
 .btn-primary {
   background-color: #CE7D9E;
 }
@@ -27,8 +29,19 @@
   box-shadow: none;
 
 }
+
 .btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle {
   background-color: #93546e;
+}
+
+.btn-outline-secondary:not([disabled]):not(.disabled).active, .btn-outline-secondary:not([disabled]):not(.disabled):active, .show > .btn-outline-secondary.dropdown-toggle {
+  background-color: transparent;
+  color: inherit;
+  box-shadow: 0 0 0 0.2rem rgba(134, 142, 150, 0);
+}
+
+.btn-primary:not([disabled]):not(.disabled).active, .btn-primary:not([disabled]):not(.disabled):active, .show > .btn-primary.dropdown-toggle{
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0)
 }
 
 .btn-round {

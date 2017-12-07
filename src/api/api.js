@@ -2,6 +2,7 @@ import getData from '../services/getData';
 
 import sendData from '../services/sendData';
 import param from 'jquery-param'
+import {CARD_LOAD_LIMIT} from "../actions/constants";
 
 export const createCustomer = (ageGroupId, travelGroupId) => {
     const data = {
@@ -66,8 +67,8 @@ export const addMember = (travelGroupId, memberId) => {
 export const getCountries = () => {
     return getData('/countries?isServed=true&$limit=50');
 };
-export const getTrips = ({skip, limit}) => {
-    const params = param({$skip: skip, $populate: 'designer', $limit: limit})
+export const getTrips = ({skip}) => {
+    const params = param({$skip: skip, $populate: 'designer', $limit: CARD_LOAD_LIMIT})
 
     return getData('/trips?' + params)
 }

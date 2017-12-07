@@ -4,22 +4,37 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
-const VENDOR_LIST = ['react', 'react-dom', 'babel-polyfill', 'smoothscroll-polyfill'];
-
 module.exports = {
     entry: {
-        bundle: './src/app.jsx',
-        vendor: VENDOR_LIST,
+        bundle: './src/index.jsx',
+        vendor: ['react', 'react-dom', 'babel-polyfill', 'smoothscroll-polyfill'],
     },
     output: {
         path: path.join(__dirname, 'public'),
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[hash].js',
     },
     devServer: {
         compress: true,
         host: '0.0.0.0',
         port: 3000,
-        historyApiFallback: true
+        historyApiFallback: true,
+        hot: true,
+        stats: {
+            colors: true,
+            hash: false,
+            version: false,
+            timings: false,
+            assets: true,
+            chunks: false,
+            modules: false,
+            reasons: false,
+            children: false,
+            source: false,
+            errors: true,
+            errorDetails: true,
+            warnings: true,
+            publicPath: true
+        }
     },
     devtool: 'source-map',
     resolve: {
@@ -31,13 +46,14 @@ module.exports = {
             {
                 use: {loader: 'babel-loader',},
                 test: /\.(js|jsx)$/,
-                // exclude: /(node_modules)/,
-            }, {
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader'],
-                }),
+                exclude: /(node_modules)/,
+            },
+            {
                 test: /\.(scss|css)$/,
+                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader'],
+                })),
             },
             {
                 test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
@@ -46,7 +62,9 @@ module.exports = {
         ],
     },
     plugins: [
-        new ExtractTextPlugin('styles.css'),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin('styles.css',),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
         }),

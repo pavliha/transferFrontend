@@ -1,17 +1,24 @@
 import React from "react";
 import Link from "react-router-dom/es/Link";
 import {Badge} from "reactstrap";
+import {connect} from "react-redux";
+import {updateTitle} from "../actions/trips.action";
 
+@connect(state => state.chefReducer)
 export default class Chef extends React.Component {
     state = {
         display: false
     }
 
     componentDidMount() {
+        const {original, dispatch} = this.props
         //нужно будет переделать для redux
         setTimeout(() => {
+
             this.setState({display: true})
-            document.title = '(1) ' + document.title
+
+            dispatch(updateTitle('(1) ' + original))
+
         }, 3000)
 
     }

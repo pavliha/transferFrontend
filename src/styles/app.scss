@@ -38,3 +38,15 @@ body {
   right: 0;
   z-index: 99999;
 }
+@media (max-width: 768px){
+  .card-columns{
+    column-count: 2;
+  }
+}
+@media (max-width: 425px){
+  .card-columns{
+    column-count: 1;
+  }
+}
+
+

@@ -1,11 +1,11 @@
-import {CARD_LOAD_LIMIT, GET_TRIPS} from '../actions/constants';
+import {ANIMATE_CARDS, GET_TRIPS, UPDATE_TITLE} from '../actions/constants';
 
 const initialState = {
     trips: [],
     total: 0,
     skip: 0,
-    limit: CARD_LOAD_LIMIT,
     loading: false,
+    animated: false
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -20,7 +20,6 @@ export default (state = initialState, {type, payload}) => {
                 ...state,
                 loading: false,
                 skip: payload.skip,
-                limit: payload.limit,
                 total: payload.total,
             }
             newState.trips = newState.trips.concat(payload.data)
@@ -33,6 +32,18 @@ export default (state = initialState, {type, payload}) => {
                 loading: false,
                 error: action.payload
             };
+
+        case ANIMATE_CARDS:
+            return {
+                ...state,
+                animated: true
+            }
+
+        case UPDATE_TITLE:
+            return {
+                ...state,
+                title: payload
+            }
         default: {
             return state;
         }
