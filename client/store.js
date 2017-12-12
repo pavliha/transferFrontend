@@ -6,16 +6,10 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import promiseMiddleware from 'redux-promise-middleware';
 import {combineReducers} from 'redux';
 
-import chatReducer from './modules/Chat/reducers/chat.reducer'
-import tripsReducer from './modules/Trips/trips.reducer';
-import chefReducer from './modules/Chef/chef.reducer'
 import {routerReducer} from 'react-router-redux'
 
 const reducers =  combineReducers({
     router: routerReducer,
-    chatReducer,
-    tripsReducer,
-    chefReducer,
 });
 
 

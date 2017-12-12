@@ -6,7 +6,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        bundle: './src/index.jsx',
+        bundle: './client/index.jsx',
         vendor: ['react', 'react-dom', 'babel-polyfill', 'smoothscroll-polyfill'],
     },
     output: {
@@ -70,10 +70,10 @@ module.exports = {
         }),
         // new webpack.optimize.UglifyJsPlugin(),
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: './client/index.html',
         }),
         new CopyWebpackPlugin([{
-            from: './src/assets',
+            from: './client/assets',
             to: './assets',
         }]),
         new webpack.ProvidePlugin({

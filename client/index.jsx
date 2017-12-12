@@ -1,7 +1,7 @@
 require("react-hot-loader/patch")
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css'
-import './styles/app.scss';
+import './style.scss';
 
 import React from 'react'
 import ReactDOM from 'react-dom'
