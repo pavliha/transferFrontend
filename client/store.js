@@ -1,15 +1,14 @@
-import {applyMiddleware, createStore} from 'redux'
+import {applyMiddleware, combineReducers, createStore} from 'redux'
 import thunk from 'redux-thunk'
 import {createBrowserHistory} from 'history'
-import {routerMiddleware} from 'react-router-redux'
+import {routerMiddleware, routerReducer} from 'react-router-redux'
 import {composeWithDevTools} from 'redux-devtools-extension';
 import promiseMiddleware from 'redux-promise-middleware';
-import {combineReducers} from 'redux';
+import expensesReducer from './reducers/expenses.reducer'
 
-import {routerReducer} from 'react-router-redux'
-
-const reducers =  combineReducers({
+const reducers = combineReducers({
     router: routerReducer,
+    expensesReducer: expensesReducer
 });
 
 

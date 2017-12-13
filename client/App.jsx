@@ -7,7 +7,6 @@ import {Switch} from "react-router-dom";
 import Index from './pages/Index'
 
 
-
 export default () =>
     <Provider store={store}>
         <ConnectedRouter history={history}>

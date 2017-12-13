@@ -11,6 +11,7 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "animated-scroll-to": "^1.1.7",
+    "axios": "^0.17.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -21,8 +22,10 @@
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "4.0.0-beta.2",
     "classnames": "latest",
+    "cors": "^2.8.4",
     "css-hot-loader": "^1.3.4",
     "default": "^0.1.1",
+    "dexie": "^2.0.1",
     "es6-map": "^0.1.5",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.0.0",
@@ -30,10 +33,12 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
+    "express": "latest",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "jquery": "^3.2.1",
     "jquery-param": "^0.2.0",
+    "moment": "^2.19.4",
     "node-sass": "^4.5.3",
     "popper.js": "^1.12.9",
     "postcss": "^6.0.13",
@@ -60,8 +65,7 @@
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
     "smoothscroll-polyfill": "^0.4.0",
-    "sugarss": "^1.0.0",
-    "express": "latest"
+    "sugarss": "^1.0.0"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",

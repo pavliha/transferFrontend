@@ -1,0 +1,13 @@
+@import "./styles/theme/drawer";
+@import "./styles/theme/btn";
+
+.card-expense {
+  width: 95%;
+  left: 2.5%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+.animated{
+  animation-duration: 0.2s;
+}
