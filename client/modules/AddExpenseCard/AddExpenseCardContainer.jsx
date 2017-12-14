@@ -9,10 +9,17 @@ export default class AddExpenseCardContainer extends Component {
     render() {
         const {visible} = this.props
 
-        if (!visible) return null
+        if (!visible)
+            return <div className='fixed-bottom text-center'>
+                <Button color='primary'
+                        className='btn-round mb-3 p-4'
+                        onClick={this.toggleExpenseCard.bind(this)}>
+                    <i className="fa fa-google-wallet" aria-hidden="true"/>
+                </Button>
+            </div>
 
         return <form className='card fixed-bottom card-expense p-3 animated slideInUp'
-                     onSubmit={this.handleAddExpense.bind(this)}>
+              onSubmit={this.handleAddExpense.bind(this)}>
             <Input type='text' defaultValue="" name='name' placeholder='Описание'/>
             <InputGroup className='mt-3'>
                 <Input type='number' required placeholder='Сумма' name='amount' defaultValue=""/>
