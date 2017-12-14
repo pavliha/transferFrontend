@@ -4,7 +4,7 @@ import {Container} from "reactstrap";
 import ExpensesCard from "../global/components/ExpensesCard";
 import AddExpenseCardContainer from "../modules/AddExpenseCard/AddExpenseCardContainer";
 import {connect} from "react-redux";
-import _ from 'lodash'
+import sortBy from 'lodash/sortBy'
 import {deleteExpense, loadExpenses} from "../global/actions/expenses.action";
 import moment from "moment";
 import InfoTable from "../global/components/InfoTable";
@@ -31,7 +31,7 @@ export default class Expenses extends Component {
     render() {
         let {expenses} = this.props
 
-        expenses = _.sortBy(expenses, obj => moment(obj.date)).reverse();
+        expenses = sortBy(expenses, obj => moment(obj.date)).reverse();
 
         return <Layout>
             <Container>

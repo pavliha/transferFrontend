@@ -2,6 +2,8 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 const webpack = require('webpack');
 
 module.exports = {
@@ -63,6 +65,8 @@ module.exports = {
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ru|ua)$/),
+        //new BundleAnalyzerPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new ExtractTextPlugin('styles.css',),
         new webpack.optimize.CommonsChunkPlugin({
