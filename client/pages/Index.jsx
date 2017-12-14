@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {Button, Container} from "reactstrap";
-import DailyExpensesCard from "../components/DailyExpensesCard";
+import DailyExpensesCard from "../global/components/ExpensesCard";
 import {connect} from "react-redux";
-import AddExpenseCard from "../components/AddExpenseCard";
-import {addExpense, loadExpenses, TOGGLE_EXPENSE_CARD} from "../actions/index.action";
+import AddExpenseCard from "../modules/AddExpenseCard/AddExpenseCardContainer";
+import {addExpense, loadExpenses, TOGGLE_EXPENSE_CARD} from "../global/actions/expenses.action";
+import Layout from "../global/components/Layout";
 
 @connect(store => store.expensesReducer)
 export default class Index extends Component {
@@ -15,7 +16,7 @@ export default class Index extends Component {
         console.log('re-render')
         const {dispatch, showAddExpenseCard, expenses} = this.props
 
-        return <div>
+        return <Layout>
             <Container>
                 <DailyExpensesCard day='сегодня' expenses={expenses}/>
             </Container>
@@ -31,7 +32,7 @@ export default class Index extends Component {
                         <i className="fa fa-google-wallet" aria-hidden="true"/>
                     </Button>
                 </div> : null}
-        </div>
+        </Layout>
     }
 
     handleAddExpense(e) {

@@ -27,9 +27,9 @@ export default class WelcomeNavbar extends React.Component {
         });
     }
     render() {
+        const {className} = this.props
         return (
-            <div>
-                <Navbar color="faded" light expand="md">
+                <Navbar color="faded" light expand="md" className={className}>
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">reactstrap</NavbarBrand>
 
@@ -41,27 +41,9 @@ export default class WelcomeNavbar extends React.Component {
                             <NavItem>
                                 <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
                             </NavItem>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu >
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
         );
     }
 }

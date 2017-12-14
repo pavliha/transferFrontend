@@ -5,6 +5,7 @@ import {ConnectedRouter} from 'react-router-redux'
 import Route from "react-router/es/Route";
 import {Switch} from "react-router-dom";
 import Index from './pages/Index'
+import Expenses from './pages/Expenses'
 
 
 export default () =>
@@ -12,6 +13,7 @@ export default () =>
         <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path="/" component={Index}/>
+                <Route exact path="/expenses" component={Expenses}/>
             </Switch>
         </ConnectedRouter>
     </Provider>

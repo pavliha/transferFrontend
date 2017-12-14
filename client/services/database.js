@@ -1,16 +1,15 @@
-import Dexie from 'dexie';
+import Dexie from 'dexie'
 
-const db = new Dexie('expenses');
+const db = new Dexie('expenses')
 
 // Define a schema
 db.version(1).stores({
-    friends: 'name, age'
-});
+    expenses: '++id,name,amount,date'
+})
 
 
 // Open the database
-db.open().catch(function (error) {
-    alert('Uh oh : ' + error);
-});
+db.open().catch(error => {debugger})
+
 
 export default db

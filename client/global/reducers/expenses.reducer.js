@@ -1,8 +1,7 @@
-import {ADD_EXPENSE, LOAD_EXPENSES, TOGGLE_EXPENSE_CARD} from "../actions/index.action";
+import {ADD_EXPENSE, DELETE_EXPENSE, LOAD_EXPENSES} from "../actions/expenses.action";
 
 const initialState = {
     expenses: [],
-    showAddExpenseCard: false
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -10,19 +9,18 @@ export default (state = initialState, {type, payload}) => {
         case LOAD_EXPENSES + "_FULFILLED":
             return {
                 ...state,
-                expenses: payload.items
+                expenses: payload
             }
         case ADD_EXPENSE:
             state.expenses.push(payload)
             return state
-
+        case DELETE_EXPENSE:
+            return {
+                ...state,
+                expenses: state.expenses.filter(expense => expense.id !== payload.id)
+            }
         default: {
             return state;
         }
-        case TOGGLE_EXPENSE_CARD:
-            return {
-                ...state,
-                showAddExpenseCard: !state.showAddExpenseCard,
-            }
     }
 };
