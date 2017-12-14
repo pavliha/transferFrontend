@@ -1,6 +1,7 @@
 require("react-hot-loader/patch")
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'animate.css'
+import './assets/flaticon/flaticon.css'
 import './style.scss';
 
 import './global/helpers'

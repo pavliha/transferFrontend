@@ -16,6 +16,7 @@ export function addExpense(form) {
 
     const expense = {
         name: form.name.value,
+        category: form.category.value,
         amount: parseFloat(form.amount.value),
         date: moment().toISOString()
     }

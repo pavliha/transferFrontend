@@ -42,7 +42,9 @@ function renderListByCategory(expenses, onDeleteExpense) {
 }
 
 const CategoryItem = ({name}) => {
-    if (name === 'undefined') return null
+    if (name === 'undefined') return <tr>
+        <th>Остальное:</th>
+    </tr>
     return <tr>
         <th>{name}:</th>
     </tr>
