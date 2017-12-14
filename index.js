@@ -9,6 +9,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(cors())
 
+app.get('/app', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html')
+})
+
 app.get('/api/expenses', (req, res) => {
     res.json({
         limit: 10,
@@ -41,6 +45,7 @@ app.get('/api/expenses', (req, res) => {
         ]
     })
 })
+
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')
 })
