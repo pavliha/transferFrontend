@@ -60,7 +60,7 @@ export default class CategoryInput extends React.Component {
                 )}
             </div>
 
-            <Input type='text' className='mt-3'
+            <Input type='hidden' className='mt-3'
                    value={this.state.text}
                    onChange={this.handleChange.bind(this)}
                    name='category'

@@ -33,9 +33,6 @@ export default class Expenses extends Component {
         const expensesByMonth = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('month'));
 
         return <Layout>
-
-            <Link to='/daily'><i className="flaticon-calendar bottom-nav-icons"/></Link>
-            <Link to='/monthly'><i className="flaticon-school-calendar bottom-nav-icons"/></Link>
             <InfoTable income={income} expense={calculateExpensesAmount(expenses)}/>
             {this.renderExpensesByMonth(expensesByMonth)}
         </Layout>
