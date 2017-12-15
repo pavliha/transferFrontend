@@ -8,6 +8,7 @@ import InfoTable from "../global/components/InfoTable";
 import groupBy from "lodash/groupBy";
 import ExpensesCard from "../global/components/ExpensesCard";
 import EmptyLayout from "../global/components/EmptyLayout";
+import {Link} from "react-router-dom";
 
 const income = 15000
 
@@ -26,10 +27,15 @@ export default class Expenses extends Component {
 
         if (!expenses.length) return <EmptyLayout/>
 
+
+
         const expensesSorted = sortBy(expenses, obj => moment(obj.date)).reverse();
         const expensesByMonth = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('month'));
 
         return <Layout>
+
+            <Link to='/daily'><i className="flaticon-calendar bottom-nav-icons"/></Link>
+            <Link to='/monthly'><i className="flaticon-school-calendar bottom-nav-icons"/></Link>
             <InfoTable income={income} expense={calculateExpensesAmount(expenses)}/>
             {this.renderExpensesByMonth(expensesByMonth)}
         </Layout>

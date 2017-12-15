@@ -11,9 +11,8 @@ export default class AddExpenseCardContainer extends Component {
         const {visible} = this.props
 
         if (!visible)
-            return <div className='fixed-bottom text-center'>
-                <AddExpenseButton onClick={this.toggleExpenseCard.bind(this)}/>
-            </div>
+            return <AddExpenseButton className='fixed-bottom-center' onClick={this.toggleExpenseCard.bind(this)}/>
+
 
         return <AddExpenseCard onSubmit={this.handleAddExpense.bind(this)}
                                onCancel={this.toggleExpenseCard.bind(this)}/>
