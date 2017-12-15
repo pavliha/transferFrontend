@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 14/12/2017 15:29
+  	Creation date: 15/12/2017 14:40
   	*/
 
 @font-face {
@@ -29,17 +29,19 @@ font-style: normal;
 margin-left: 20px;
 }
 
-.flaticon-internet:before { content: "\f100"; }
-.flaticon-tool:before { content: "\f101"; }
-.flaticon-credit-card:before { content: "\f102"; }
-.flaticon-id-card:before { content: "\f103"; }
-.flaticon-wallet:before { content: "\f104"; }
-.flaticon-scissors:before { content: "\f105"; }
-.flaticon-heartbeat:before { content: "\f106"; }
-.flaticon-lemonade:before { content: "\f107"; }
-.flaticon-coding:before { content: "\f108"; }
-.flaticon-video-camera:before { content: "\f109"; }
-.flaticon-cutlery:before { content: "\f10a"; }
-.flaticon-piggy-bank:before { content: "\f10b"; }
-.flaticon-home:before { content: "\f10c"; }
-.flaticon-commerce:before { content: "\f10d"; }
+.flaticon-school-calendar:before { content: "\f100"; }
+.flaticon-calendar:before { content: "\f101"; }
+.flaticon-internet:before { content: "\f102"; }
+.flaticon-tool:before { content: "\f103"; }
+.flaticon-credit-card:before { content: "\f104"; }
+.flaticon-id-card:before { content: "\f105"; }
+.flaticon-wallet:before { content: "\f106"; }
+.flaticon-scissors:before { content: "\f107"; }
+.flaticon-heartbeat:before { content: "\f108"; }
+.flaticon-lemonade:before { content: "\f109"; }
+.flaticon-coding:before { content: "\f10a"; }
+.flaticon-video-camera:before { content: "\f10b"; }
+.flaticon-cutlery:before { content: "\f10c"; }
+.flaticon-piggy-bank:before { content: "\f10d"; }
+.flaticon-home:before { content: "\f10e"; }
+.flaticon-commerce:before { content: "\f10f"; }

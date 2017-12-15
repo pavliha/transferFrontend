@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 14/12/2017 15:29
+    Creation date: 15/12/2017 14:40
     */
 
     @font-face {
@@ -36,32 +36,36 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-internet:before { content: "\f100"; }
-.flaticon-tool:before { content: "\f101"; }
-.flaticon-credit-card:before { content: "\f102"; }
-.flaticon-id-card:before { content: "\f103"; }
-.flaticon-wallet:before { content: "\f104"; }
-.flaticon-scissors:before { content: "\f105"; }
-.flaticon-heartbeat:before { content: "\f106"; }
-.flaticon-lemonade:before { content: "\f107"; }
-.flaticon-coding:before { content: "\f108"; }
-.flaticon-video-camera:before { content: "\f109"; }
-.flaticon-cutlery:before { content: "\f10a"; }
-.flaticon-piggy-bank:before { content: "\f10b"; }
-.flaticon-home:before { content: "\f10c"; }
-.flaticon-commerce:before { content: "\f10d"; }
+    .flaticon-school-calendar:before { content: "\f100"; }
+.flaticon-calendar:before { content: "\f101"; }
+.flaticon-internet:before { content: "\f102"; }
+.flaticon-tool:before { content: "\f103"; }
+.flaticon-credit-card:before { content: "\f104"; }
+.flaticon-id-card:before { content: "\f105"; }
+.flaticon-wallet:before { content: "\f106"; }
+.flaticon-scissors:before { content: "\f107"; }
+.flaticon-heartbeat:before { content: "\f108"; }
+.flaticon-lemonade:before { content: "\f109"; }
+.flaticon-coding:before { content: "\f10a"; }
+.flaticon-video-camera:before { content: "\f10b"; }
+.flaticon-cutlery:before { content: "\f10c"; }
+.flaticon-piggy-bank:before { content: "\f10d"; }
+.flaticon-home:before { content: "\f10e"; }
+.flaticon-commerce:before { content: "\f10f"; }
     
-    $font-Flaticon-internet: "\f100";
-    $font-Flaticon-tool: "\f101";
-    $font-Flaticon-credit-card: "\f102";
-    $font-Flaticon-id-card: "\f103";
-    $font-Flaticon-wallet: "\f104";
-    $font-Flaticon-scissors: "\f105";
-    $font-Flaticon-heartbeat: "\f106";
-    $font-Flaticon-lemonade: "\f107";
-    $font-Flaticon-coding: "\f108";
-    $font-Flaticon-video-camera: "\f109";
-    $font-Flaticon-cutlery: "\f10a";
-    $font-Flaticon-piggy-bank: "\f10b";
-    $font-Flaticon-home: "\f10c";
-    $font-Flaticon-commerce: "\f10d";
+    $font-Flaticon-school-calendar: "\f100";
+    $font-Flaticon-calendar: "\f101";
+    $font-Flaticon-internet: "\f102";
+    $font-Flaticon-tool: "\f103";
+    $font-Flaticon-credit-card: "\f104";
+    $font-Flaticon-id-card: "\f105";
+    $font-Flaticon-wallet: "\f106";
+    $font-Flaticon-scissors: "\f107";
+    $font-Flaticon-heartbeat: "\f108";
+    $font-Flaticon-lemonade: "\f109";
+    $font-Flaticon-coding: "\f10a";
+    $font-Flaticon-video-camera: "\f10b";
+    $font-Flaticon-cutlery: "\f10c";
+    $font-Flaticon-piggy-bank: "\f10d";
+    $font-Flaticon-home: "\f10e";
+    $font-Flaticon-commerce: "\f10f";

@@ -13,7 +13,8 @@ export default () =>
         <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path="/" component={Index}/>
-                <Route exact path="/expenses" component={Expenses}/>
+                {/*<Route exact path="/daily" component={Index}/>*/}
+                <Route exact path="/monthly" component={Expenses}/>
             </Switch>
         </ConnectedRouter>
     </Provider>
