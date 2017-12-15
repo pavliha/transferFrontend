@@ -1,7 +1,7 @@
 {
   "name": "expenses",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "Expenses app",
   "engines": {
     "node": "8.9.1"
   },
