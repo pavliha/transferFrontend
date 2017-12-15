@@ -1,12 +1,18 @@
-import {ADD_EXPENSE, DELETE_EXPENSE, LOAD_EXPENSES} from "../actions/expenses.action";
+import {ADD_EXPENSE, DELETE_EXPENSE, LOAD_CATEGORIES, LOAD_EXPENSES} from "../actions/expenses.action";
 
 const initialState = {
     expenses: [],
+    categories: [],
 };
 
 export default (state = initialState, {type, payload}) => {
     switch (type) {
         case LOAD_EXPENSES + "_FULFILLED":
+            return {
+                ...state,
+                expenses: payload
+            }
+        case LOAD_CATEGORIES + "_FULFILLED":
             return {
                 ...state,
                 expenses: payload

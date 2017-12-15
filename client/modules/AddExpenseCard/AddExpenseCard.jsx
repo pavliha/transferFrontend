@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Input, InputGroup, InputGroupAddon} from "reactstrap";
-import CategoryInput from "./CategoryInput";
+import CategoryInput from "./CategoryInputContainer";
 
 export default ({onSubmit, onCancel}) =>
     <form style={{marginBottom: 0}}
@@ -9,7 +9,6 @@ export default ({onSubmit, onCancel}) =>
         <CategoryInput/>
 
 
-        <Input type='text' defaultValue="" className='mt-3' name='name' placeholder='Описание'/>
         <InputGroup className='mt-3'>
             <Input type='number' required placeholder='Сумма' name='amount' defaultValue=""/>
             <InputGroupAddon>грн.</InputGroupAddon>

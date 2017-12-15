@@ -8,7 +8,6 @@ import InfoTable from "../global/components/InfoTable";
 import groupBy from "lodash/groupBy";
 import ExpensesCard from "../global/components/ExpensesCard";
 import EmptyLayout from "../global/components/EmptyLayout";
-import {Link} from "react-router-dom";
 
 const income = 15000
 
@@ -55,9 +54,3 @@ export default class Expenses extends Component {
 
 }
 
-function calculateExpensesAmount(expenses) {
-    let sum = 0;
-    for (const expense of expenses)
-        sum = expense.amount + sum
-    return sum
-}

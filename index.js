@@ -23,22 +23,22 @@ app.get('/api/expenses', (req, res) => {
                 "amount": 200,
             },
             {
-                "category": 'Home',
+                "category_id": 'Home',
                 "name": "Rent",
                 "amount": 1000,
             },
             {
-                "category": 'Food',
+                "category_id": 'Food',
                 "name": "Varus",
                 "amount": 200,
             },
             {
-                "category": 'Food',
+                "category_id": 'Food',
                 "name": "Varus",
                 "amount": 200,
             },
             {
-                "category": 'Food',
+                "category_id": 'Food',
                 "name": "Varus",
                 "amount": 200,
             },

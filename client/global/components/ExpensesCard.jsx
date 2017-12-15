@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, Table} from "reactstrap";
+import Colorize from "./Colorize";
 
 export default ({day, expenses, onDeleteExpense, className}) => {
     return <Card className={className + ' mb-0'}>
@@ -9,7 +10,7 @@ export default ({day, expenses, onDeleteExpense, className}) => {
                 <th>
                     {day}
                 </th>
-                <th className='text-right'>{calculateExpensesAmount(expenses)} грн</th>
+                <th className='text-right'><Colorize>{calculateExpensesAmount(expenses)} грн</Colorize></th>
             </tr>
             </thead>
             <tbody>
@@ -52,11 +53,11 @@ const CategoryItem = ({name, amount}) => {
     </tr>
     return <tr>
         <th>{name}:</th>
-        <th className='text-right'>{amount} грн</th>
+        <th className='text-right'><Colorize>{amount} грн</Colorize></th>
     </tr>
 }
 
 const ExpenseItem = ({expense, onDeleteExpense}) => <tr>
     <td><i className='fa fa-close mr-1' onClick={onDeleteExpense.bind(null, expense)}/>{' '}{' '}{expense.name}</td>
-    <td align="right">{expense.amount} грн</td>
+    <td align="right"><Colorize>{expense.amount} грн</Colorize></td>
 </tr>

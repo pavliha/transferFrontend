@@ -9,6 +9,7 @@ import localization from 'moment/locale/ru'
 import sortBy from "lodash/sortBy";
 import groupBy from "lodash/groupBy";
 import EmptyLayout from "../global/components/EmptyLayout";
+import InfoTable from "../global/components/InfoTable";
 
 moment().locale("ru", localization).format('LLL')
 
@@ -30,9 +31,9 @@ export default class Index extends Component {
         const expensesSorted = sortBy(expenses, obj => moment(obj.date)).reverse();
         const expensesByDay = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('day'));
 
-
         return <Layout>
-                {this.renderExpensesByDay(expensesByDay)}
+            <InfoTable income={12000} expense={calculateExpensesAmount(expenses)}/>
+            {this.renderExpensesByDay(expensesByDay)}
         </Layout>
     }
 

@@ -9,7 +9,7 @@ export default ({className, income, expense}) => <Table>
     </tr>
     <tr>
         <td>Cчет:</td>
-        <td align="right">{income - expense} грн</td>
+        <td align="right">{income + expense} грн</td>
     </tr>
     </tbody>
 </Table>
