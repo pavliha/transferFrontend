@@ -32,7 +32,13 @@ export default class Expenses extends Component {
     render() {
         let {expenses} = this.props
 
-        if (!expenses.length) return null
+        if (!expenses.length) return <Layout>
+            <Container>
+                Пусто
+                <AddExpenseCardContainer/>
+
+            </Container>
+        </Layout>
 
         const expensesSorted = sortBy(expenses, obj => moment(obj.date)).reverse();
         const expensesByMonth = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('month'));
@@ -42,6 +48,7 @@ export default class Expenses extends Component {
                 <InfoTable income={income} expense={this.calculateExpensesAmount(expenses)}/>
 
                 {this.renderExpensesByMonth(expensesByMonth)}
+                Пусто
 
                 <AddExpenseCardContainer/>
 
@@ -54,10 +61,10 @@ export default class Expenses extends Component {
         for (const expenseMonth of Object.keys(expenses))
             cards.push(
                 <ExpensesCard key={expenseMonth}
-                                   day={moment(expenseMonth).format('MMMM')}
-                                   className='mb-3'
-                                   onDeleteExpense={this.handleDeleteExpense.bind(this)}
-                                   expenses={expenses[expenseMonth]}
+                              day={moment(expenseMonth).format('MMMM')}
+                              className='mb-3'
+                              onDeleteExpense={this.handleDeleteExpense.bind(this)}
+                              expenses={expenses[expenseMonth]}
                 />)
 
 

@@ -26,7 +26,13 @@ export default class Index extends Component {
     render() {
         let {expenses} = this.props
 
-        if (!expenses.length) return null
+        if (!expenses.length) return <Layout>
+            <Container>
+            </Container>
+
+            <AddExpenseCardContainer/>
+
+        </Layout>
 
         const expensesSorted = sortBy(expenses, obj => moment(obj.date)).reverse();
         const expensesByDay = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('day'));
