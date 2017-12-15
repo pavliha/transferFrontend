@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import Layout from "../global/components/Layout";
 import {Container} from "reactstrap";
-import ExpensesCard from "../global/components/ExpensesCard";
 import AddExpenseCardContainer from "../modules/AddExpenseCard/AddExpenseCardContainer";
 import {connect} from "react-redux";
 import sortBy from 'lodash/sortBy'
 import {deleteExpense, loadExpenses} from "../global/actions/expenses.action";
 import moment from "moment";
 import InfoTable from "../global/components/InfoTable";
+import groupBy from "lodash/groupBy";
+import ExpensesCard from "../global/components/ExpensesCard";
 
 const income = 15000
 
@@ -31,17 +32,36 @@ export default class Expenses extends Component {
     render() {
         let {expenses} = this.props
 
-        expenses = sortBy(expenses, obj => moment(obj.date)).reverse();
+        if (!expenses.length) return null
+
+        const expensesSorted = sortBy(expenses, obj => moment(obj.date)).reverse();
+        const expensesByMonth = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('month'));
 
         return <Layout>
             <Container>
                 <InfoTable income={income} expense={this.calculateExpensesAmount(expenses)}/>
-                <ExpensesCard day='Расходы' onDeleteExpense={this.handleDeleteExpense.bind(this)} expenses={expenses}/>
+
+                {this.renderExpensesByMonth(expensesByMonth)}
 
                 <AddExpenseCardContainer/>
 
             </Container>
         </Layout>
+    }
+
+    renderExpensesByMonth(expenses) {
+        const cards = [];
+        for (const expenseMonth of Object.keys(expenses))
+            cards.push(
+                <ExpensesCard key={expenseMonth}
+                                   day={moment(expenseMonth).format('MMMM')}
+                                   className='mb-3'
+                                   onDeleteExpense={this.handleDeleteExpense.bind(this)}
+                                   expenses={expenses[expenseMonth]}
+                />)
+
+
+        return cards
     }
 
     handleDeleteExpense(expense) {

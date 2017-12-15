@@ -1,8 +1,8 @@
 import React from "react";
 import {Card, Table} from "reactstrap";
 
-export default ({day, expenses, onDeleteExpense}) => {
-    return <Card>
+export default ({day, expenses, onDeleteExpense, className}) => {
+    return <Card className={className + ' mb-0'}>
         <Table>
             <thead>
             <tr>
@@ -30,8 +30,13 @@ function renderListByCategory(expenses, onDeleteExpense) {
     const render = []
     const categoryGroups = expenses.groupBy('category')
     Object.keys(categoryGroups).forEach((categoryName) => {
-        render.push(<CategoryItem name={categoryName}/>)
-        for (const expense of categoryGroups[categoryName]) {
+
+        const expensesOfCategory = categoryGroups[categoryName]
+        render.push(<CategoryItem key={categoryName} amount={calculateExpensesAmount(expensesOfCategory)}
+                                  name={categoryName}/>)
+        for (const expense of expensesOfCategory) {
+
+
             render.push(<ExpenseItem
                 expense={expense}
                 onDeleteExpense={onDeleteExpense}
@@ -41,12 +46,13 @@ function renderListByCategory(expenses, onDeleteExpense) {
     return render
 }
 
-const CategoryItem = ({name}) => {
+const CategoryItem = ({name, amount}) => {
     if (name === 'undefined') return <tr>
         <th>Остальное:</th>
     </tr>
     return <tr>
         <th>{name}:</th>
+        <th className='text-right'>{amount} грн</th>
     </tr>
 }
 

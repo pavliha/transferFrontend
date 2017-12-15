@@ -6,9 +6,13 @@ export const DELETE_EXPENSE = 'DELETE_EXPENSE'
 export const LOAD_EXPENSES = 'LOAD_EXPENSES'
 
 export function loadExpenses() {
+
+
     return {
         type: LOAD_EXPENSES,
-        payload: db.table('expenses').toArray()
+        payload: db.table('expenses')
+
+            .toArray()
     }
 }
 

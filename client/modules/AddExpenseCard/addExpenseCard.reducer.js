@@ -1,7 +1,7 @@
 import { TOGGLE_EXPENSE_CARD} from "./addExepenseCard.action";
 
 const initialState = {
-    visible: true
+    visible: false
 };
 
 export default (state = initialState, {type}) => {
