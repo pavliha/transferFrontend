@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ExpensesCard from "../global/components/ExpensesCard";
 import {connect} from "react-redux";
-import {deleteExpense, loadExpenses} from "../global/actions/expenses.action";
+import {deleteExpense} from "../global/actions/expenses.action";
 import moment from "moment/moment";
 import localization from 'moment/locale/ru'
 
@@ -25,7 +25,7 @@ export default class Index extends Component {
         const expensesByDay = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('day'));
 
         return <LayoutContainer>
-            <InfoTable income={12000} expense={calculateExpensesAmount(expenses)}/>
+            <InfoTable expenses={expenses}/>
             {this.renderExpensesByDay(expensesByDay)}
         </LayoutContainer>
     }

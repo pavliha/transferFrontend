@@ -8,7 +8,6 @@ import ExpensesCard from "../global/components/ExpensesCard";
 import LayoutContainer from "../modules/Layout/LayoutContainer";
 import sortBy from "lodash/sortBy";
 
-const income = 15000
 
 @connect(store => ({
     ...store.expensesReducer,
@@ -23,7 +22,7 @@ export default class Expenses extends Component {
         const expensesByMonth = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('month'))
 
         return <LayoutContainer>
-            <InfoTable income={income} expense={calculateExpensesAmount(expenses)}/>
+            <InfoTable expenses={expenses}/>
             {this.renderExpensesByMonth(expensesByMonth)}
         </LayoutContainer>
     }
