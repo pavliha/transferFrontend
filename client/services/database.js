@@ -19,8 +19,8 @@ const categories = [
         text: 'Остальные',
     }, {
         id: 2,
-        icon: 'flaticon-internet',
-        text: 'Онлайн услуги',
+        icon: 'flaticon-wallet',
+        text: 'Доход',
     }, {
         id: 3,
         icon: 'flaticon-internet',
@@ -51,8 +51,8 @@ const categories = [
         text: 'Сбережения',
     }, {
         id: 10,
-        icon: 'flaticon-wallet',
-        text: 'Доход',
+        icon: 'flaticon-internet',
+        text: 'Онлайн услуги',
     },
     {
         id: 11,
