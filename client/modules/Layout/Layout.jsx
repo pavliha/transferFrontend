@@ -1,15 +1,16 @@
 import React from "react";
 import WelcomeNavbar from "./WelcomeNavbar";
 import {Container} from "reactstrap";
-import AddExpenseCardContainer from "../../modules/AddExpenseCard/AddExpenseCardContainer";
+import AddExpenseCardContainer from "../AddExpenseCard/AddExpenseCardContainer";
 import {Link} from "react-router-dom";
 
 export default ({className, children}) =>
     <div className={className}>
         <WelcomeNavbar className='mb-2'/>
         <Container>
-            {children}
-
+            <div className='mb-5 pb-5'>
+                {children}
+            </div>
 
             <nav className='fixed-bottom bg-dark d-flex justify-content-around' style={{height: 50, width: "100%"}}>
 

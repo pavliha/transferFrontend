@@ -8,34 +8,25 @@ export const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 
 export function loadExpenses() {
 
-
-    db.expenses
-        .with({category: 'category_id'}) // makes referred items included
-        .then(bands => {
-            // Let's print the result:
-            bands.forEach (band => {
-                debugger
-                console.log (`Band Name: ${band.name}`)
-                console.log (`Genre: ${band.genre.name}`)
-                console.log (`Albums: ${JSON.stringify(band.albums, null, 4)}`)
-            });
-        })
-
-
     return {
         type: LOAD_EXPENSES,
-        payload: {}
+        payload: db.expenses.orderBy('date').reverse().with({category: 'category_id'})
     }
 }
 
 export function addExpense(form) {
 
+    const category = JSON.parse(form.category.value)
+
+
     const expense = {
-        name: form.name.value,
-        category: form.category_id.value,
-        amount: parseFloat(form.amount.value),
+        name: !form.name.value.length ? form.name.value : form.name.placeholder,
+        category_id: parseInt(category.id),
+        amount: -parseFloat(form.amount.value),
+        category: category,
         date: moment().toISOString()
     }
+
     db.table('expenses').add(expense)
 
     return {
@@ -46,11 +37,18 @@ export function addExpense(form) {
 
 export function deleteExpense(expense) {
 
-
     db.table('expenses').where('id').equals(expense.id).delete()
 
     return {
         type: DELETE_EXPENSE,
         payload: expense
+    }
+}
+
+export function loadCategories() {
+
+    return {
+        type: LOAD_CATEGORIES,
+        payload: db.table('categories').toArray()
     }
 }

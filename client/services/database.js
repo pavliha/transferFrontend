@@ -7,11 +7,8 @@ const db = new Dexie('expenses', {addons: [relationships]})
 
 // Define a schema
 db.version(1).stores({
-    expensessss: '++id,name,category_id,amount,date',
-    //categories: '++id,icon,text,value',
-
-    categories: 'id, icon,text',
-    expenses: 'id, name, category_id -> categories.id',
+    categories: 'id,icon,text',
+    expenses: '++id,name, category_id -> categories.id,amount,date',
 })
 
 
@@ -19,7 +16,7 @@ const categories = [
     {
         id: 1,
         icon: 'flaticon-piggy-bank',
-        text: 'Развлечения',
+        text: 'Остальные',
     }, {
         id: 2,
         icon: 'flaticon-internet',
@@ -57,101 +54,90 @@ const categories = [
         icon: 'flaticon-wallet',
         text: 'Доход',
     },
+    {
+        id: 11,
+        icon: 'flaticon-piggy-bank',
+        text: 'Развлечения',
+    },
 ]
 
 const expenses = [
     {
-        id: 1,
         name: 'Квартира',
         category_id: 6,
         amount: -3740,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 2,
         name: 'В копилку',
         category_id: 9,
         amount: -3200,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 3,
         name: 'Челентано',
         category_id: 7,
         amount: -50,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 3,
         name: 'Защитное стекло',
         category_id: 8,
         amount: -61,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 4,
         name: 'Вода',
         category_id: 3,
         amount: -20,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 5,
         name: 'Ель',
         category_id: 3,
         amount: -86,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 5,
         name: 'Варус',
         category_id: 4,
         amount: -176,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 6,
         name: 'Такси',
         category_id: 5,
         amount: -48,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 7,
         name: 'Маршрутка',
         category_id: 5,
         amount: -100,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 8,
         name: 'Бутер',
         category_id: 4,
         amount: -18,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 9,
         name: 'Обед на работе',
         category_id: 4,
         amount: -40,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 10,
         name: 'Обед на работе',
         category_id: 4,
         amount: -40,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 11,
         name: 'Обед на работе',
         category_id: 4,
         amount: -40,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 11,
         name: 'Кино',
         category_id: 1,
         amount: -65,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 12,
         name: 'Каток',
         category_id: 1,
         amount: -190,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
-        id: 13,
         name: 'Кофе',
         category_id: 3,
         amount: -10,
@@ -164,11 +150,13 @@ const expenses = [
     },
     {
         name: 'Подарок на работе',
+        category_id: 1,
         amount: -60,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     },
     {
         name: 'Мобильный',
+        category_id: 1,
         amount: -65,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     },
@@ -197,31 +185,15 @@ const expenses = [
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }, {
         name: 'Бумага',
+        category_id: 1,
         amount: -100,
         date: Faker.Date.between(moment().subtract(10, 'days'), moment())
     }
 ]
 
 db.on("populate", function () {
-    // Genres
-
     db.categories.bulkPut(categories)
-
-    // Bands
-    db.expenses.bulkPut([{
-        id: 1,
-        name: 'Beatles',
-        category_id: 1
-    }, {
-        id: 2,
-        name: 'Abba',
-        category_id: 2
-    }])
-
-
-    // db.categories.bulkPut(categories)
-    // db.expenses.bulkPut(expenses)
-
+    db.expenses.bulkPut(expenses)
 })
 
 // Open the database

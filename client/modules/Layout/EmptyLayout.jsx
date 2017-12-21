@@ -1,7 +1,7 @@
 import React from "react";
 import WelcomeNavbar from "./WelcomeNavbar";
 import {Container} from "reactstrap";
-import AddExpenseCardContainer from "../../modules/AddExpenseCard/AddExpenseCardContainer";
+import AddExpenseCardContainer from "../AddExpenseCard/AddExpenseCardContainer";
 
 export default ({className}) =>
     <div className={className}>

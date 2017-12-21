@@ -1,8 +1,10 @@
 import React from "react";
 import {Card, Table} from "reactstrap";
 import Colorize from "./Colorize";
+import groupBy from 'lodash/groupBy'
 
 export default ({day, expenses, onDeleteExpense, className}) => {
+
     return <Card className={className + ' mb-0'}>
         <Table>
             <thead>
@@ -29,15 +31,15 @@ function calculateExpensesAmount(expenses) {
 
 function renderListByCategory(expenses, onDeleteExpense) {
     const render = []
-    const categoryGroups = expenses.groupBy('category')
+    const categoryGroups = groupBy(expenses, expense => expense.category.text)
+
     Object.keys(categoryGroups).forEach((categoryName) => {
 
         const expensesOfCategory = categoryGroups[categoryName]
+
         render.push(<CategoryItem key={categoryName} amount={calculateExpensesAmount(expensesOfCategory)}
                                   name={categoryName}/>)
         for (const expense of expensesOfCategory) {
-
-
             render.push(<ExpenseItem
                 expense={expense}
                 onDeleteExpense={onDeleteExpense}
@@ -48,9 +50,10 @@ function renderListByCategory(expenses, onDeleteExpense) {
 }
 
 const CategoryItem = ({name, amount}) => {
-    if (name === 'undefined') return <tr>
-        <th>Остальное:</th>
-    </tr>
+
+    if(name === "Остальные"){
+        return null
+    }
     return <tr>
         <th>{name}:</th>
         <th className='text-right'><Colorize>{amount} грн</Colorize></th>

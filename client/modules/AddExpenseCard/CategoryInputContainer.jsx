@@ -5,28 +5,27 @@ import {connect} from "react-redux";
 @connect(store => store.expensesReducer)
 export default class CategoryInput extends React.Component {
     state = {
-        value: '',
         text: 'Описание',
+        category: this.props.categories[0],
     }
 
     handleChange(e) {
-        this.setState({value: e.target.value})
+        this.setState({text: e.target.value})
     }
 
     render() {
         const {categories} = this.props
-        if (categories.length) return null
 
         return <div>
-            <div className='d-flex flex-wrap justify-content-around'>
+            <div className='d-flex flex-wrap justify-content-around' style={{maxHeight: 300, overflow: "scroll"}}>
 
                 {categories.map((category, index) =>
                     <Card key={index}
-                          className={(category.value === this.state.value ? 'bg-primary text-white' : '') + ' text-center mb-3'}
+                          className={(category.text === this.state.text ? 'bg-primary text-white' : '') + ' text-center mb-3'}
                           onClick={(e) => {
                               this.setState({
-                                  value: category.value,
-                                  text: category.text
+                                  text: category.text,
+                                  category: category
                               })
                           }}
                           style={{width: 100}}>
@@ -37,7 +36,7 @@ export default class CategoryInput extends React.Component {
             </div>
 
             <Input type='hidden' className='mt-3'
-                   value={this.state.value}
+                   value={JSON.stringify(this.state.category)}
                    onChange={this.handleChange.bind(this)}
                    name='category'/>
 
