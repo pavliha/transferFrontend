@@ -17,12 +17,11 @@ export function loadExpenses() {
 export function addExpense(form) {
 
     const category = JSON.parse(form.category.value)
-
-
+    const sign = category.text === "Доход" ? 1: -1
     const expense = {
         name: !form.name.value.length ? form.name.value : form.name.placeholder,
         category_id: parseInt(category.id),
-        amount: -parseFloat(form.amount.value),
+        amount:parseFloat(form.amount.value)*sign,
         category: category,
         date: moment().toISOString()
     }

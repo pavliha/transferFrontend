@@ -6,6 +6,7 @@ import InfoTable from "../global/components/InfoTable";
 import groupBy from "lodash/groupBy";
 import ExpensesCard from "../global/components/ExpensesCard";
 import LayoutContainer from "../modules/Layout/LayoutContainer";
+import sortBy from "lodash/sortBy";
 
 const income = 15000
 
@@ -17,7 +18,9 @@ export default class Expenses extends Component {
 
     render() {
         const {expenses} = this.props
-        const expensesByMonth = groupBy(expenses, (expense) => moment(expense.date).startOf('month'))
+
+        const expensesSorted = sortBy(expenses, obj => moment(obj.date)).reverse();
+        const expensesByMonth = groupBy(expensesSorted, (expense) => moment(expense.date).startOf('month'))
 
         return <LayoutContainer>
             <InfoTable income={income} expense={calculateExpensesAmount(expenses)}/>
