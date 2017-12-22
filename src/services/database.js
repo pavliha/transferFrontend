@@ -1,6 +1,7 @@
 import Dexie from 'dexie'
 import Faker from 'Faker'
 import moment from 'moment'
+
 import relationships from 'dexie-relationships'
 
 const db = new Dexie('expenses', {addons: [relationships]})
@@ -191,10 +192,32 @@ const expenses = [
     }
 ]
 
-db.on("populate", function () {
-    db.categories.bulkPut(categories)
-    db.expenses.bulkPut(expenses)
-})
+
+db.on('ready', () => {
+    // on('ready') event will fire when database is open but before any
+    // other queued operations start executing.
+    // By returning a Promise from this event,
+    // the framework will wait until promise completes before
+    // resuming any queued database operations.
+    // Let's start by counting the number of objects in our table.
+    return db.categories.count(async (count) => {
+        if (count > 0) {
+            console.log("Already populated")
+            return
+        }
+
+        const response = await axios.get('/categories')
+
+        db.transaction('rw', db.categories, () =>
+            response.data.forEach((item) =>
+                db.categories.add(item)
+            )
+        )
+
+        console.log("Transaction committed");
+
+    });
+});
 
 // Open the database
 db.open().catch(error => {
