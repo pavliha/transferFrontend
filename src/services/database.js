@@ -198,7 +198,7 @@ db.on("populate", function () {
 
 // Open the database
 db.open().catch(error => {
-    debugger
+    console.error(error)
 })
 
 

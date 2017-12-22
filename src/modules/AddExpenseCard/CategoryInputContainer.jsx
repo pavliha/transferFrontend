@@ -22,7 +22,7 @@ export default class CategoryInput extends React.Component {
                 {categories.map((category, index) =>
                     <Card key={index}
                           className={(category.text === this.state.text ? 'bg-primary text-white' : '') + ' text-center mb-3'}
-                          onClick={(e) => {
+                          onClick={() => {
                               this.setState({
                                   text: category.text,
                                   category: category

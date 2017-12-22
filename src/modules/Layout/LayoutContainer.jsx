@@ -13,7 +13,7 @@ export default class LayoutContainer extends Component {
     }
 
     render() {
-        const {className, children, expenses, categories} = this.props
+        const {children, expenses, categories} = this.props
 
         if (!expenses.length) return <EmptyLayout/>
         if (!categories.length) return <EmptyLayout/>
