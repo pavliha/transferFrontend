@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "Expenses app",
   "engines": {
-    "node": "8.9.1"
+    "node": "8.9.*"
   },
   "main": "index.js",
   "license": "MIT",
