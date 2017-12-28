@@ -1,5 +1,5 @@
 export default function (form) {
-    urlencodeFormData(new FormData(form))
+    return urlencodeFormData(new FormData(form))
 }
 
 function urlencodeFormData(fd) {

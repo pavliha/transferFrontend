@@ -3,14 +3,21 @@ import {Card} from "reactstrap";
 import Layout from "../components/Layout";
 import RegisterForm from "../components/RegisterForm";
 import urlencodeForm from "../services/urlencodeForm";
-
+import JWT from 'jwt-decode'
 export default class Register extends Component {
     async handleSubmit(e) {
 
-       const form = e.target.form
+        const form = urlencodeForm(e.target.form)
 
-        const response = await axios.post('https://transfer-api.herokuapp.com/register',urlencodeForm(form))
+        const response = await axios.post('https://transfer-api.herokuapp.com/register', form)
+
+
+        const user = JWT(response.data.token)
+
         debugger
+
+
+
     }
 
     render() {
