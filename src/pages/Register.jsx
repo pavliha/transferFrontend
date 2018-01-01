@@ -1,23 +1,14 @@
 import React, {Component} from 'react'
 import {Card} from "reactstrap";
-import Layout from "../components/Layout";
+import Layout from "../containers/Layout";
 import RegisterForm from "../components/RegisterForm";
-import urlencodeForm from "../services/urlencodeForm";
-import JWT from 'jwt-decode'
+import {registerUser} from '../action/user'
+import {connect} from "react-redux";
+
+@connect(store => store.indexReducer)
 export default class Register extends Component {
-    async handleSubmit(e) {
-
-        const form = urlencodeForm(e.target.form)
-
-        const response = await axios.post('https://transfer-api.herokuapp.com/register', form)
-
-
-        const user = JWT(response.data.token)
-
-        debugger
-
-
-
+    handleSubmit(e) {
+        this.props.dispatch(registerUser(e.target.form))
     }
 
     render() {

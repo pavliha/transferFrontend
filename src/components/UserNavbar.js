@@ -30,11 +30,16 @@ export default class GuestNavbar extends React.Component {
     }
 
     render() {
+
+        const {user} = this.props
         return (
             <div>
                 <Navbar color="faded" light expand="md">
                     <NavbarBrand href="/">reactstrap</NavbarBrand>
                     <Nav navbar>
+                        <NavItem>
+                            <NavLink>{user.first_name + " " + user.last_name}</NavLink>
+                        </NavItem>
                     </Nav>
                 </Navbar>
             </div>

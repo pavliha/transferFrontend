@@ -6,14 +6,22 @@ import Login from './pages/Login'
 import Register from "./pages/Register";
 import {createBrowserHistory} from 'history'
 import {Router} from "react-router";
+import {Provider} from "react-redux";
+import {ConnectedRouter} from "react-router-redux";
+import store from './store'
+
+const history = createBrowserHistory()
 
 export default () =>
-
-        <Router history={createBrowserHistory()}>
-            <Switch>
-                <Route exact path="/" component={Index}/>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/register" component={Register}/>
-            </Switch>
-        </Router>
+    <Provider store={store}>
+        <ConnectedRouter history={history}>
+            <Router history={history}>
+                <Switch>
+                    <Route exact path="/" component={Index}/>
+                    <Route exact path="/login" component={Login}/>
+                    <Route exact path="/register" component={Register}/>
+                </Switch>
+            </Router>
+        </ConnectedRouter>
+    </Provider>
 

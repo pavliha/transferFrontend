@@ -6,23 +6,23 @@ export default ({onSubmit}) =>
         <Row>
             <Col xs={12} md={6}>Имя</Col>
             <Col xs={12} md={6}>
-                <Input name='first_name' placeholder="Имя"/>
+                <Input name='first_name' type='text' placeholder="Имя"/>
             </Col>
             <Col xs={12} md={6}>Фамилия</Col>
             <Col xs={12} md={6}>
-                <Input name='last_name' placeholder="Фамилия"/>
+                <Input name='last_name' type='text' placeholder="Фамилия"/>
             </Col>
             <Col xs={12} md={6}>Email</Col>
             <Col xs={12} md={6}>
-                <Input name='email' placeholder="Email"/>
+                <Input name='email' type='email' placeholder="Email"/>
             </Col>
             <Col xs={12} md={6}>Номер телефона</Col>
-            <Col  md={6}>
-                <Input name='phone' placeholder="Номер телефона"/>
+            <Col md={6}>
+                <Input name='phone' type='tel' placeholder="Номер телефона"/>
             </Col>
             <Col xs={12} md={6}>Пароль</Col>
-            <Col  md={6}>
-                <Input name='password' placeholder="Пароль"/>
+            <Col md={6}>
+                <Input name='password' type='password' placeholder="Пароль"/>
             </Col>
         </Row>
         <div className="form-check">
