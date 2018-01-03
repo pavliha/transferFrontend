@@ -33,7 +33,7 @@ export default class GuestNavbar extends React.Component {
         return (
             <div>
                 <Navbar color="faded" light expand="md">
-                    <NavbarBrand href="/">reactstrap</NavbarBrand>
+                    <NavbarBrand href="/">transfer</NavbarBrand>
                     <Nav navbar>
                     </Nav>
                 </Navbar>

@@ -15,11 +15,26 @@ export async function post(url, data) {
     return response.data
 }
 
-export async function registerUser(form) {
+export function registerUser(form) {
 
     form = urlencodeForm(form)
 
-    const data = await post('/register', form)
+    return new Promise((resolve, reject) => {
+        axios.post(API_URL + '/register', form)
+            .then(response => {
+                resolve(JWT(response.data.token).data)
+
+            }).catch(error => {
+            reject(error.response.data)
+        })
+    })
+}
+
+export async function loginUser(form) {
+
+    form = urlencodeForm(form)
+
+    const data = await post('/login', form)
 
     return JWT(data.token).data
 }
