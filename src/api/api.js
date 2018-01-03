@@ -22,7 +22,7 @@ export function registerUser(form) {
     return new Promise((resolve, reject) => {
         axios.post(API_URL + '/register', form)
             .then(response => {
-                resolve(JWT(response.data.token).data)
+                resolve(response.data.token)
 
             }).catch(error => {
             reject(error.response.data)
@@ -36,5 +36,5 @@ export async function loginUser(form) {
 
     const data = await post('/login', form)
 
-    return JWT(data.token).data
+    return data.token
 }

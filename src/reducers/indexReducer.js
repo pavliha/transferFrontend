@@ -11,7 +11,7 @@ export default (state = initialState, {type, payload}) => {
         case REGISTER_USER + "_PENDING":
             return {
                 ...state,
-                user: payload,
+                utokenser: payload,
                 loading: true,
             }
 
