@@ -1,5 +1,4 @@
 import axios from 'axios'
-import JWT from 'jwt-decode'
 import urlencodeForm from "../services/urlencodeForm";
 
 export const API_URL = 'https://transfer-api.herokuapp.com'
