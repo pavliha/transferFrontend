@@ -44,4 +44,5 @@ export default ({onSubmit}) =>
         <Row className="justify-content-md-center">
             <Button color="primary" onClick={onSubmit}>Зарегистрироваться</Button>
         </Row>
+
     </form>);
