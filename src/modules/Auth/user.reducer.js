@@ -1,4 +1,4 @@
-import {LOGIN_USER, REGISTER_USER} from "../action/user";
+import {LOGIN_USER, REGISTER_USER} from "./user.action";
 
 const initialState = {
     user: null,

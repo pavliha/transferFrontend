@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Card, Row} from "reactstrap";
-import Layout from "../containers/Layout";
-import RegisterForm from "../components/RegisterForm";
-import {registerUser} from '../action/user'
+import Layout from "../modules/Layout/LayoutContainer";
+import RegisterForm from "../modules/Auth/RegisterForm";
+import {registerUser} from '../modules/Auth/user.action'
 import {connect} from "react-redux";
 
 @connect(store => store.indexReducer)

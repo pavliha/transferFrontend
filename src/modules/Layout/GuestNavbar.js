@@ -1,17 +1,5 @@
 import React from 'react'
-import {
-    Collapse,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Nav,
-    Navbar,
-    NavbarBrand,
-    NavbarToggler,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown
-} from 'reactstrap';
+import {Nav, Navbar, NavbarBrand} from 'reactstrap';
 
 export default class GuestNavbar extends React.Component {
     constructor(props) {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Layout from "../containers/Layout";
+import Layout from "../modules/Layout/LayoutContainer";
 
 export default class DashBoard extends Component {
 

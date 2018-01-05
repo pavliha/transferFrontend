@@ -9,7 +9,7 @@ import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import store from './store';
-import DashBoard from "./pages/DashBoard";
+import DashBoard from './pages/DashBoard';
 
 const history = createBrowserHistory();
 
@@ -20,7 +20,7 @@ export default () =>
         <Switch>
           <Route exact path="/" component={Index} />
           <Route exact path="/login" component={Login} />
-            <Route exact path="/dashboard" component={DashBoard}/>
+          <Route exact path="/dashboard" component={DashBoard} />
           <Route exact path="/register" component={Register} />
         </Switch>
       </Router>
