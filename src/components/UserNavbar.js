@@ -1,17 +1,10 @@
 import React from 'react';
 import JWT from 'jwt-decode'
 import {
-  Collapse,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
   Nav,
   Navbar,
   NavbarBrand,
-  NavbarToggler,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
 } from 'reactstrap';
 
 export default class GuestNavbar extends React.Component {
@@ -30,16 +23,12 @@ export default class GuestNavbar extends React.Component {
     });
   }
 
-  // handelSaveLocalStorage(){
-  //   const user = this.props;
-  //
-  // }
-
   render() {
     const { user } = this.props;
     const JSWUser = JWT(user).data;
     localStorage.setItem("token",JSON.stringify(user));
     localStorage.setItem("user",JSON.stringify(JSWUser));
+
     return (
       <div>
         <Navbar color="faded" light expand="md">

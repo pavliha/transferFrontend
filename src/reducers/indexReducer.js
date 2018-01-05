@@ -36,6 +36,13 @@ export default (state = initialState, {type, payload}) => {
                 loading: false
             }
 
+        case LOGIN_USER + "_REJECTED":
+            return {
+                ...state,
+                messages: payload,
+                loading: false
+            }
+
         default: {
             return state;
         }

@@ -33,7 +33,16 @@ export async function loginUser(form) {
 
     form = urlencodeForm(form)
 
-    const data = await post('/login', form)
+    // const data = await post('/login', form)
+    //
+    // return data.token
+    return new Promise((resolve, reject) => {
+        axios.post(API_URL + '/login', form)
+            .then(response => {
+                resolve(response.data.token)
 
-    return data.token
+            }).catch(error => {
+            reject(error.response.data)
+        })
+    })
 }

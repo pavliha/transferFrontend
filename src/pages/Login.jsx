@@ -9,17 +9,13 @@ import Layout from "../containers/Layout";
 export default class Login extends Component {
     handleSubmit(e) {
         this.props.dispatch(loginUser(e.target.form))
-
-debugger
-
         this.props.history.push('/dashboard')
-
     }
 
     render() {
         return <Layout>
             <Card style={{maxWidth: 900}} className='mx-auto p-4'>
-                {this.props.messages.map(message=><Row className="justify-content-md-center bg-danger text-white">{message.message}</Row>)}
+                {/*{this.props.messages.map(message=><Row className="justify-content-md-center bg-danger text-white">{message.message}</Row>)}*/}
                 <LoginForm onSubmit={this.handleSubmit.bind(this)}/>
             </Card>
         </Layout>
