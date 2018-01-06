@@ -28,7 +28,7 @@ export default class GuestNavbar extends React.Component {
         const {user} = this.props;
         const JSWUser = JWT(user).data;
         localStorage.setItem("token", JSON.stringify(user));
-        localStorage.setItem("user", JSON.stringify(JSWUser));
+        localStorage.setItem("token", JSON.stringify(JSWUser));
 
         return (
             <div>

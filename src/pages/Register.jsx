@@ -7,17 +7,20 @@ import {connect} from "react-redux";
 
 @connect(store => store.indexReducer)
 export default class Register extends Component {
+    componentDidUpdate() {
+        if (this.props.token)
+            this.props.history.push('/dashboard')
+    }
+
     handleSubmit(e) {
         this.props.dispatch(registerUser(e.target.form))
-        if (this.props.messages)
-            this.props.history.push('/dashboard')
     }
 
     render() {
         return <Layout>
             <Card style={{maxWidth: 900}} className='mx-auto p-4'>
-                {this.props.messages.map(message => <Row
-                    className="justify-content-md-center bg-danger text-white">{message.message}</Row>)}
+                {this.props.errors.map((error, index) =>
+                    <Row key={index} className="justify-content-md-center bg-danger text-white">{error.message}</Row>)}
                 <RegisterForm onSubmit={this.handleSubmit.bind(this)}/>
             </Card>
         </Layout>
