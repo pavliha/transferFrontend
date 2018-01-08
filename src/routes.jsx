@@ -8,7 +8,7 @@ import {createBrowserHistory} from 'history';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import store from './store';
-import DashBoard from './pages/DashBoard';
+import DashBoard from './pages/Dashboard';
 
 const history = createBrowserHistory();
 
