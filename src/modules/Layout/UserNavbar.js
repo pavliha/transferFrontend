@@ -1,5 +1,4 @@
 import React from 'react';
-import JWT from 'jwt-decode'
 import {
     Nav,
     Navbar,
@@ -26,17 +25,15 @@ export default class GuestNavbar extends React.Component {
 
     render() {
         const {user} = this.props;
-        const JSWUser = JWT(user).data;
-        localStorage.setItem("token", JSON.stringify(user));
-        localStorage.setItem("token", JSON.stringify(JSWUser));
 
         return (
             <div>
-                <Navbar color="faded" light expand="md">
+
+                <Navbar className="navbar-light bg-light" expand="md">
                     <NavbarBrand href="/">Transfer</NavbarBrand>
                     <Nav navbar>
                         <NavItem>
-                            <NavLink>{`${JSWUser.first_name} ${JSWUser.last_name}`}</NavLink>
+                            <NavLink>{`${user.first_name} ${user.last_name}`}</NavLink>
                         </NavItem>
                     </Nav>
                 </Navbar>

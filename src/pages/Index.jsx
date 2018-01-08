@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import CargoFinder from "../api/maps/CargoFinder"
-import {Button, Card, CardHeader, Col, Input, Row, Table} from "reactstrap";
+import {
+    Button, Card, CardText, CardTitle, Col, Form, FormGroup, Label, Row, Input, Container
+} from "reactstrap";
+import LayoutContainer from "../modules/Layout/LayoutContainer";
 
 const routes = [
     {
@@ -69,44 +72,62 @@ export default class Index extends Component {
     }
 
     render() {
-        return <div>
+        return <LayoutContainer>
             <Row>
-                <Col md={3}>
-                    <Card>
-                        <CardHeader>Грузы:</CardHeader>
-                        <Table>
-                            <tr>
-                                <td>Имя груза</td>
-                            </tr>
-                        </Table>
-                    </Card>
+                <Col xs={12}>
+                    <div className=' d-flex justify-content-center mb-2'>
+                        <Form inline>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="exampleEmail" className="mr-sm-2">Distance:</Label>
+                                <Input type="number" id="distance"
+                                       style={{width: 70}}
+                                       value={this.state.distance}
+                                       onChange={(e) => this.setState({distance: e.target.value})}/>
+                            </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="examplePassword" className="mr-sm-2">Откуда</Label>
+                                <Input type="text" id="from"
+                                       style={{width: 350}}
+                                       value={this.state.from}
+                                       onChange={(e) => this.setState({from: e.target.value})}/>
+                            </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="examplePassword" className="mr-sm-2">Куда</Label>
+                                <Input type="text" id="to"
+                                       style={{width: 350}}
+                                       value={this.state.to}
+                                       onChange={(e) => this.setState({from: e.target.value})}/>
+                            </FormGroup>
+                            <Button type="submit" color='primary' onClick={this.route.bind(this)}>Проложить
+                                путь</Button>
+                        </Form>
+
+                    </div>
                 </Col>
-                <Col md={9}>
-                    <div id="map" style={{width: "100%", height: 500}}/>
+                <Col md={8}>
+                    <div id="map" style={{width: "100%", height: 750}}/>
+                </Col>
+
+                <Col md={4}>
+                    <div style={{height: 750, overflow: "auto"}}>
+                        {routes.map((route, index) =>
+                            <Card className='mt-3 p-1' key={index} body inverse color="primary">
+                                <CardTitle>{route.package.name}</CardTitle>
+                                <CardText>With supporting text below as a natural lead-in to additional
+                                    content.</CardText>
+                                <CardText>
+                                    <small className='text-muted'>{route.origin.lat + ", " + route.origin.lng}</small>
+                                    {" - "}
+                                    <small
+                                        className='text-muted'>{route.destination.lat + ", " + route.destination.lng}</small>
+                                </CardText>
+                                <Button color="secondary">выбрать</Button>
+                            </Card>
+                        )}
+                    </div>
                 </Col>
             </Row>
-
-            <label>
-                <Input type="text" id="distance"
-                       value={this.state.distance}
-                       onChange={(e) => this.setState({distance: e.target.value})}
-                       size={2}/>
-            </label>
-            <label>
-                Откуда
-                <Input type="text" id="from"
-                       value={this.state.from}
-                       onChange={(e) => this.setState({from: e.target.value})}/>
-            </label>
-            <label>
-                Куда
-                <Input type="text" id="to"
-                       value={this.state.from}
-                       onChange={(e) => this.setState({from: e.target.value})}/>
-            </label>
-            <Button type="submit" color='primary' onClick={this.route.bind(this)}>Проложить путь</Button>
-
-        </div>
+        </LayoutContainer>
     }
 
 }

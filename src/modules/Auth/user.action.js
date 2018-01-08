@@ -9,6 +9,6 @@ export const registerUser = form => ({
 })
 
 export const loginUser = form => ({
-    type: REGISTER_USER,
+    type: LOGIN_USER,
     payload: API.loginUser(form)
 })

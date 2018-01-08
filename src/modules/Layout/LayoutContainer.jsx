@@ -4,15 +4,23 @@ import {connect} from 'react-redux';
 import UserNavbar from './UserNavbar';
 import GuestNavbar from './GuestNavbar';
 
+@connect(store => store.indexReducer)
+export default class LayoutContainer extends React.Component {
+    componentDidUpdate() {
+        const {token, user} = this.props
 
-const LayoutContainer = ({children, user}) =>
-    (<div>
-        {user ? <UserNavbar user={user}/> : <GuestNavbar/>}
+        token ? localStorage.setItem("token", JSON.stringify(token)) : null
+        user ? localStorage.setItem("user", JSON.stringify(user)) : null
+    }
 
-        <Container className='mt-5'>
-            {children}
-        </Container>
-    </div>);
+    render() {
+        const {user,children} = this.props
+        return <div>
+            {user ? <UserNavbar user={user}/> : <GuestNavbar/>}
 
-
-export default connect(store => store.indexReducer)(LayoutContainer);
+            <Container fluid className='mt-3'>
+                {children}
+            </Container>
+        </div>
+    }
+}

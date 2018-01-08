@@ -1,4 +1,5 @@
 import {LOGIN_USER, REGISTER_USER} from "./user.action";
+import JWT from 'jwt-decode'
 
 const initialState = {
     token: null,
@@ -18,6 +19,7 @@ export default (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 token: payload,
+                user: JWT(payload).data,
                 loading: false
             }
 
@@ -32,6 +34,7 @@ export default (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 token: payload,
+                user: JWT(payload).data,
                 loading: false
             }
 
