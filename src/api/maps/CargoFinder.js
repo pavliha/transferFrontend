@@ -6,6 +6,7 @@ import {
     DirectionsRenderer, DirectionsService, DirectionsStatus, DirectionsTravelMode, InfoWindow, LatLng, MapTypeId,
     places
 } from './googleMaps'
+import RoutesGeocoder from "./RoutesGeocoder";
 
 export default class CargoFinder {
 
@@ -31,6 +32,7 @@ export default class CargoFinder {
         this.originMarkers = []
         this.destinationMarkers = []
         this.boxDrawer = new BoxDrawer(this.map)
+        this.routesGeocoder = new RoutesGeocoder()
 
         this.waypoints = []
     }
@@ -44,22 +46,7 @@ export default class CargoFinder {
             destinationMarker.destroy()
     }
 
-
-    searchSimilarRoutesRecursive(boxes, i) {
-        for (const route of this.routes)
-            if (boxes[i].contains(route.origin) && boxes[i].contains(route.destination)) {
-                this.originMarkers.push(new StartMarker(this.map, route.origin))
-                this.destinationMarkers.push(new StopMarker(this.map, route.destination))
-            }
-
-        i++
-
-        if (i < boxes.length) this.searchSimilarRoutesRecursive(boxes, i)
-
-    }
-
-
-    setDriveDirection(request) {
+    setDriveRoute(request) {
 
         request = {
             ...request,
@@ -67,8 +54,10 @@ export default class CargoFinder {
             optimizeWaypoints: true,
             travelMode: "DRIVING"
         }
-        console.log(request)
+
+
         return new Promise((resolve, reject) => {
+
             this.directionService.route(request, (result, status) => {
                 if (status === "OK") {
 
@@ -84,40 +73,49 @@ export default class CargoFinder {
     }
 
     async find(request) {
-        console.log("new route")
         this.boxDrawer.clear()
-
         this.deleteMarkers()
-
         const distance = request.distance
-
         delete request.distance
-
-        const direction = await this.setDriveDirection(request)
+        const direction = await this.setDriveRoute(request)
 
         const boxes = this.boxDrawer.draw(direction, distance)
 
-        for (const route of this.routes) {
-            if (this.isPointInBoxes(route.origin, boxes) && this.isPointInBoxes(route.destination, boxes)) {
+        const routes = await this.routesGeocoder.geocodeRoutes(this.routes)
 
-                const startMarker = new StartMarker(this.map, route.origin)
-                startMarker.onClick((e) => {
-                    this.waypoints.push({
-                        location: route.origin,
-                        stopover: true
-                    })
-                    this.waypoints.push({
-                        location: route.destination,
-                        stopover: true
-                    })
+        return this.findRoutesInBoxes(routes, boxes)
 
-                    this.setDriveDirection(request)
-                })
-                this.originMarkers.push(startMarker)
+    }
 
-                const stopMarker = new StopMarker(this.map, route.destination)
-                this.destinationMarkers.push(stopMarker)
+    findRoutesInBoxes(routes, boxes) {
+
+        const routesInBoxes = []
+        for (const route of routes) {
+
+
+            if ((typeof route.origin === 'object') && (typeof route.destination === 'object')) {
+                const routeInBox = this.findRouteInBoxes(route, boxes)
+
+                routesInBoxes.push(routeInBox)
+
             }
+        }
+
+        return routesInBoxes
+    }
+
+    findRouteInBoxes(route, boxes) {
+        if (this.isPointInBoxes(route.origin, boxes) && this.isPointInBoxes(route.destination, boxes)) {
+
+            const startMarker = new StartMarker(this.map, route.origin)
+
+            this.originMarkers.push(startMarker)
+
+            const stopMarker = new StopMarker(this.map, route.destination)
+            this.destinationMarkers.push(stopMarker)
+
+            return route
+
         }
     }
 

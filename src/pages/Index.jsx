@@ -14,27 +14,21 @@ const routes = [
         destination: {lat: 47.789085, lng: 35.211338}
     }, {
         package: {
-            name: "шторы",
-        },
-        origin: {lat: 47.268105, lng: 35.222356},
-        destination: {lat: 47.798083, lng: 35.291438}
-    }, {
-        package: {
             name: "пакет",
         },
-        origin: {lat: 47.268105, lng: 35.222356},
-        destination: {lat: 47.784185, lng: 35.612418}
+        origin: "вул. Леніна 2, Запорізька обл. Михайлівський р-н. смт. Михайлівка, Zaporiz'ka oblast, 72000",
+        destination: "Pivdenne Hwy, 72, Zaporizhzhia, Zaporiz'ka oblast, 69000"
     }, {
         package: {
             name: "бухло",
         },
-        origin: {lat: 47.268105, lng: 35.222356},
-        destination: {lat: 47.781095, lng: 35.110498}
+        origin: "Пушкiна 36, Tymoshivka, Zaporiz'ka oblast, 72030",
+        destination: "космічна 119, Zaporizhzhia, Zaporiz'ka oblast, 69000"
     }, {
         package: {
             name: "бита",
         },
-        origin: {lat: 47.231606, lng: 35.401359},
+        origin: "вул. Леніна, 10, Mykhailivka, Zaporiz'ka oblast, 72000",
         destination: {lat: 47.338033, lng: 35.069088}
     }
 ]
@@ -46,6 +40,7 @@ export default class Index extends Component {
         from: "Tymoshivka, Zaporiz'ka oblast, 72030",
         to: "112B, Kosmichna St, 112Б, Zaporizhzhia, Zaporiz'ka oblast, 69000",
         type: "gas_station",
+        nearByRoutes: [],
         keyword: "",
         name: "",
     }
@@ -59,14 +54,24 @@ export default class Index extends Component {
         });
     }
 
-    route() {
+    async route() {
 
 
-        this.cargoFinder.find({
+        const request = {
+
             origin: this.state.from,
             destination: this.state.to,
             distance: this.state.distance,
-        })
+        }
+
+
+
+        const nearByRoutes = await this.cargoFinder.find(request)
+
+        debugger
+
+
+        this.setState({nearByRoutes})
 
 
     }
@@ -98,7 +103,7 @@ export default class Index extends Component {
                                        value={this.state.to}
                                        onChange={(e) => this.setState({from: e.target.value})}/>
                             </FormGroup>
-                            <Button type="submit" color='primary' onClick={this.route.bind(this)}>Проложить
+                            <Button color='primary' onClick={this.route.bind(this)}>Проложить
                                 путь</Button>
                         </Form>
 
@@ -110,7 +115,7 @@ export default class Index extends Component {
 
                 <Col md={4}>
                     <div style={{height: 750, overflow: "auto"}}>
-                        {routes.map((route, index) =>
+                        {this.state.nearByRoutes.map((route, index) =>
                             <Card className='mt-3 p-1' key={index} body inverse color="primary">
                                 <CardTitle>{route.package.name}</CardTitle>
                                 <CardText>With supporting text below as a natural lead-in to additional
@@ -121,7 +126,7 @@ export default class Index extends Component {
                                     <small
                                         className='text-muted'>{route.destination.lat + ", " + route.destination.lng}</small>
                                 </CardText>
-                                <Button color="secondary">выбрать</Button>
+                                <Button color="secondary">забрать груз</Button>
                             </Card>
                         )}
                     </div>

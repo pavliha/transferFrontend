@@ -1,6 +1,6 @@
 export default class Marker extends google.maps.Marker {
 
-    constructor(map, pointLatLng, image) {
+    constructor(map, point, image) {
         super({
             map: map,
             icon: {
@@ -8,7 +8,7 @@ export default class Marker extends google.maps.Marker {
                 size: new google.maps.Size(70, 70),
                 anchor: new google.maps.Point(3.5, 3.5)
             },
-            position: pointLatLng
+            position: point
         });
     }
 
