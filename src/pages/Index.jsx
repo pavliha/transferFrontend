@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import CargoFinder from "../api/maps/CargoFinder"
+//import CargoFinder from "../api/maps/CargoFinder"
 import {
     Button, Card, CardText, CardTitle, Col, Form, FormGroup, Label, Row, Input, Container
 } from "reactstrap";
