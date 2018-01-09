@@ -1,48 +1,44 @@
 import React from 'react';
-import {Button, Col, Input, Row} from 'reactstrap';
+import {Button, Col, Form, Input, Label, Row, FormGroup} from 'reactstrap';
 
 export default ({onSubmit}) =>
-    (<form method="post" className="container">
-        <Row>
-            <Col xs={12} md={6}>Имя</Col>
-            <Col xs={12} md={6}>
-                <Input name='first_name' type='text' placeholder="Имя" required/>
-            </Col>
-            <Col xs={12} md={6}>Фамилия</Col>
-            <Col xs={12} md={6}>
-                <Input name='last_name' type='text' placeholder="Фамилия" required/>
-            </Col>
-            <Col xs={12} md={6}>Email</Col>
-            <Col xs={12} md={6}>
-                <Input name='email' type='email' placeholder="Email" required/>
-            </Col>
-            <Col xs={12} md={6}>Номер телефона</Col>
-            <Col md={6}>
-                <Input name='phone' type='tel' placeholder="Номер телефона" required/>
-            </Col>
-            <Col xs={12} md={6}>Пароль</Col>
-            <Col md={6}>
-                <Input name='password' type='password' placeholder="Пароль" required/>
-            </Col>
-        </Row>
-        <div className="form-check">
-            <label className="form-check-label">
-                <Input className="form-check-input" name='agreement' type="checkbox" value="" />
-                Я даю згоду на використання мого мобільного номеру телефону та e-mail для отримання
-                інформаційних
-                повідомлень від ТОВ "Название". Програма діє згідно Закону України "Про захист персональних
-                даних".
-                Ознайомитись з Умовами Ви можете тут
-            </label>
-        </div>
-        <div className="form-check">
-            <label className="form-check-label">
-                <Input className="form-check-input" name='rules' type="checkbox" value=""/>
-                Я згоджуюсь з правилами ....
-            </label>
-        </div>
-        <Row className="justify-content-md-center">
-            <Button color="primary" onClick={onSubmit}>Зарегистрироваться</Button>
-        </Row>
 
-    </form>);
+    <Form>
+        <FormGroup row>
+            <Label for="first_name" sm={3}>Имя</Label>
+            <Col sm={9}>
+                <Input type="text" name="first_name" placeholder="Имя"/>
+            </Col>
+        </FormGroup>
+        <FormGroup row>
+            <Label for="last_name" sm={3}>Фамилия</Label>
+            <Col sm={9}>
+                <Input type="text" name="last_name" placeholder="Фамилия"/>
+            </Col>
+        </FormGroup>
+        <FormGroup row>
+            <Label for="exampleEmail" sm={3}>Email</Label>
+            <Col sm={9}>
+                <Input type="email" name="email" placeholder="Email"/>
+            </Col>
+        </FormGroup>
+        <FormGroup row>
+            <Label for="phone" sm={3}>Номер телефона</Label>
+            <Col sm={9}>
+                <Input type="tel" name="phone" placeholder="Номер телефона"/>
+            </Col>
+        </FormGroup>
+        <FormGroup row>
+            <Label for="examplePassword" sm={3}>Пароль</Label>
+            <Col sm={9}>
+                <Input type="password" name="password" placeholder="Пароль"/>
+            </Col>
+        </FormGroup>
+        <FormGroup check row>
+            <div className="justify-content-md-center">
+                <Button color="primary" className="mt-2" onClick={onSubmit}>Зарегистрироваться</Button>
+            </div>
+        </FormGroup>
+    </Form>
+
+

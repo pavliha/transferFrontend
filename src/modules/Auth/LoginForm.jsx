@@ -18,7 +18,7 @@ export default ({onSubmit}) =>
         </FormGroup>
         <FormGroup check row>
             <Col sm={{size: 10, offset: 2}}>
-                <Button color="primary" className="mt-2" onClick={onSubmit}>Submit</Button>
+                <Button color="primary" className="mt-2" onClick={onSubmit}>Войти</Button>
             </Col>
         </FormGroup>
     </Form>
