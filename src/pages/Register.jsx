@@ -19,9 +19,7 @@ export default class Register extends Component {
     render() {
         return <Layout>
             <Card style={{maxWidth: 900}} className='mx-auto p-4'>
-                {this.props.errors.map((error, index) =>
-                    <Row key={index} className="justify-content-md-center bg-danger text-white">{error.message}</Row>)}
-                <RegisterForm onSubmit={this.handleSubmit.bind(this)}/>
+                <RegisterForm errors={this.props.errors} onSubmit={this.handleSubmit.bind(this)}/>
             </Card>
         </Layout>
     }

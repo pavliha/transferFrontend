@@ -25,7 +25,7 @@ export default ({onSubmit, errors}) => {
         <FormGroup row>
             <Label for="examplePassword" sm={2}>Пароль</Label>
             <Col sm={10}>
-                <Input className={validate('email') ? "is-invalid" : ''} type="password" name="password"
+                <Input className={validate('password') ? "is-invalid" : ''} type="password" name="password"
                        id="examplePassword"
                        placeholder="Пароль"/>
                 <FormFeedback className='text-danger'>{validate('password')}</FormFeedback>
