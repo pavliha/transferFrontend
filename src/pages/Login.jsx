@@ -19,12 +19,7 @@ export default class Login extends Component {
     render() {
         return <Layout>
             <Card style={{maxWidth: 600}} className='mx-auto p-4'>
-
-                {this.props.errors.map((error, index) =>
-                    <Row key={index} className="justify-content-md-center bg-danger text-white">{error.message}</Row>
-                )}
-
-                <LoginForm onSubmit={this.handleSubmit.bind(this)}/>
+                <LoginForm errors={this.props.errors} onSubmit={this.handleSubmit.bind(this)}/>
             </Card>
         </Layout>
     }
