@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node index.js",
     "clean": "rimraf dist",
-    "dev": "webpack-dev-server",
+    "dev": "babel-node tools/srcServer.js",
     "build": "npm run clean && webpack"
   },
   "dependencies": {
@@ -29,6 +29,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "4.0.0-beta.2",
+    "browser-sync": "^2.23.5",
     "classnames": "latest",
     "concurrently": "^3.5.1",
     "cors": "^2.8.4",
@@ -79,7 +80,8 @@
     "redux-thunk": "^2.2.0",
     "smoothscroll-polyfill": "^0.4.0",
     "sugarss": "^1.0.0",
-    "webpack-bundle-analyzer": "^2.9.1"
+    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-hot-middleware": "^2.21.0"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",

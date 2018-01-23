@@ -21,10 +21,3 @@ const render = Component => {
 }
 
 render(routes)
-
-// Webpack Hot Module Replacement API
-if (module.hot) {
-    module.hot.accept('./routes', () => {
-        render(routes)
-    })
-}
