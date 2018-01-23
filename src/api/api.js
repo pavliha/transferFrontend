@@ -1,48 +1,48 @@
 import axios from 'axios'
 import urlencodeForm from "../services/urlencodeForm";
+import JWT from "jwt-decode";
+import to from '../services/to'
 
 export const API_URL = 'https://transfer-api.herokuapp.com'
+export const get = async (url) => await to(axios.get(API_URL + url))
+export const post = async (url, data) => await to(axios.post(API_URL + url, data))
 
 
-export async function get(url) {
-    const response = await axios.get(API_URL + url)
-    return response.data
+export const registerUser = async (form) => {
+
+    const [err, response] = await post('/register', urlencodeForm(form))
+    if (err) return err.response.data
+    const user = JWT(response.data.token).data
+
+    rememberUser(user)
+
+    rememberToken(response.data)
+
+    return user
 }
 
-export async function post(url, data) {
-    const response = await axios.post(API_URL + url, data)
-    return response.data
+export const loginForm = async (form) => {
+
+    const [err, response] = await post('/login', urlencodeForm(form))
+    if (err) return err.response.data
+
+    const user = JWT(response.data.token).data
+
+    rememberUser(user)
+    rememberToken(response.data)
+
+
+    return user
 }
 
-export function registerUser(form) {
-
-    form = urlencodeForm(form)
-
-    return new Promise((resolve, reject) => {
-        axios.post(API_URL + '/register', form)
-            .then(response => {
-                resolve(response.data.token)
-
-            }).catch(error => {
-            reject(error.response.data)
-        })
-    })
+export const getSavedUser = () => {
+    return JWT(localStorage.getItem('token')).data
 }
 
-export async function loginUser(form) {
-
-    form = urlencodeForm(form)
-
-    // const data = await post('/login', form)
-    //
-    // return data.token
-    return new Promise((resolve, reject) => {
-        axios.post(API_URL + '/login', form)
-            .then(response => {
-                resolve(response.data.token)
-
-            }).catch(error => {
-            reject(error.response.data)
-        })
-    })
+const rememberUser = (user) => {
+    localStorage.setItem("user", JSON.stringify(user))
+}
+const rememberToken = (response) => {
+    localStorage.setItem('token', response.token)
+    localStorage.setItem('refreshToken', response.refreshToken)
 }

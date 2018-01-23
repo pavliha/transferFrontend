@@ -5,7 +5,7 @@ import RegisterForm from "../modules/Auth/RegisterForm";
 import {registerUser} from '../modules/Auth/user.action'
 import {connect} from "react-redux";
 
-@connect(store => store.indexReducer)
+@connect(store => store.userReducer)
 export default class Register extends Component {
     componentDidUpdate() {
         if (this.props.token)

@@ -1,5 +1,4 @@
 import {LOGIN_USER, REGISTER_USER} from "./user.action";
-import JWT from 'jwt-decode'
 
 const initialState = {
     token: null,
@@ -18,8 +17,7 @@ export default (state = initialState, {type, payload}) => {
         case REGISTER_USER + "_FULFILLED":
             return {
                 ...state,
-                token: payload,
-                user: JWT(payload).data,
+                user: payload,
                 loading: false
             }
 

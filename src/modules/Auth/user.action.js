@@ -8,7 +8,11 @@ export const registerUser = form => ({
     payload: API.registerUser(form),
 })
 
-export const loginUser = form => ({
-    type: LOGIN_USER,
-    payload: API.loginUser(form)
-})
+export const loginUser = data => !data ?
+    ({
+        type: LOGIN_USER + "_SUCCESS",
+        payload: API.getSavedUser()
+    }) : ({
+        type: LOGIN_USER,
+        payload: API.loginForm(data)
+    })
