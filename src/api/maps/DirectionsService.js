@@ -1,4 +1,4 @@
-export default class Directions extends google.maps.DirectionsService {
+export default class DirectionsService extends google.maps.DirectionsService {
     async drive({origin, destination}) {
         return await this.route({
             origin,
