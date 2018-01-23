@@ -21,3 +21,7 @@ const render = Component => {
 }
 
 render(routes)
+
+if (module.hot) {
+    module.hot.accept()
+}
