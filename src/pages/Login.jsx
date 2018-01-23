@@ -7,11 +7,6 @@ import Layout from "../modules/Layout/LayoutContainer";
 
 @connect(store => store.userReducer)
 export default class Login extends Component {
-    componentDidUpdate() {
-        if (this.props.token)
-            this.props.history.push('/dashboard')
-    }
-
     handleSubmit(e) {
         this.props.dispatch(loginUser(e.target.form))
     }

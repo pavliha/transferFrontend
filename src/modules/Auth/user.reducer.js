@@ -1,9 +1,9 @@
-import {LOGIN_USER, REGISTER_USER} from "./user.action";
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "./user.action";
 
 const initialState = {
-    token: null,
     loading: false,
-    errors:[],
+    errors: [],
+    user: undefined
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -31,8 +31,7 @@ export default (state = initialState, {type, payload}) => {
         case LOGIN_USER + "_FULFILLED":
             return {
                 ...state,
-                token: payload,
-                user: JWT(payload).data,
+                user: payload,
                 loading: false
             }
 
@@ -41,6 +40,11 @@ export default (state = initialState, {type, payload}) => {
                 ...state,
                 errors: payload,
                 loading: false
+            }
+        case LOGOUT_USER:
+            return {
+                ...state,
+                user: null,
             }
 
         default: {

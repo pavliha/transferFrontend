@@ -11,7 +11,7 @@ export const post = async (url, data) => await to(axios.post(API_URL + url, data
 export const registerUser = async (form) => {
 
     const [err, response] = await post('/register', urlencodeForm(form))
-    if (err) return err.response.data
+    if (err) throw err.response.data
     const user = JWT(response.data.token).data
 
     rememberUser(user)
@@ -24,7 +24,7 @@ export const registerUser = async (form) => {
 export const loginForm = async (form) => {
 
     const [err, response] = await post('/login', urlencodeForm(form))
-    if (err) return err.response.data
+    if (err) throw err.response.data
 
     const user = JWT(response.data.token).data
 
