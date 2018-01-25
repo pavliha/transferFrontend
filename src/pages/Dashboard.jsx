@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import Layout from "../modules/Layout/LayoutContainer";
 import {connect} from "react-redux";
 
-@connect(state => state.indexReducer)
-export  default class DashBoard extends Component {
+@connect(state => state.userReducer)
+export default class DashBoard extends Component {
 
     render() {
         return <Layout>

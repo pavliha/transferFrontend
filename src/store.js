@@ -4,13 +4,13 @@ import {createBrowserHistory} from 'history'
 import {routerMiddleware, routerReducer} from 'react-router-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import promiseMiddleware from 'redux-promise-middleware'
-import indexReducer from './modules/Auth/user.reducer'
+import userReducer from './modules/Auth/user.reducer'
+import {loginUser} from "./modules/Auth/user.action";
 
 const reducers = combineReducers({
     router: routerReducer,
-    indexReducer
+    userReducer
 })
-
 
 
 const history = createBrowserHistory()
@@ -22,4 +22,7 @@ const store = createStore(reducers, composeWithDevTools(
         promiseMiddleware()
     )))
 
+if (localStorage.getItem('user')) {
+    store.dispatch(loginUser())
+}
 export default store

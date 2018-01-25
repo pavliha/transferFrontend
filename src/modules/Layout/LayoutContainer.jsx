@@ -3,20 +3,15 @@ import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
 import UserNavbar from './UserNavbar';
 import GuestNavbar from './GuestNavbar';
+import {logoutUser} from "../Auth/user.action";
 
-@connect(store => store.indexReducer)
+@connect(store => store.userReducer)
 export default class LayoutContainer extends React.Component {
-    componentDidUpdate() {
-        const {token, user} = this.props
-
-        token ? localStorage.setItem("token", JSON.stringify(token)) : null
-        user ? localStorage.setItem("user", JSON.stringify(user)) : null
-    }
 
     render() {
-        const {user,children} = this.props
+        const {user, children, dispatch} = this.props
         return <div>
-            {user ? <UserNavbar user={user}/> : <GuestNavbar/>}
+            {user ? <UserNavbar onLogout={() => dispatch(logoutUser())} user={user}/> : <GuestNavbar/>}
 
             <Container fluid className='mt-3'>
                 {children}

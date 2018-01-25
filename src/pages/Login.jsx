@@ -5,13 +5,8 @@ import {loginUser} from "../modules/Auth/user.action";
 import {connect} from "react-redux";
 import Layout from "../modules/Layout/LayoutContainer";
 
-@connect(store => store.indexReducer)
+@connect(store => store.userReducer)
 export default class Login extends Component {
-    componentDidUpdate() {
-        if (this.props.token)
-            this.props.history.push('/dashboard')
-    }
-
     handleSubmit(e) {
         this.props.dispatch(loginUser(e.target.form))
     }

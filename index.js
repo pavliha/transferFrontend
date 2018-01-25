@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000
 //const loginValidation = require("./src/Validation/Login")
 // const registerValidation=require("./src/Validation/Register")
 
-//router.post('/login', validate(loginValidation), (request, response) => {
+//router.post('/loginUser', validate(loginValidation), (request, response) => {
 //router.post('/register', validate(registerValidation), (request, response) => {
 
 

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './style.css'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 import axios from "axios"
-
+import 'antd/dist/antd.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {AppContainer} from 'react-hot-loader'
@@ -23,9 +23,6 @@ const render = Component => {
 
 render(routes)
 
-// Webpack Hot Module Replacement API
 if (module.hot) {
-    module.hot.accept('./routes', () => {
-        render(routes)
-    })
+    module.hot.accept()
 }
