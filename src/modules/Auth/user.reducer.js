@@ -1,4 +1,5 @@
 import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "./user.action";
+import {LOGIN_USER, REGISTER_USER, CREATE_CARGO_FORM} from "./user.action";
 
 const initialState = {
     loading: false,
@@ -45,6 +46,21 @@ export default (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 user: null,
+            }
+
+        case CREATE_CARGO_FORM + "_FULFILLED":
+            return {
+                ...state,
+                token: payload,
+                user: JWT(payload).data,
+                loading: false
+            }
+
+        case CREATE_CARGO_FORM + "_REJECTED":
+            return {
+                ...state,
+                errors: payload,
+                loading: false
             }
 
         default: {

@@ -10,6 +10,8 @@ import {ConnectedRouter} from 'react-router-redux';
 import store from './store';
 import DashBoard from './pages/Dashboard';
 import CargoFind from "./pages/CargoFind";
+import Passport from "./pages/Passport";
+import CreateCargoForm from "./modules/Cargo/CreateCargoForm";
 
 const history = createBrowserHistory();
 
@@ -21,6 +23,8 @@ export default () =>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/dashboard" component={DashBoard}/>
                 <Route exact path="/register" component={Register}/>
+                <Route exact path="/passport" component={Passport}/>
+                <Route exact path="/cargo/create" component={CreateCargoForm}/>
                 <Route exact path="/cargo/find" component={CargoFind}/>
             </Switch>
         </ConnectedRouter>

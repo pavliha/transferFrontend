@@ -46,3 +46,17 @@ const rememberToken = (response) => {
     localStorage.setItem('token', response.token)
     localStorage.setItem('refreshToken', response.refreshToken)
 }
+export async function Create_Cargo_Form(form) {
+
+    form = urlencodeForm(form)
+
+    return new Promise((resolve, reject) => {
+        axios.post(API_URL + '/cargo/create', form)
+            .then(response => {
+                resolve(response.data.token)
+
+            }).catch(error => {
+            reject(error.response.data)
+        })
+    })
+}

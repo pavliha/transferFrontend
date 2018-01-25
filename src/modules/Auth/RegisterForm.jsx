@@ -16,8 +16,7 @@ export default ({onSubmit, errors}) => {
         <FormGroup row>
             <Label for="first_name" sm={3}>Имя</Label>
             <Col sm={9}>
-                <Input type="text" name="first_name"
-                       placeholder="Имя"/>
+                <Input type="text" name="first_name" placeholder="Имя"/>
             </Col>
             <div className="ml-3 mt-2"/>
         </FormGroup>
