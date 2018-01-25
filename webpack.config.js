@@ -1,20 +1,24 @@
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+/* eslint-disable */
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 
-const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: {
-        bundle: './src/index.jsx',
-        vendor: ['react', 'react-dom', 'babel-polyfill', 'smoothscroll-polyfill'],
+    resolve: {
+        extensions: ['*', '.js', '.jsx', '.json']
     },
-    output: {
-        path: path.join(__dirname, 'public'),
-        filename: '[name].[hash].js',
-    },
+    devtool: 'cheap-module-eval-source-map', // more info:https://webpack.js.org/guides/development/#using-source-maps and https://webpack.js.org/configuration/devtool/
+    entry: [
+        // must be first entry to properly set public path
+        './src/webpack-public-path',
+        'react-hot-loader/patch',
+        'babel-polyfill',
+        'webpack-hot-middleware/client?reload=true',
+        path.resolve(__dirname, 'src/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
+    ],
+    target: 'web',
     devServer: {
         compress: true,
         host: '0.0.0.0',
@@ -38,17 +42,46 @@ module.exports = {
             publicPath: true
         }
     },
-    devtool: 'source-map',
-    resolve: {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-        extensions: ['.js', '.jsx'],
+    output: {
+        path: path.resolve(__dirname, 'dist'), // Note: Physical files are only output by the production build task `npm run build`.
+        publicPath: '/',
+        filename: 'bundle.js'
     },
+    plugins: [
+        new ExtractTextPlugin('styles.css'),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+            __DEV__: true
+        }),
+        new webpack.ProvidePlugin({
+            SmoothScroll: 'smoothscroll-polyfill',
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Popper: ['popper.js', 'default'],
+        }),
+        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ru|ua)$/),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
+            template: 'src/index.html',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            },
+            inject: true
+        })
+    ],
     module: {
         rules: [
             {
-                use: {loader: 'babel-loader',},
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules)/,
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            {
+                test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+                use: ['file-loader']
             },
             {
                 test: /\.(scss|css)$/,
@@ -61,31 +94,53 @@ module.exports = {
                 test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
                 use: 'url-loader',
             },
-        ],
-    },
-    plugins: [
-        new webpack.NamedModulesPlugin(),
-        new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ru|ua)$/),
-        //new BundleAnalyzerPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new ExtractTextPlugin('styles.css',),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-        }),
-        // new webpack.optimize.UglifyJsPlugin(),
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-        }),
-        new CopyWebpackPlugin([{
-            from: './src/assets',
-            to: './assets',
-        }]),
-        new webpack.ProvidePlugin({
-            SmoothScroll: 'smoothscroll-polyfill',
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            Popper: ['popper.js', 'default'],
-        }),
-    ],
+            {
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            mimetype: 'application/font-woff'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            mimetype: 'application/octet-stream'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10000,
+                            mimetype: 'image/svg+xml'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(jpe?g|png|gif|ico)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]'
+                        }
+                    }
+                ]
+            },
+        ]
+    }
 };
