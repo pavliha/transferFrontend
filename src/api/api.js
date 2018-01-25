@@ -33,11 +33,22 @@ export async function loginUser(form) {
 
     form = urlencodeForm(form)
 
-    // const data = await post('/login', form)
-    //
-    // return data.token
     return new Promise((resolve, reject) => {
         axios.post(API_URL + '/login', form)
+            .then(response => {
+                resolve(response.data.token)
+
+            }).catch(error => {
+            reject(error.response.data)
+        })
+    })
+}
+export async function Create_Cargo_Form(form) {
+
+    form = urlencodeForm(form)
+
+    return new Promise((resolve, reject) => {
+        axios.post(API_URL + '/cargo/create', form)
             .then(response => {
                 resolve(response.data.token)
 

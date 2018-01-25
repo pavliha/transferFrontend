@@ -1,6 +1,7 @@
 require("react-hot-loader/patch")
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './style.scss'
+import './style.css'
+import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 import axios from "axios"
 
 import React from 'react'
