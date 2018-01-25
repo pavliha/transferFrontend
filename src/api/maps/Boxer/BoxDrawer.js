@@ -1,4 +1,4 @@
-import BoxGenerator from "./BoxGenerator";
+import BoxGenerator from "../RouteBoxer";
 
 export default class BoxDrawer {
 

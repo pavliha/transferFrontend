@@ -66,7 +66,7 @@ export default class CargoFinder {
                     resolve(result, status)
                 } else {
                     reject(status)
-                    console.error("Directions query failed: " + status)
+                    console.error("DirectionsService query failed: " + status)
                 }
             })
         })

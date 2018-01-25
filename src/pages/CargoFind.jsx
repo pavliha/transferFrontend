@@ -30,24 +30,16 @@ const routes = [
         destination: {lat: 47.338033, lng: 35.069088}
     }
 ]
-@connect(state => state.userReducer)
+@connect(state => state.indexReducer)
 export  default class DashBoard extends Component {
-    state = {
-        distance: 10,
-        from: "Tymoshivka, Zaporiz'ka oblast, 72030",
-        to: "112B, Kosmichna St, 112Б, Zaporizhzhia, Zaporiz'ka oblast, 69000",
-        type: "gas_station",
-        nearByRoutes: [],
-        keyword: "",
-        name: "",
-    }
     render() {
         return <Layout>
             <GoogleMapContainer
+                routes={routes}
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA0E-RRtQWldjEQLFkAOWDgMSj295C0Lo&libraries=places,visualization"
                 loadingElement={<div style={{height: `100%`}}/>}
                 containerElement={<div style={{height: `400px`}}/>}
-                mapElement={<div style={{height: `100%`}}/>}
+                mapElement={<div style={{height: `90vh`}}/>}
             />
         </Layout>
     }
