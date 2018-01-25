@@ -10,53 +10,47 @@ export const post = async (url, data) => await to(axios.post(API_URL + url, data
 
 export const registerUser = async (form) => {
 
-    const [err, response] = await post('/register', urlencodeForm(form))
-    if (err) throw err.response.data
-    const user = JWT(response.data.token).data
+  const [err, response] = await post('/register', urlencodeForm(form))
+  if (err) throw err.response.data
+  const user = JWT(response.data.token).data
 
-    rememberUser(user)
+  rememberUser(user)
 
-    rememberToken(response.data)
+  rememberToken(response.data)
 
-    return user
+  return user
 }
 
 export const loginForm = async (form) => {
 
-    const [err, response] = await post('/login', urlencodeForm(form))
-    if (err) throw err.response.data
+  const [err, response] = await post('/login', urlencodeForm(form))
+  if (err) throw err.response.data
 
-    const user = JWT(response.data.token).data
+  const user = JWT(response.data.token).data
 
-    rememberUser(user)
-    rememberToken(response.data)
+  rememberUser(user)
+  rememberToken(response.data)
 
 
-    return user
+  return user
 }
 
 export const getSavedUser = () => {
-    return JWT(localStorage.getItem('token')).data
+  return JWT(localStorage.getItem('token')).data
 }
 
 const rememberUser = (user) => {
-    localStorage.setItem("user", JSON.stringify(user))
+  localStorage.setItem("user", JSON.stringify(user))
 }
 const rememberToken = (response) => {
-    localStorage.setItem('token', response.token)
-    localStorage.setItem('refreshToken', response.refreshToken)
+  localStorage.setItem('token', response.token)
+  localStorage.setItem('refreshToken', response.refreshToken)
 }
-export async function Create_Cargo_Form(form) {
 
-    form = urlencodeForm(form)
+export const createCargo = async (form) => {
 
-    return new Promise((resolve, reject) => {
-        axios.post(API_URL + '/cargo/create', form)
-            .then(response => {
-                resolve(response.data.token)
+  const [err, response] = await post('/cargo/create', urlencodeForm(form))
+  if (err) throw err.response.data
 
-            }).catch(error => {
-            reject(error.response.data)
-        })
-    })
+  return response.data
 }

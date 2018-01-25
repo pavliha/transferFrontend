@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Col, Form, Input, Label, Row, FormGroup, FormFeedback} from 'reactstrap';
+import {Button, Col, Form, Input, Label, FormGroup, FormFeedback} from 'reactstrap';
 
 export default ({onSubmit, errors}) => {
 

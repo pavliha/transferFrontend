@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Card, Row} from "reactstrap";
+import { Card} from "reactstrap";
 import Layout from "../modules/Layout/LayoutContainer";
 import RegisterForm from "../modules/Auth/RegisterForm";
 import {registerUser} from '../modules/Auth/user.action'

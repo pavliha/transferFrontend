@@ -11,7 +11,7 @@ import store from './store';
 import DashBoard from './pages/Dashboard';
 import CargoFind from "./pages/CargoFind";
 import Passport from "./pages/Passport";
-import CreateCargoForm from "./modules/Cargo/CreateCargoForm";
+import CargoCreate from "./pages/CargoCreate"
 
 const history = createBrowserHistory();
 
@@ -24,7 +24,7 @@ export default () =>
                 <Route exact path="/dashboard" component={DashBoard}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/passport" component={Passport}/>
-                <Route exact path="/cargo/create" component={CreateCargoForm}/>
+                <Route exact path="/cargo/create" component={CargoCreate}/>
                 <Route exact path="/cargo/find" component={CargoFind}/>
             </Switch>
         </ConnectedRouter>

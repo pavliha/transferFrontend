@@ -25,31 +25,6 @@ export default {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  plugins: [
-    new ExtractTextPlugin('styles.css'),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
-      __DEV__: true
-    }),
-    new webpack.ProvidePlugin({
-      SmoothScroll: 'smoothscroll-polyfill',
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
-      Popper: ['popper.js', 'default'],
-    }),
-    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ru|ua)$/),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
-      template: 'src/index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      inject: true
-    })
-  ],
   module: {
     rules: [
       {
@@ -120,5 +95,30 @@ export default {
         ]
       },
     ]
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin('styles.css'),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+      __DEV__: true
+    }),
+    new webpack.ProvidePlugin({
+      SmoothScroll: 'smoothscroll-polyfill',
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+      Popper: ['popper.js', 'default'],
+    }),
+    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en|ru|ua)$/),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
+      template: 'src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
+      inject: true
+    })
+  ],
 }

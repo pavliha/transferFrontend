@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {Button, Card, Col, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label, Row} from "reactstrap";
+import {Button, Col, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label} from "reactstrap";
 import {Upload, Icon, Modal} from 'antd';
-import {Create_Cargo_Form} from "../Auth/user.action";
+import {createCargo} from "../Auth/user.action";
 import {connect} from "react-redux";
 
 @connect(store => store.indexReducer)
@@ -32,7 +32,7 @@ export default class CreateCargoForm extends Component {
     }
 
     handleSubmit(e) {
-        this.props.dispatch(Create_Cargo_Form(e.target.form))
+        this.props.dispatch(createCargo(e.target.form))
     }
 
     render() {
