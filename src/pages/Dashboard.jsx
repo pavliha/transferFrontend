@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import Layout from "../modules/Layout/LayoutContainer";
-import {connect} from "react-redux";
 import GoogleMapContainer from "../modules/CargoSearch/GoogleMapContainer";
 
 const routes = [
@@ -30,8 +29,7 @@ const routes = [
         destination: {lat: 47.338033, lng: 35.069088}
     }
 ]
-@connect(state => state.userReducer)
-export  default class DashBoard extends Component {
+export default class DashBoard extends Component {
     state = {
         distance: 10,
         from: "Tymoshivka, Zaporiz'ka oblast, 72030",
@@ -43,12 +41,7 @@ export  default class DashBoard extends Component {
     }
     render() {
         return <Layout>
-            <GoogleMapContainer
-                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBA0E-RRtQWldjEQLFkAOWDgMSj295C0Lo&libraries=places,visualization"
-                loadingElement={<div style={{height: `100%`}}/>}
-                containerElement={<div style={{height: `400px`}}/>}
-                mapElement={<div style={{height: `100%`}}/>}
-            />
+
         </Layout>
     }
 
