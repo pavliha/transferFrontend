@@ -3,7 +3,7 @@ import * as API from '../../api/api'
 export const REGISTER_USER = 'REGISTER_USER'
 export const LOGIN_USER = 'LOGIN_USER'
 export const LOGOUT_USER = 'LOGOUT_USER'
-export const CREATE_CARGO = 'CREATE_CARGO'
+export const CREATE_DRIVE = 'CREATE_DRIVE'
 
 export const registerUser = form => ({
     type: REGISTER_USER,
@@ -28,7 +28,7 @@ export const logoutUser = () => {
 }
 
 
-export const createCargo = form => ({
-    type: CREATE_CARGO,
-    payload: API.createCargo(form)
+export const createDriveForm = form => ({
+    type: CREATE_DRIVE,
+    payload: API.createDriveForm(form)
 })

@@ -2,9 +2,16 @@ import React, {Component} from 'react'
 import Layout from "../modules/Layout/LayoutContainer";
 import {Card} from "antd"
 import Geosuggest from 'react-geosuggest';
-import {Col, FormGroup, Input, Label} from "reactstrap";
+import {Col, FormGroup, Input, Label, Button} from "reactstrap";
+import {createDriveForm} from "../modules/Auth/user.action"
+import {connect} from "react-redux"
 
+@connect(store => store.indexReducer)
 export default class DriveForm extends Component {
+  handleSubmit(e) {
+    this.props.dispatch(createDriveForm(e.target.form))
+  }
+
   render() {
     return <Layout>
       <Card title='Куда едем?'>
@@ -28,6 +35,11 @@ export default class DriveForm extends Component {
               <Input type="date" name="date" placeholder="Время отправки"/>
             </Col>
           </FormGroup>
+
+          <FormGroup check row>
+            <Button color="primary" className="mt-2" onClick={this.handleSubmit.bind(this)}>Добавить поездку</Button>
+          </FormGroup>
+
         </div>
       </Card>
     </Layout>

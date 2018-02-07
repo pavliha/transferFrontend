@@ -1,5 +1,4 @@
-import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "./user.action";
-import {CREATE_CARGO} from "./user.action";
+import {CREATE_DRIVE, LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "./user.action";
 
 const initialState = {
   loading: false,
@@ -48,15 +47,15 @@ export default (state = initialState, {type, payload}) => {
         user: null,
       }
 
-    case CREATE_CARGO + "_FULFILLED":
+    case CREATE_DRIVE + "_FULFILLED":
       return {
         ...state,
         token: payload,
-        user: JWT(payload).data,
+        user: payload,
         loading: false
       }
 
-    case CREATE_CARGO + "_REJECTED":
+    case CREATE_DRIVE + "_REJECTED":
       return {
         ...state,
         errors: payload,
