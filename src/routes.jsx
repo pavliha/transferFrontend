@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import store from './store';
 import DashBoard from './pages/Dashboard';
-import CargoFind from "./pages/CargoFind";
+import CargoFind from "./pages/Drive/index";
 import Passport from "./pages/Passport";
 import CargoCreate from "./pages/CargoCreate"
 import DriveForm from "./pages/DriverForm.jsx"
