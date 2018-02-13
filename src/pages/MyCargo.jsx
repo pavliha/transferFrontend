@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import LayoutContainer from "../modules/Layout/LayoutContainer"
-import {getUserCargo} from "../modules/Cargo/cargo.action"
-import CargoCard from "../modules/Cargo/CargoCard"
+import LayoutContainer from "../components/Layout/LayoutContainer"
+import {getUserCargo} from "../components/Cargo/cargo.action"
+import CargoCard from "../components/Cargo/CargoCard"
 
 
 @connect(store => store.cargoReducer)

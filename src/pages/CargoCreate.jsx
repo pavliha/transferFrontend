@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Layout from "../modules/Layout/LayoutContainer";
-import CreateCargoForm from "../modules/Cargo/CreateCargoForm"
+import Layout from "../components/Layout/LayoutContainer";
+import CreateCargoForm from "../components/Cargo/CreateCargoForm"
 
 
 export  default class CargoCreate extends Component {

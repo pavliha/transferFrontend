@@ -1,6 +1,6 @@
 import React from 'react';
 import DirectionsService from '../../api/maps/DirectionsService';
-import RouteBoxer from '../../api/maps/RouteBoxer';
+import RouteBoxer from '../../services/routeBoxer';
 import RoutesGeocoder from "../../api/maps/RoutesGeocoder"
 import StartMarker from "../../api/maps/Marker/StartMarker"
 import StopMarker from "../../api/maps/Marker/StopMarker"
@@ -35,8 +35,8 @@ export default class GoogleMapContainer extends React.Component {
     const routeBoxer = new RouteBoxer();
 
     const directions = await directionsService.drive({
-      origin: this.state.from,
-      destination: this.state.to
+      origin: this.props.from.label,
+      destination: this.props.to.label
     });
 
     const boxes = routeBoxer.generateBoxes({directions, distance});
@@ -104,7 +104,7 @@ export default class GoogleMapContainer extends React.Component {
   }
 
   render() {
-    const {directions, boxes, routesInArea, directionsInArea,center} = this.state;
+    const {directions, boxes, routesInArea, directionsInArea, center} = this.state;
     return (
       <CargoSearchMap
         center={center}

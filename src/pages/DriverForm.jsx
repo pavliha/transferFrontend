@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import Layout from "../modules/Layout/LayoutContainer";
+import Layout from "../components/Layout/LayoutContainer";
 import {Card} from "antd"
 import Geosuggest from 'react-geosuggest';
 import {Col, FormGroup, Input, Label, Button} from "reactstrap";
-import {createDriveForm} from "../modules/Auth/user.action"
+import {createDriveForm} from "../components/Auth/user.action"
 import {connect} from "react-redux"
 
 @connect(store => store.indexReducer)

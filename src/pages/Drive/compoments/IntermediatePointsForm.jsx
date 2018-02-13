@@ -1,16 +1,17 @@
 import React from "react";
 
-import {Button, Form, Icon, Input} from 'antd';
+import {Button, Card, Form, Icon} from 'antd';
+import Geosuggest from "../../../components/Geosuggest/Geosuggest"
 
 let uuid = 0;
-
-class DynamicFieldSet extends React.Component {
+@Form.create()
+export default class DynamicFieldSet extends React.Component {
   remove = (k) => {
     const {form} = this.props;
     // can use data-binding to get
     const keys = form.getFieldValue('keys');
     // We need at least one passenger
-    if (keys.length === 1) {
+    if (keys.length === 0) {
       return;
     }
 
@@ -35,20 +36,12 @@ class DynamicFieldSet extends React.Component {
 
   render() {
     const {getFieldDecorator, getFieldValue} = this.props.form;
-
-    const formItemLayoutWithOutLabel = {
-      wrapperCol: {
-        xs: {span: 24},
-        sm: {span: 4},
-      },
-    };
     getFieldDecorator('keys', {initialValue: []});
     const keys = getFieldValue('keys');
     const formItems = keys.map((k, index) => {
       return (
         <Form.Item
           label={index === 0 ? '' : ''}
-          required={false}
           key={k}
         >
           {getFieldDecorator(`names[${k}]`, {
@@ -56,12 +49,14 @@ class DynamicFieldSet extends React.Component {
             rules: [{
               required: true,
               whitespace: true,
-              message: "Please input passenger's name or delete this field.",
+              message: "Пожалуйста введите проемужточную или удалите это поле",
             }],
           })(
-            <Input placeholder="passenger name" style={{width: '60%', marginRight: 8}}/>
+            <Geosuggest name="to"
+                        placeholder="Наприклад, Площа Ринок, Львів"
+                        style={{width: '94%', marginRight: 8}}/>
           )}
-          {keys.length > 1 ? (
+          {keys.length > 0 ? (
             <Icon
               className="dynamic-delete-button"
               type="minus-circle-o"
@@ -73,19 +68,15 @@ class DynamicFieldSet extends React.Component {
       );
     });
     return (
-      <div>
+      <Card className='mt-2'>
         {formItems}
         <Form.Item>
-          <Button type="dashed" onClick={this.add}>
+          <Button type="dashed" style={{width: "100%"}} onClick={this.add}>
             <Icon type="plus"/> Добавить промежуточную точку
           </Button>
         </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">Submit</Button>
-        </Form.Item>
-      </div>
+      </Card>
     );
   }
 }
 
-export default Form.create()(DynamicFieldSet);

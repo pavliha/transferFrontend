@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Card} from "reactstrap";
-import Layout from "../modules/Layout/LayoutContainer";
-import {passportUser} from '../modules/Auth/user.action'
-import PassportForm from "../modules/Auth/PassportForm"
+import Layout from "../components/Layout/LayoutContainer";
+import {passportUser} from '../components/Auth/user.action'
+import PassportForm from "../components/Auth/PassportForm"
 import {connect} from "react-redux";
 
 @connect(store => store.indexReducer)
