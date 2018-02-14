@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import LayoutContainer from "../modules/Layout/LayoutContainer"
-import {getUserCargo} from "../modules/Cargo/cargo.action"
+import LayoutContainer from "../components/Layout/LayoutContainer"
+import {getUserCargo} from "../components/Cargo/cargo.action"
 import {Card} from "antd"
 import {Button, Container, FormGroup, InputGroupAddon, Label} from "reactstrap"
 
@@ -56,7 +56,6 @@ export default class CargoInfo extends Component {
               каталогу</Button>
           </FormGroup>
         </Card>
-        )}
       </Container>
     </LayoutContainer>
   }

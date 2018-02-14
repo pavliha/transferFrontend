@@ -7,11 +7,8 @@ import {Link} from "react-router-dom"
 export default class UserNavbar extends React.Component {
   menu = (
     <Menu>
-      <Menu.Item key="0">
-        <a href="http://www.alipay.com/">1st menu item</a>
-      </Menu.Item>
       <Menu.Item key="1">
-        <a href="http://www.taobao.com/">2nd menu item</a>
+        <Link to="/settings/profile">Settings</Link>
       </Menu.Item>
       <Menu.Divider/>
       <Menu.Item key="3"><span onClick={this.props.onLogout}>Logout</span></Menu.Item>
@@ -41,6 +38,7 @@ export default class UserNavbar extends React.Component {
         <Navbar className="navbar-light bg-light" expand="md">
           <NavbarBrand href="/">Transfer</NavbarBrand>
           <Link to='/drive/create'><Button type='primary'>Создать поездку</Button></Link>
+          <Link to='/my/cargo'>Мои грузы</Link>
           <Link to='/cargo/create'><Button type='primary'>Добавить груз</Button></Link>
           <Nav navbar>
             <NavItem>

@@ -13,7 +13,7 @@ import Drive from "./pages/Drive/Drive";
 import Passport from "./pages/Passport";
 import CargoCreate from "./pages/CargoCreate"
 import CargoInfo from "./pages/CargoInfo"
-import MyForm from "./pages/MyForm"
+import SettingsProfile from "./pages/Settings/Profile"
 import MyCargo from "./pages/MyCargo/MyCargo"
 
 const history = createBrowserHistory();
@@ -30,7 +30,7 @@ export default () =>
         <Route exact path="/cargo/create" component={CargoCreate}/>
         <Route exact path="/drive/create" component={Drive}/>
         <Route exact path="/my/cargo" component={MyCargo}/>
-        <Route exact path="/my/form" component={MyForm}/>
+        <Route exact path="/settings/profile" component={SettingsProfile}/>
         <Route exact path="/cargo/:id" component={CargoInfo}/>
       </Switch>
     </ConnectedRouter>

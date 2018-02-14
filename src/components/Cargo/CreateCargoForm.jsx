@@ -3,7 +3,7 @@ import {Button, Col, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label}
 import {Upload, Icon, Modal} from 'antd';
 import {createCargo} from "../Cargo/cargo.action";
 import {connect} from "react-redux";
-import Geosuggest from 'react-geosuggest';
+import Geosuggest from '../../components/Geosuggest/Geosuggest';
 
 @connect(store => store.cargoReducer)
 export default class CreateCargoForm extends Component {

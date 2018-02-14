@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import LayoutContainer from "../modules/Layout/LayoutContainer"
+import LayoutContainer from "../../components/Layout/LayoutContainer"
 import {Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete} from 'antd';
 import {Container} from "reactstrap"
-import {updateUser} from "../modules/Auth/user.action"
+import {updateUser} from "../Auth/user.action"
 
 const FormItem = Form.Item;
 const Option = Select.Option;
