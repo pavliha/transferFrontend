@@ -1,4 +1,4 @@
-import {CREATE_DRIVE, LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "./user.action";
+import {CREATE_DRIVE, LOGIN_USER, LOGOUT_USER, REGISTER_USER, UPDATE_USER} from "./user.action";
 
 const initialState = {
   loading: false,
@@ -22,6 +22,25 @@ export default (state = initialState, {type, payload}) => {
       }
 
     case REGISTER_USER + "_REJECTED":
+      return {
+        ...state,
+        errors: payload,
+        loading: false
+      }
+      case UPDATE_USER + "_PENDING":
+      return {
+        ...state,
+        loading: true,
+      }
+
+    case UPDATE_USER + "_FULFILLED":
+      return {
+        ...state,
+        user: payload,
+        loading: false
+      }
+
+    case UPDATE_USER + "_REJECTED":
       return {
         ...state,
         errors: payload,

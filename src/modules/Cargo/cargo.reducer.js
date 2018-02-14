@@ -1,10 +1,12 @@
-import {GET_USER_CARGO} from "./cargo.action"
-import {CREATE_CARGO} from "./cargo.action";
+import {GET_USER_CARGOS} from "./cargo.action"
+import {CREATE_CARGO,GET_USER_CARGO} from "./cargo.action";
 
 const initialState = {
   loading: false,
   errors: [],
   cargos: [],
+  cargo: null,
+
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -26,13 +28,13 @@ export default (state = initialState, {type, payload}) => {
       }
 
 
-    case GET_USER_CARGO + "_PENDING":
+    case GET_USER_CARGOS + "_PENDING":
       return {
         ...state,
         loading: true,
       }
 
-    case GET_USER_CARGO + "_FULFILLED":
+    case GET_USER_CARGOS + "_FULFILLED":
       return {
         ...state,
         cargos: payload.data,
@@ -43,13 +45,32 @@ export default (state = initialState, {type, payload}) => {
         loading: false
       }
 
-    case GET_USER_CARGO + "_REJECTED":
+    case GET_USER_CARGOS + "_REJECTED":
       return {
         ...state,
         errors: payload,
         loading: false
       }
 
+    case GET_USER_CARGO + "_PENDING":
+      return {
+        ...state,
+        loading: true,
+      }
+
+    case GET_USER_CARGO + "_FULFILLED":
+      return {
+        ...state,
+        cargo: payload,
+        loading: false
+      }
+
+    case GET_USER_CARGO + "_REJECTED":
+      return {
+        ...state,
+        errors: payload,
+        loading: false
+      }
 
     default: {
       return state;

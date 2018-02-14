@@ -9,8 +9,8 @@ import {Redirect} from "react-router-dom";
 @connect(store => store.userReducer)
 export default class Register extends Component {
     componentDidUpdate() {
-        if (this.props.token)
-            this.props.history.push('/dashboard')
+      if (this.props.token)
+        this.props.history.push('/dashboard')
     }
 
     handleSubmit(e) {
