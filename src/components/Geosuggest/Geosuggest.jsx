@@ -1,11 +1,15 @@
 /* global window */
-
+import './_style.scss'
 import React from 'react';
+import classnames from 'classnames';
 import debounce from 'lodash.debounce';
-import {AutoComplete} from 'antd'
+
 import defaults from './defaults';
 import propTypes from './prop-types';
 import filterInputAttributes from './filter-input-attributes';
+
+import Input from './input';
+import SuggestList from './suggest-list';
 
 // Escapes special characters in user input for regex
 function escapeRegExp(str) {
@@ -162,6 +166,20 @@ class Geosuggest extends React.Component {
    */
   componentWillUnmount() {
     clearTimeout(this.timer);
+  }
+
+  /**
+   * Focus the input
+   */
+  focus() {
+    this.input.focus();
+  }
+
+  /**
+   * Blur the input
+   */
+  blur() {
+    this.input.blur();
   }
 
   /**
@@ -384,24 +402,58 @@ class Geosuggest extends React.Component {
    * @return {Function} The React element to render
    */
   render() {
-    const attributes = filterInputAttributes(this.props)
+    const attributes = filterInputAttributes(this.props),
+      classes = classnames(
+        'geosuggest',
+        this.props.className,
+        {'geosuggest--loading': this.state.isLoading}
+      ),
+      shouldRenderLabel = this.props.label && attributes.id,
+      input = <Input className={this.props.inputClassName}
+                     ref={i => this.input = i}
+                     value={this.state.userInput}
+                     ignoreEnter={!this.state.isSuggestsHidden}
+                     ignoreTab={this.props.ignoreTab}
+                     style={this.props.style.input}
+                     onChange={this.onInputChange}
+                     onFocus={this.onInputFocus}
+                     onBlur={this.onInputBlur}
+                     onKeyDown={this.props.onKeyDown}
+                     onKeyPress={this.props.onKeyPress}
+                     onNext={this.onNext}
+                     onPrev={this.onPrev}
+                     onSelect={this.onSelect}
+                     onEscape={this.hideSuggests} {...attributes} />,
+      suggestionsList = <SuggestList isHidden={this.state.isSuggestsHidden}
+                                     style={this.props.style.suggests}
+                                     suggestItemStyle={this.props.style.suggestItem}
+                                     userInput={this.state.userInput}
+                                     isHighlightMatch={this.props.highlightMatch}
+                                     suggestsClassName={this.props.suggestsClassName}
+                                     suggestItemClassName={this.props.suggestItemClassName}
+                                     suggests={this.state.suggests}
+                                     hiddenClassName={this.props.suggestsHiddenClassName}
+                                     suggestItemActiveClassName={this.props.suggestItemActiveClassName}
+                                     activeSuggest={this.state.activeSuggest}
+                                     onSuggestNoResults={this.onSuggestNoResults}
+                                     onSuggestMouseDown={this.onSuggestMouseDown}
+                                     onSuggestMouseOut={this.onSuggestMouseOut}
+                                     onSuggestSelect={this.selectSuggest}
+                                     renderSuggestItem={this.props.renderSuggestItem}
+                                     minLength={this.props.minLength}/>;
 
-    return <AutoComplete dataSource={this.state.suggests.map(suggest => suggest.description)}
-                         className={this.props.inputClassName}
-                         ref={i => this.input = i}
-                         value={this.state.userInput}
-                         ignoreEnter={!this.state.isSuggestsHidden}
-                         ignoreTab={this.props.ignoreTab}
-                         style={this.props.style}
-                         onChange={this.onInputChange}
-                         onFocus={this.onInputFocus}
-                         onBlur={this.onInputBlur}
-                         onKeyDown={this.props.onKeyDown}
-                         onKeyPress={this.props.onKeyPress}
-                         onNext={this.onNext}
-                         onPrev={this.onPrev}
-                         onSelect={this.onSelect}
-                         onEscape={this.hideSuggests} {...attributes} />
+    return <div className={classes}>
+      <div className="geosuggest__input-wrapper">
+        {shouldRenderLabel &&
+        <label className="geosuggest__label"
+               htmlFor={attributes.id}>{this.props.label}</label>
+        }
+        {input}
+      </div>
+      <div className="geosuggest__suggests-wrapper">
+        {suggestionsList}
+      </div>
+    </div>;
   }
 }
 
