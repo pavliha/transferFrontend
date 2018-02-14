@@ -1,4 +1,4 @@
-import * as API from '../../api/api'
+import * as API from '../../services/api/api'
 
 export const GET_USER_CARGOS = 'GET_USER_CARGOS'
 export const CREATE_CARGO = 'CREATE_CARGO'

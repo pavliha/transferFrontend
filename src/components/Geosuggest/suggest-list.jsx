@@ -46,8 +46,9 @@ export default class SuggestList extends React.Component {
   render() {
     const classes = classnames(
       'geosuggest__suggests',
+      'ant-select-dropdown',
       this.props.suggestsClassName,
-      {'geosuggest__suggests--hidden': this.isHidden()},
+      {'ant-select-dropdown-hidden': this.isHidden()},
       {[this.props.hiddenClassName]: this.props.hiddenClassName ?
         this.isHidden() : null}
     );

@@ -1,9 +1,9 @@
 import React from 'react';
-import DirectionsService from '../../api/maps/DirectionsService';
+import DirectionsService from '../../services/api/maps/DirectionsService';
 import RouteBoxer from '../../services/routeBoxer';
-import RoutesGeocoder from "../../api/maps/RoutesGeocoder"
-import StartMarker from "../../api/maps/Marker/StartMarker"
-import StopMarker from "../../api/maps/Marker/StopMarker"
+import RoutesGeocoder from "../../services/api/maps/RoutesGeocoder"
+import StartMarker from "../../services/api/maps/Marker/StartMarker"
+import StopMarker from "../../services/api/maps/Marker/StopMarker"
 import CargoSearchMap from "./CargoSearchMap"
 
 export default class GoogleMapContainer extends React.Component {

@@ -115,7 +115,7 @@ class Input extends React.Component {
   render() {
     const attributes = filterInputAttributes(this.props),
       classes = classnames(
-        'geosuggest__input',
+        'ant-input',
         this.props.className
       );
 

@@ -3,7 +3,7 @@ import Layout from "../components/Layout/LayoutContainer";
 import {Card} from "antd"
 import Geosuggest from 'react-geosuggest';
 import {Col, FormGroup, Input, Label, Button} from "reactstrap";
-import {createDriveForm} from "../components/Auth/user.action"
+import {createDriveForm} from "./Auth/user.action"
 import {connect} from "react-redux"
 
 @connect(store => store.indexReducer)

@@ -92,7 +92,7 @@ export default class SuggestItem extends React.Component {
   render() {
     const {suggest} = this.props,
       classes = classnames(
-        'geosuggest__item',
+        'ant-select-dropdown-menu-item',
         this.props.className,
         this.props.suggestItemClassName,
         {'geosuggest__item--active': this.props.isActive},

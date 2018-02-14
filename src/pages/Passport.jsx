@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Card} from "reactstrap";
 import Layout from "../components/Layout/LayoutContainer";
-import {passportUser} from '../components/Auth/user.action'
+import {passportUser} from './Auth/user.action'
 import PassportForm from "../components/Auth/PassportForm"
 import {connect} from "react-redux";
 

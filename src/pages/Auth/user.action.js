@@ -1,4 +1,4 @@
-import * as API from '../../api/api'
+import * as API from '../../services/api/api'
 
 export const REGISTER_USER = 'REGISTER_USER'
 export const LOGIN_USER = 'LOGIN_USER'

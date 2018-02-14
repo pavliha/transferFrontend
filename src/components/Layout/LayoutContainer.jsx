@@ -3,7 +3,7 @@ import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
 import UserNavbar from './UserNavbar';
 import GuestNavbar from './GuestNavbar';
-import {logoutUser} from "../Auth/user.action";
+import {logoutUser} from "../../pages/Auth/user.action";
 
 @connect(store => store.userReducer)
 export default class LayoutContainer extends React.Component {

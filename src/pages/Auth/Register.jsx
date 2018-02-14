@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { Card} from "reactstrap";
-import Layout from "../components/Layout/LayoutContainer";
-import RegisterForm from "../components/Auth/RegisterForm";
-import {registerUser} from '../components/Auth/user.action'
+import Layout from "../../components/Layout/LayoutContainer";
+import RegisterForm from "./components/RegisterForm";
+import {registerUser} from './user.action'
 import {connect} from "react-redux";
 import {Redirect} from "react-router-dom";
 

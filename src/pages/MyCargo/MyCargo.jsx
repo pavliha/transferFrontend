@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import LayoutContainer from "../components/Layout/LayoutContainer"
-import {getUserCargos} from "../components/Cargo/cargo.action"
+import LayoutContainer from "../../components/Layout/LayoutContainer"
+import {getUserCargos} from "../../components/Cargo/cargo.action"
 
 import {Card} from "antd"
 import {Button, FormGroup, Label} from "reactstrap"

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Card, Row} from 'reactstrap';
-import LoginForm from "../components/Auth/LoginForm";
-import {loginUser} from "../components/Auth/user.action";
+import LoginForm from "./components/LoginForm";
+import {loginUser} from "./user.action";
 import {connect} from "react-redux";
-import Layout from "../components/Layout/LayoutContainer";
+import Layout from "../../components/Layout/LayoutContainer";
 
 @connect(store => store.userReducer)
 export default class Login extends Component {

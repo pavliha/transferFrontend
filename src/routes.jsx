@@ -2,8 +2,8 @@ import React from 'react';
 import Route from 'react-router/es/Route';
 import {Switch} from 'react-router-dom';
 import Index from './pages/Index';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
 import {createBrowserHistory} from 'history';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
@@ -12,10 +12,9 @@ import DashBoard from './pages/Dashboard';
 import Drive from "./pages/Drive/Drive";
 import Passport from "./pages/Passport";
 import CargoCreate from "./pages/CargoCreate"
-import DriveForm from "./pages/DriverForm.jsx"
-import MyCargo from "./pages/MyCargo"
 import CargoInfo from "./pages/CargoInfo"
 import MyForm from "./pages/MyForm"
+import MyCargo from "./pages/MyCargo/MyCargo"
 
 const history = createBrowserHistory();
 
