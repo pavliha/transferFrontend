@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {
     Button, Card, CardText, CardTitle, Col, Form, FormGroup, Label, Row, Input, Container
 } from "reactstrap";
-import LayoutContainer from "../modules/Layout/LayoutContainer";
+import LayoutContainer from "../components/Layout/LayoutContainer";
 
 const routes = [
     {

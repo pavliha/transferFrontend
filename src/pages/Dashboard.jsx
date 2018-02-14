@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import Layout from "../modules/Layout/LayoutContainer";
-import GoogleMapContainer from "../modules/CargoSearch/GoogleMapContainer";
+import Layout from "../components/Layout/LayoutContainer";
+import GoogleMapContainer from "../components/CargoSearch/GoogleMapContainer";
 
 const routes = [
     {

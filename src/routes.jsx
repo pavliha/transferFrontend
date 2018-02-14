@@ -9,7 +9,7 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import store from './store';
 import DashBoard from './pages/Dashboard';
-import CargoFind from "./pages/CargoFind";
+import Drive from "./pages/Drive/Drive";
 import Passport from "./pages/Passport";
 import CargoCreate from "./pages/CargoCreate"
 import DriveForm from "./pages/DriverForm.jsx"
@@ -29,8 +29,7 @@ export default () =>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/passport" component={Passport}/>
         <Route exact path="/cargo/create" component={CargoCreate}/>
-        <Route exact path="/cargo/find" component={CargoFind}/>
-        <Route exact path="/drive/create" component={DriveForm}/>
+        <Route exact path="/drive/create" component={Drive}/>
         <Route exact path="/my/cargo" component={MyCargo}/>
         <Route exact path="/my/form" component={MyForm}/>
         <Route exact path="/cargo/:id" component={CargoInfo}/>

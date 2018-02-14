@@ -4,10 +4,10 @@ import {createBrowserHistory} from 'history'
 import {routerMiddleware, routerReducer} from 'react-router-redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import promiseMiddleware from 'redux-promise-middleware'
-import userReducer from './modules/Auth/user.reducer'
-import cargoReducer from './modules/Cargo/cargo.reducer'
+import userReducer from './components/Auth/user.reducer'
+import cargoReducer from './components/Cargo/cargo.reducer'
 
-import {loginUser} from "./modules/Auth/user.action";
+import {loginUser} from "./components/Auth/user.action";
 
 const reducers = combineReducers({
   router: routerReducer,
