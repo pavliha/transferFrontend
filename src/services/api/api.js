@@ -1,7 +1,7 @@
 import axios from 'axios'
-import urlencodeForm from "../services/urlencodeForm";
+import urlencodeForm from "../urlencodeForm";
 import JWT from "jwt-decode";
-import to from '../services/to'
+import to from '../to'
 
 export const API_URL = 'https://transfer-api.herokuapp.com'
 export const get = async (url) => await to(axios.get(API_URL + url,
@@ -52,7 +52,6 @@ const rememberUser = (user) => {
   localStorage.setItem("user", JSON.stringify(user))
 }
 const rememberToken = (response) => {
-  debugger
   localStorage.setItem('token', response.token)
   localStorage.setItem('refreshToken', response.refreshToken)
 }

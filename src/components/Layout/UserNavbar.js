@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  Button,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
-import {Avatar, Dropdown, Icon, Menu} from "antd";
+import {Nav, Navbar, NavbarBrand, NavItem, NavLink,} from 'reactstrap';
+import {Avatar, Button, Dropdown, Icon, Menu} from "antd";
 import {Link} from "react-router-dom"
 
 
@@ -45,11 +38,10 @@ export default class UserNavbar extends React.Component {
 
     return (
       <div>
-
         <Navbar className="navbar-light bg-light" expand="md">
           <NavbarBrand href="/">Transfer</NavbarBrand>
-          <Link to='/cargo/find'><Button color='primary'>Найти груз</Button></Link>
-          <Link to='/cargo/create'><Button color='success'>Добавить груз</Button></Link>
+          <Link to='/drive/create'><Button type='primary'>Создать поездку</Button></Link>
+          <Link to='/cargo/create'><Button type='primary'>Добавить груз</Button></Link>
           <Nav navbar>
             <NavItem>
               <NavLink>
