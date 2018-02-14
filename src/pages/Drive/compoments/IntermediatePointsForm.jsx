@@ -52,9 +52,7 @@ export default class DynamicFieldSet extends React.Component {
               message: "Пожалуйста введите проемужточную или удалите это поле",
             }],
           })(
-            <Geosuggest name="to"
-                        placeholder="Наприклад, Площа Ринок, Львів"
-                        style={{width: '94%', marginRight: 8}}/>
+            <Geosuggest name="to" placeholder="Наприклад, Площа Ринок, Львів"/>
           )}
           {keys.length > 0 ? (
             <Icon

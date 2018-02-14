@@ -1,5 +1,4 @@
 /* global window */
-import './_style.scss'
 import React from 'react';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
@@ -442,8 +441,8 @@ class Geosuggest extends React.Component {
                                      renderSuggestItem={this.props.renderSuggestItem}
                                      minLength={this.props.minLength}/>;
 
-    return <div className={classes}>
-      <div className="geosuggest__input-wrapper">
+    return <div className={classes} style={this.props.style.base}>
+      <div className={"geosuggest__input-wrapper " + this.props.style.wrapper}>
         {shouldRenderLabel &&
         <label className="geosuggest__label"
                htmlFor={attributes.id}>{this.props.label}</label>
