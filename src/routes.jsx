@@ -1,20 +1,17 @@
 import React from 'react';
 import Route from 'react-router/es/Route';
 import {Switch} from 'react-router-dom';
-import Index from './pages/Index';
-import Login from './pages/Auth/Login';
-import Register from './pages/Auth/Register';
+import Index from './scenes/Index';
+import Login from './scenes/Auth/Login';
+import Register from './scenes/Auth/Register';
 import {createBrowserHistory} from 'history';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
 import store from './store';
-import DashBoard from './pages/Dashboard';
-import Drive from "./pages/Drive/Drive";
-import Passport from "./pages/Passport";
-import CargoCreate from "./pages/CargoCreate"
-import CargoInfo from "./pages/CargoInfo"
-import SettingsProfile from "./pages/Settings/Profile"
-import MyCargo from "./pages/MyCargo/MyCargo"
+import Drive from "./scenes/Profile/Drive/DriveCreate";
+import AuthorizedRoute from "./components/AuthorizedRoute"
+import SettingsLayout from "./scenes/Profile/Settings/SettingsLayout"
+import Profile from "./scenes/Profile/Profile"
 
 const history = createBrowserHistory();
 
@@ -24,14 +21,9 @@ export default () =>
       <Switch>
         <Route exact path="/" component={Index}/>
         <Route exact path="/login" component={Login}/>
-        <Route exact path="/dashboard" component={DashBoard}/>
         <Route exact path="/register" component={Register}/>
-        <Route exact path="/passport" component={Passport}/>
-        <Route exact path="/cargo/create" component={CargoCreate}/>
-        <Route exact path="/drive/create" component={Drive}/>
-        <Route exact path="/my/cargo" component={MyCargo}/>
-        <Route exact path="/settings/profile" component={SettingsProfile}/>
-        <Route exact path="/cargo/:id" component={CargoInfo}/>
+        <AuthorizedRoute path="/settings" component={SettingsLayout}/>
+        <AuthorizedRoute path="/profile" component={Profile}/>
       </Switch>
     </ConnectedRouter>
   </Provider>

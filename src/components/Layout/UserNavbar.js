@@ -37,9 +37,9 @@ export default class UserNavbar extends React.Component {
       <div>
         <Navbar className="navbar-light bg-light" expand="md">
           <NavbarBrand href="/">Transfer</NavbarBrand>
-          <Link to='/drive/create'><Button type='primary'>Создать поездку</Button></Link>
-          <Link to='/my/cargo'>Мои грузы</Link>
-          <Link to='/cargo/create'><Button type='primary'>Добавить груз</Button></Link>
+          <Link to='/profile/drive/create'><Button type='primary'>Создать поездку</Button></Link>
+          <Link to='/profile/cargo'>Мои грузы</Link>
+          <Link to='/profile/cargo/create'><Button type='primary'>Добавить груз</Button></Link>
           <Nav navbar>
             <NavItem>
               <NavLink>

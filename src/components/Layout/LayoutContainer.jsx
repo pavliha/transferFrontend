@@ -3,9 +3,10 @@ import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
 import UserNavbar from './UserNavbar';
 import GuestNavbar from './GuestNavbar';
-import {logoutUser} from "../../pages/Auth/user.action";
-
+import {logoutUser} from "../../scenes/Auth/auth.action";
+import {withRouter} from "react-router-dom"
 @connect(store => store.userReducer)
+@withRouter
 export default class LayoutContainer extends React.Component {
 
     render() {
