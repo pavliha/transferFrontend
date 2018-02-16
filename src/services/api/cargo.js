@@ -1,4 +1,4 @@
-import {request} from "./api"
+import {request} from "./index"
 import urlencodeForm from "../urlencodeForm"
 
 export const create = async (form) => {

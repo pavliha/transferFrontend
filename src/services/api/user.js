@@ -1,4 +1,4 @@
-import {request} from "./api"
+import {request} from "./index"
 import urlencodeForm from "../urlencodeForm"
 import JWT from "jwt-decode"
 
@@ -39,9 +39,9 @@ export const login = async (form) => {
 
 export const logout = async () => {
   localStorage.clear()
-  const [err, response] = await request.post('/logout')
-  if (err) throw err.response.data
-  return response.data
+  // const [err, response] = await request.post('/logout')
+  // if (err) throw err.response.data
+  // return response.data
 }
 
 

@@ -49,9 +49,9 @@ export default class Index extends Component {
 
     componentDidMount() {
 
-        google.maps.event.addDomListener(window, 'load', () => {
-            this.cargoFinder = new CargoFinder(document.querySelector("#map"), routes)
-        });
+        // google.maps.event.addDomListener(window, 'load', () => {
+        //     this.cargoFinder = new CargoFinder(document.querySelector("#map"), routes)
+        // });
     }
 
     async route() {

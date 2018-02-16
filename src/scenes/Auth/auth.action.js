@@ -1,4 +1,4 @@
-import {user} from '../../services/api/api'
+import {user} from '../../services/api/index'
 
 export const REGISTER_USER = 'REGISTER_USER'
 export const LOGIN_USER = 'LOGIN_USER'
@@ -10,13 +10,12 @@ export const registerUser = form => ({
   payload: user.register(form),
 })
 
-export const loginUser = data => !data ?
-  ({
+export const loginUser = data => !data ? ({
     type: LOGIN_USER + "_FULFILLED",
     payload: user.get()
   }) : ({
     type: LOGIN_USER,
-    payload: user.get()
+    payload: user.login(data)
   })
 
 export const logoutUser = () => {
