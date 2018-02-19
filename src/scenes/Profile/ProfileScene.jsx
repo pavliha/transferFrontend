@@ -1,15 +1,15 @@
 import React from "react";
-import LayoutContainer from "../../components/Layout/LayoutContainer"
 import {Route, Switch} from "react-router-dom"
-import Cargo from "./Cargo/Cargo"
-import SettingsLayout from "./Settings/SettingsLayout"
-import Cargos from "./Cargo/Cargos"
-import DriveCreate from "./Drive/DriveCreate"
-import Drives from "./Drive/Drives"
-import CargoCreate from "./Cargo/CargoCreate"
+import Cargo from "./Cargo/CargoScene"
+import SettingsLayout from "./Settings/SettingsScene"
+import Cargos from "./Cargo/CargosScene"
+import DriveCreate from "./Drive/DriveCreateScene"
+import Drives from "./Drive/DrivesScene"
+import CargoCreate from "./Cargo/CargoCreateScene"
+import Layout from "../../components/Layout/Layout"
 
 export default () =>
-  <LayoutContainer>
+  <Layout>
     <Switch>
       <Route exact path='/profile/drive' component={Drives}/>
       <Route exact path='/profile/drive/create' component={DriveCreate}/>
@@ -18,4 +18,4 @@ export default () =>
       <Route exact path="/profile/cargo/:id" component={Cargo}/>
       <Route path='/settings' component={SettingsLayout}/>
     </Switch>
-  </LayoutContainer>
+  </Layout>

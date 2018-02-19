@@ -11,9 +11,9 @@ const rememberToken = (response) => {
 }
 
 
-export const register = async (form) => {
+export const register = async (values) => {
 
-  const [err, response] = await request.post('/register', urlencodeForm(form))
+  const [err, response] = await request.post('/register', values)
   if (err) throw err.response.data
   const user = JWT(response.data.token).data
 
@@ -24,9 +24,9 @@ export const register = async (form) => {
   return user
 }
 
-export const login = async (form) => {
+export const login = async ({email, password}) => {
 
-  const [err, response] = await request.post('/login', urlencodeForm(form))
+  const [err, response] = await request.post('/login', {email, password})
   if (err) throw err.response.data
 
   const user = JWT(response.data.token).data
@@ -39,9 +39,6 @@ export const login = async (form) => {
 
 export const logout = async () => {
   localStorage.clear()
-  // const [err, response] = await request.post('/logout')
-  // if (err) throw err.response.data
-  // return response.data
 }
 
 

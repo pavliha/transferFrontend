@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {updatePassport} from './settings.action'
-import PassportForm from "../../Auth/PassportForm"
+import PassportForm from "./PassportForm"
 
 export default class Passport extends Component {
   componentDidUpdate() {

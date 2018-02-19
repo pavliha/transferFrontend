@@ -1,14 +1,14 @@
 import React from "react";
 import {Link, Route} from "react-router-dom"
-import SettingsProfile from "./Profile"
-import Passport from "./Passport"
+import SettingsProfile from "./ProfileScene"
+import Passport from "./PassportScene"
 import {Card, Col, Menu, Row} from "antd"
-import LayoutContainer from "../../../components/Layout/LayoutContainer"
+import Layout from "../../../components/Layout/Layout"
 import {Container} from "reactstrap"
 
 
 export default () =>
-  <LayoutContainer>
+  <Layout>
     <Container>
       <Row>
         <Col span={6}>
@@ -29,4 +29,4 @@ export default () =>
         </Col>
       </Row>
     </Container>
-  </LayoutContainer>
+  </Layout>

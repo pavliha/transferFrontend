@@ -3,7 +3,6 @@ import {Nav, Navbar, NavbarBrand, NavItem, NavLink,} from 'reactstrap';
 import {Avatar, Button, Dropdown, Icon, Menu} from "antd";
 import {Link} from "react-router-dom"
 
-
 export default class UserNavbar extends React.Component {
   menu = (
     <Menu>
