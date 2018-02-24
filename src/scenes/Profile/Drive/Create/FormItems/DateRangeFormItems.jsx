@@ -55,7 +55,7 @@ export default class DateRangeForm extends React.Component {
     const {startValue, endValue, endOpen} = this.state
 
     return (
-      <Card className='mt-2'>
+      <div>
         <Form.Item>
           {getFieldDecorator('date_from', {
             rules: [{
@@ -93,7 +93,7 @@ export default class DateRangeForm extends React.Component {
           />)
           }
         </Form.Item>
-      </Card>
+      </div>
     )
   }
 }

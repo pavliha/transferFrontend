@@ -1,12 +1,12 @@
-import React from 'react';
-import DirectionsService from '../../../../services/api/maps/DirectionsService';
-import RouteBoxer from '../../../../services/routeBoxer';
-import RoutesGeocoder from "../../../../services/api/maps/RoutesGeocoder"
-import StartMarker from "../../../../services/api/maps/Marker/StartMarker"
-import StopMarker from "../../../../services/api/maps/Marker/StopMarker"
-import RoutesMap from "./DriveMap"
+import React from 'react'
+import DirectionsService from '../../../../../services/api/maps/DirectionsService'
+import RouteBoxer from '../../../../../services/routeBoxer'
+import RoutesGeocoder from "../../../../../services/api/maps/RoutesGeocoder"
+import StartMarker from "../../../../../services/api/maps/Marker/StartMarker"
+import StopMarker from "../../../../../services/api/maps/Marker/StopMarker"
+import DriveMap from "./DriveMap"
 
-export default class GoogleMapContainer extends React.Component {
+export default class RoutesMapContainer extends React.Component {
   state = {
     center: {lat: 47.785480, lng: 35.208435},
     distance: 2,
@@ -19,62 +19,63 @@ export default class GoogleMapContainer extends React.Component {
   destinationMarkers = []
 
   constructor(props) {
-    super(props);
+    super(props)
   }
 
   async componentDidMount() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(({coords}) => {
-        const latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
-        this.setState({center: latLng});
-      });
+        const latLng = new google.maps.LatLng(coords.latitude, coords.longitude)
+        this.setState({center: latLng})
+      })
     }
 
-    const {distance} = this.state;
-    const directionsService = new DirectionsService();
-    const routeBoxer = new RouteBoxer();
+    const {radius, from, to, routes} = this.props
 
-    const directions = await directionsService.drive({
-      origin: this.props.from.label,
-      destination: this.props.to.label
-    });
+    debugger
+    const directionsService = new DirectionsService()
+    const routeBoxer = new RouteBoxer()
 
-    const boxes = routeBoxer.generateBoxes({directions, distance});
-    this.setState({directions, boxes});
+    const directions = await directionsService.drive({origin: from, destination: to})
+
+    const boxes = routeBoxer.generateBoxes({directions, radius})
+
+    this.setState({directions, boxes})
+
     const routesGeocoder = new RoutesGeocoder()
-    const routesLatLng = await routesGeocoder.geocodeRoutes(this.props.routes);
+    const routesLatLng = await routesGeocoder.geocodeRoutes(this.props.routes)
 
-    const routesInArea = this.findRoutesInBoxes(routesLatLng, boxes);
+    const routesInArea = this.findRoutesInBoxes(routesLatLng, boxes)
 
     const directionsInArea = []
     for (const routeInArea of routesInArea) {
       const directions = await directionsService.drive({
         origin: routeInArea.origin,
         destination: routeInArea.destination
-      });
+      })
       directionsInArea.push(directions)
     }
 
-    this.setState({directions, boxes, routesInArea, directionsInArea});
+    this.setState({directions, boxes, routesInArea, directionsInArea})
 
   }
 
   // async findCargo(routes) {
-  //   const routes = await this.routesGeocoder.geocodeRoutes(routes);
+  //   const routes = await this.routesGeocoder.geocodeRoutes(routes)
   //
-  //   return this.findRoutesInBoxes(routes, boxes);
+  //   return this.findRoutesInBoxes(routes, boxes)
   // }
 
   findRoutesInBoxes(routes, boxes) {
-    const routesInBoxes = [];
+    const routesInBoxes = []
     for (const route of routes) {
       if ((typeof route.origin === 'object') && (typeof route.destination === 'object')) {
-        const routeInBox = this.findRouteInBoxes(route, boxes);
-        if (routeInBox) routesInBoxes.push(routeInBox);
+        const routeInBox = this.findRouteInBoxes(route, boxes)
+        if (routeInBox) routesInBoxes.push(routeInBox)
       }
     }
 
-    return routesInBoxes;
+    return routesInBoxes
   }
 
   findRouteInBoxes(route, boxes) {
@@ -104,9 +105,9 @@ export default class GoogleMapContainer extends React.Component {
   }
 
   render() {
-    const {directions, boxes, routesInArea, directionsInArea, center} = this.state;
+    const {directions, boxes, routesInArea, directionsInArea, center} = this.state
     return (
-      <RoutesMap
+      <DriveMap
         center={center}
         directions={directions}
         routesInArea={routesInArea}
@@ -116,6 +117,6 @@ export default class GoogleMapContainer extends React.Component {
         loadingElement={<div style={{height: `100%`}}/>}
         containerElement={<div style={{height: `400px`}}/>}
         mapElement={<div style={{height: `90vh`}}/>}
-      />);
+      />)
   }
 }

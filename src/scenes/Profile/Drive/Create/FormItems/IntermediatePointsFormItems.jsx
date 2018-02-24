@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Button, Card, Form, Icon} from 'antd';
+import {Button, Form, Icon} from 'antd';
 import Geosuggest from "../../../../../components/Geosuggest/Geosuggest"
 
 let uuid = 0;
@@ -59,14 +59,14 @@ export default class DynamicFieldSet extends React.Component {
       );
     });
     return (
-      <Card className='mt-2'>
+      <div>
         {formItems}
         <Form.Item>
           <Button type="dashed" style={{width: "100%"}} onClick={this.add}>
             <Icon type="plus"/> Добавить промежуточную точку
           </Button>
         </Form.Item>
-      </Card>
+      </div>
     );
   }
 }
