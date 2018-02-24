@@ -28,6 +28,12 @@ export default (state = initialState, {type, payload}) => {
         loading: false
       }
 
+    case LOGIN_USER + "_PENDING":
+      return {
+        ...state,
+        loading: true,
+      }
+
     case LOGIN_USER + "_FULFILLED":
       return {
         ...state,

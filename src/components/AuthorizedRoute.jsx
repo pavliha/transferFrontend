@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from "react-redux"
 import {Redirect, Route} from "react-router-dom"
+import Layout from "./Layout/Layout"
+import CenteredSpin from "./CenteredSpin"
 
 @connect(store => store.userReducer)
 export default class AuthorizedRoute extends React.Component {
@@ -10,7 +12,7 @@ export default class AuthorizedRoute extends React.Component {
 
     return (
       <Route {...rest} render={props => {
-        if (loading) return <div>Loading...</div>
+        if (loading) return <Layout><CenteredSpin/></Layout>
         return user
           ? <Component user={user} {...props} />
           : <Redirect to="/login"/>
