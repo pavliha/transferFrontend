@@ -1,7 +1,6 @@
 import React from 'react'
 import DirectionsService from '../../../../../services/api/maps/DirectionsService'
 import RouteBoxer from '../../../../../services/routeBoxer'
-import RoutesGeocoder from "../../../../../services/api/maps/RoutesGeocoder"
 import StartMarker from "../../../../../services/api/maps/Marker/StartMarker"
 import StopMarker from "../../../../../services/api/maps/Marker/StopMarker"
 import DriveMap from "./DriveMap"
@@ -9,9 +8,6 @@ import DriveMap from "./DriveMap"
 export default class RoutesMapContainer extends React.Component {
   state = {
     center: {lat: 47.785480, lng: 35.208435},
-    distance: 2,
-    from: 'Tymoshivka, Zaporiz\'ka oblast, 72030',
-    to: '112B, Kosmichna St, 112Б, Zaporizhzhia, Zaporiz\'ka oblast, 69000',
     routesInArea: [],
     boxes: [],
   }
@@ -30,22 +26,19 @@ export default class RoutesMapContainer extends React.Component {
       })
     }
 
-    const {radius, from, to, routes} = this.props
+    const {radius, from, to, drives} = this.props
 
-    debugger
     const directionsService = new DirectionsService()
     const routeBoxer = new RouteBoxer()
 
     const directions = await directionsService.drive({origin: from, destination: to})
 
-    const boxes = routeBoxer.generateBoxes({directions, radius})
+
+    const boxes = routeBoxer.generateBoxes(directions, radius)
 
     this.setState({directions, boxes})
 
-    const routesGeocoder = new RoutesGeocoder()
-    const routesLatLng = await routesGeocoder.geocodeRoutes(this.props.routes)
-
-    const routesInArea = this.findRoutesInBoxes(routesLatLng, boxes)
+    const routesInArea = this.findRoutesInBoxes(drives, boxes)
 
     const directionsInArea = []
     for (const routeInArea of routesInArea) {
@@ -69,7 +62,7 @@ export default class RoutesMapContainer extends React.Component {
   findRoutesInBoxes(routes, boxes) {
     const routesInBoxes = []
     for (const route of routes) {
-      if ((typeof route.origin === 'object') && (typeof route.destination === 'object')) {
+      if ((typeof route.from === 'object') && (typeof route.to === 'object')) {
         const routeInBox = this.findRouteInBoxes(route, boxes)
         if (routeInBox) routesInBoxes.push(routeInBox)
       }
@@ -79,12 +72,12 @@ export default class RoutesMapContainer extends React.Component {
   }
 
   findRouteInBoxes(route, boxes) {
-    if (this.isPointInBoxes(route.origin, boxes) && this.isPointInBoxes(route.destination, boxes)) {
-      const startMarker = new StartMarker(this.map, route.origin)
+    if (this.isPointInBoxes(route.from, boxes) && this.isPointInBoxes(route.to, boxes)) {
+      const startMarker = new StartMarker(this.map, route.from)
 
       this.originMarkers.push(startMarker)
 
-      const stopMarker = new StopMarker(this.map, route.destination)
+      const stopMarker = new StopMarker(this.map, route.to)
       this.destinationMarkers.push(stopMarker)
 
       return route
@@ -93,11 +86,11 @@ export default class RoutesMapContainer extends React.Component {
     return false
   }
 
-  isPointInBoxes(point, boxes) {
+  isPointInBoxes({lat, lng}, boxes) {
     let result = false
 
     for (const box of boxes) {
-      if (box.contains(point)) {
+      if (box.contains({lat, lng})) {
         result = true
       }
     }

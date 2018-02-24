@@ -12,7 +12,6 @@ export default class RoutesMap extends React.Component {
       {routesInArea.map((routeInArea, index) => <Marker key={index} position={routeInArea.origin}/>)}
       {routesInArea.map((routeInArea, index) => <Marker key={index} position={routeInArea.destination}/>)}
 
-      {/*<Marker position={{lat: 47.185852, lng: 35.100853}}/>*/}
       {directionsInArea && directionsInArea.map((direction, key) =>
         <DirectionsRenderer key={key} directions={direction}/>)}
       {directions &&

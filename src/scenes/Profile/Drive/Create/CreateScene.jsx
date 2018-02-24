@@ -10,15 +10,6 @@ import {connect} from "react-redux"
 export default class CreateScene extends Component {
   state = {
     center: {lat: 47.785480, lng: 35.208435},
-    radius: 2,
-    from: {
-      label: 'улица Пушкина, 36, Тимошовка, Zaporiz\'ka oblast, Ukraine',
-      location: {lat: 47.1917058, lng: 35.104556499999944},
-    },
-    to: {
-      label: 'улица Пушкина, 36, Тимошовка, Zaporiz\'ka oblast, Ukraine',
-      location: {lat: 47.1917058, lng: 35.104556499999944},
-    },
   }
 
   componentDidMount() {
@@ -33,8 +24,20 @@ export default class CreateScene extends Component {
 
   render() {
 
-    const {dispatch, routes} = this.props
+    const {dispatch, drives} = this.props
     const {from, to} = this.state
+
+    let routesMap = null
+    if(drives.length){
+      if(from && to){
+        routesMap = <RoutesMap
+          radius={30}
+          drives={drives}
+          from={from}
+          to={to}
+        />
+      }
+    }
 
     return <Row>
       <Col span={8}>
@@ -43,14 +46,7 @@ export default class CreateScene extends Component {
       </Col>
       <Col span={16}>
         <div className='pl-1'>
-          {(routes && (from || to )) ?
-            <RoutesMap
-              radius={30}
-              routes={routes}
-              from={from}
-              to={to}
-            />
-            : null}
+          {routesMap}
         </div>
       </Col>
     </Row>
