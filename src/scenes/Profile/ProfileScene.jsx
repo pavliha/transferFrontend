@@ -4,14 +4,12 @@ import Cargo from "./Cargo/CargoScene"
 import SettingsLayout from "./Settings/SettingsScene"
 import Cargos from "./Cargo/CargosScene"
 import DriveCreate from "./Drive/Create/CreateScene"
-import Drives from "./Drive/DrivesScene"
 import CargoCreate from "./Cargo/CargoCreateScene"
 import Layout from "../../components/Layout/Layout"
 
 export default () =>
   <Layout>
     <Switch>
-      <Route exact path='/profile/drive' component={Drives}/>
       <Route exact path='/profile/drive/create' component={DriveCreate}/>
       <Route exact path="/profile/cargo" component={Cargos}/>
       <Route exact path="/profile/cargo/create" component={CargoCreate}/>
