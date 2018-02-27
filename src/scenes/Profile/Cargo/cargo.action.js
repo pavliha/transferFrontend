@@ -4,9 +4,9 @@ export const GET_CARGOS = 'GET_CARGOS'
 export const CREATE_CARGO = 'CREATE_CARGO'
 export const GET_CARGO = 'GET_CARGO'
 
-export const createCargo = form => ({
+export const createCargo = values => ({
   type: CREATE_CARGO,
-  payload: API.cargo.create(form)
+  payload: API.cargo.create(values)
 })
 
 

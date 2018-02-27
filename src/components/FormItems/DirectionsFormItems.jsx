@@ -1,12 +1,11 @@
 import React from "react"
-import Geosuggest from "../../../../../components/Geosuggest/Geosuggest"
+import Geosuggest from "../Geosuggest/Geosuggest"
 import {Form} from 'antd'
 
 export default class DirectionsForm extends React.Component {
 
   render() {
-    const {getFieldDecorator, getFieldsValue, setFieldsValue} = this.props.form
-    const {directions, onChange} = this.props
+    const {getFieldDecorator, setFieldsValue} = this.props.form
     return <div>
       <Form.Item label="Откуда едите?">
         {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import {Button, Form, Icon} from 'antd';
-import Geosuggest from "../../../../../components/Geosuggest/Geosuggest"
+import Geosuggest from "../Geosuggest/Geosuggest"
 
 let uuid = 0;
 @Form.create()

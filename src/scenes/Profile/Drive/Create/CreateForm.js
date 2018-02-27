@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 
 import {Button, Card, Form} from 'antd'
-import IntermediatePointsFormItems from "./FormItems/IntermediatePointsFormItems"
-import DateRangeFormItems from "./FormItems/DateRangeFormItems"
-import DirectionsFormItems from "./FormItems/DirectionsFormItems"
+import IntermediatePointsFormItems from "../../../../components/FormItems/IntermediatePointsFormItems"
+import DateRangeFormItems from "../../../../components/FormItems/DateRangeFormItems"
+import DirectionsFormItems from "../../../../components/FormItems/DirectionsFormItems"
 
 const checkLocation = (values) => {
 
