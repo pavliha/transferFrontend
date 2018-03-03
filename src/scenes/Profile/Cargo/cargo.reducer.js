@@ -28,6 +28,11 @@ export default (state = initialState, {type, payload}) => {
       }
 
 
+
+
+
+
+
     case GET_CARGOS + "_PENDING":
       return {
         ...state,
@@ -38,10 +43,6 @@ export default (state = initialState, {type, payload}) => {
       return {
         ...state,
         cargos: payload.data,
-        page: payload.page,
-        lastPage: payload.lastPage,
-        total: payload.total,
-        perPage: payload.perPage,
         loading: false
       }
 
@@ -51,6 +52,12 @@ export default (state = initialState, {type, payload}) => {
         errors: payload,
         loading: false
       }
+
+
+
+
+
+
 
     case GET_CARGO + "_PENDING":
       return {

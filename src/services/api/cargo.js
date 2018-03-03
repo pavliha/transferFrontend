@@ -23,7 +23,6 @@ export const create = async (values) => {
     volume: values.volume,
     description: values.description,
   }
-  debugger
   const [err, response] = await request.post('/cargo', data)
   if (err) throw err.response.data
 
@@ -40,8 +39,8 @@ export const all = async () => {
 export const find = async (id) => {
   const [err, response] = await request.get('/cargo')
   if (err) throw err.response.data
-
-  return response.data.data.find((cargo) => cargo.id === parseInt(id))
+  const data = response.data.data.find((cargo) => cargo.id === parseInt(id))
+  return data
 }
 
 const data = {
@@ -53,7 +52,7 @@ const data = {
     lat: 47.8388,
     lng: 35.13956699999994,
     placeId: "ChIJ0U8jLBVn3EARjGp5k7-Oh-E",
-  }, 
+  },
   images: ["undefined//home/pavel/Code/transferBackend/public/uploads/1519575718427-WtBPFsHJJbRLKfHjt6JLxe7yWg7MgiAOfXuEXCrR.png.png"],
   price: "23",
   to: {
