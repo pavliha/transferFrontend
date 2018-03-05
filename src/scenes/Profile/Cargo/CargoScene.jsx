@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {getUserCargo} from "./cargo.action"
-import {Card} from "antd"
+import {Button, Card, Form, Input, Row, Col } from 'antd';
 import CenteredSpin from '../../../components/CenteredSpin'
-import {Button, Container, FormGroup, Label} from "reactstrap"
+import {Container, FormGroup, Label} from "reactstrap"
 
 @connect(store => store.cargoReducer)
 export default class Cargos extends Component {
@@ -25,36 +25,44 @@ export default class Cargos extends Component {
     return <div>
       <Container>
         <Card>
-          <FormGroup row>
-            <Label for="name" sm={3}>Название груза</Label>{cargo.name}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="from" sm={3}>Откуда:</Label>{cargo.from.name}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="to" sm={3}>Куда:</Label>{cargo.to.name}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="date_from" sm={3}>Время отправки</Label>{cargo.from.date}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="date_to" sm={3}>Время прибытия</Label>{cargo.date_to}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="price" sm={3}>Ориентировочная цена</Label>{cargo.price}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="volume" sm={3}>Объем</Label>{cargo.volume}
-          </FormGroup>
-          <FormGroup row>
-            <Label for="weight" sm={3}>Вес</Label>{cargo.weight}
-          </FormGroup>
+          <Row>
+            <Col span={6}><Label>Название груза</Label></Col>
+            <Col span={6}>{cargo.name}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="from"><Label>Откуда</Label></Col>
+            <Col span={6}>{cargo.from.name}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="to"><Label>Куда</Label></Col>
+            <Col span={6}>{cargo.to.name}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="date_from"><Label>Время отправки</Label></Col>
+            <Col span={6}>{cargo.from.date}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="date_to"><Label>Время прибытия</Label></Col>
+            <Col span={6}>{cargo.to.date}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="price"><Label>Ориентировочная цена</Label></Col>
+            <Col span={6}>{cargo.price}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="volume"><Label>Объем</Label></Col>
+            <Col span={6}>{cargo.volume}</Col>
+          </Row>
+          <Row>
+            <Col span={6} for="weight"><Label>Вес</Label></Col>
+            <Col span={6}>{cargo.weight}</Col>
+          </Row>
           {cargo.description}
-          {/*{cargo.images}<br/>*/}
-          <FormGroup check row>
-            <Button color="primary" className="mt-2" onClick={this.handleSubmit.bind(this)}>Вернуться к
+          {/*{cargo.pictures}<br/>*/}
+          <Row>
+            <Button type="primary" className="mt-2" onClick={this.handleSubmit.bind(this)}>Вернуться к
               каталогу</Button>
-          </FormGroup>
+          </Row>
         </Card>
       </Container>
     </div>

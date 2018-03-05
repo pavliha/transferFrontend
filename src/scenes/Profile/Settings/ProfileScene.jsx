@@ -21,25 +21,6 @@ export default class MyForm extends Component {
 
     this.props.dispatch(updateUser(e.target.form))
   }
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({confirmDirty: this.state.confirmDirty || !!value});
-  }
-  checkPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  }
-  checkConfirm = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], {force: true});
-    }
-    callback();
-  }
 
   componentDidUpdate() {
     if (this.props.token)
@@ -48,7 +29,6 @@ export default class MyForm extends Component {
 
   render() {
     const {getFieldDecorator} = this.props.form;
-    const {autoCompleteResult} = this.state;
     const {user} = this.props
     const formItemLayout = {
       labelCol: {
@@ -103,28 +83,6 @@ export default class MyForm extends Component {
               {type: 'email', message: 'The input is not valid E-mail!',},
               {required: true, message: 'Please input your E-mail!',}],
           })(<Input/>)}
-        </Form.Item>
-        <Form.Item label="Пароль" {...formItemLayout}>
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'Please input your password!',
-            }, {
-              validator: this.checkConfirm,
-            }],
-          })(
-            <Input type="password"/>
-          )}
-        </Form.Item>
-        <Form.Item label="Повторите пароль" {...formItemLayout}>
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: 'Please confirm your password!',
-            }, {
-              validator: this.checkPassword,
-            }],
-          })(
-            <Input type="password" onBlur={this.handleConfirmBlur}/>
-          )}
         </Form.Item>
 
         <Form.Item label="Номер телефона" {...formItemLayout}>

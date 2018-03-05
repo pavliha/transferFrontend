@@ -4,9 +4,9 @@ import * as user from './user'
 import * as cargo from './cargo'
 import * as drive from './drive'
 
-export const LOCAL_API_URL = 'http://localhost:3333'
-export const API_URL = LOCAL_API_URL
-// export const API_URL = 'https://transfer-api.herokuapp.com'
+// export const LOCAL_API_URL = 'http://localhost:3333'
+// export const API_URL = LOCAL_API_URL
+export const API_URL = 'https://transfer-api.herokuapp.com'
 
 
 const getToken = () => {

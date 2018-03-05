@@ -18,7 +18,8 @@ export default class CreateForm extends Component {
 
   render() {
     const {getFieldDecorator} = this.props.form
-    return <Form onSubmit={this.handleSubmit} layout='horizontal'>
+
+    return  <Form onSubmit={this.handleSubmit} layout='horizontal'>
       <Card className='mt-2'>
         <Form.Item label="Название груза">
           {getFieldDecorator('name', {
@@ -71,7 +72,8 @@ export default class CreateForm extends Component {
         }
       </Card>
       <Card className='mt-2'>
-        <Button type="primary" onClick={this.handleSubmit.bind(this)} htmlType="submit" className="btn-block">Создать груз</Button>
+        <Button type="primary" onClick={this.handleSubmit.bind(this)} htmlType="submit" className="btn-block">Создать
+          груз</Button>
       </Card>
     </Form>
   }

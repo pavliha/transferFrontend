@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
 import {getUserCargos} from "./cargo.action"
-
-import {Card} from "antd"
-import {Button, FormGroup, Label} from "reactstrap"
+import {Button, Card, Form, Input, Row, Col} from 'antd';
+import {Label} from "reactstrap"
 
 @connect(store => store.cargoReducer)
 export default class Shipments extends Component {
@@ -24,28 +23,33 @@ export default class Shipments extends Component {
       {cargos.map((cargo, key) =>
         <div key={key}>
           <Card>
-            <FormGroup row>
-              <Label for="name" sm={3}>Название груза</Label>{cargo.name}
-            </FormGroup>
-            <FormGroup row>
-              <Label for="from" sm={3}>Откуда:</Label>{cargo.from.name}
-            </FormGroup>
-            <FormGroup row>
-              <Label for="to" sm={3}>Куда:</Label>{cargo.to.name}
-            </FormGroup>
-            <FormGroup row>
-              <Label for="date_from" sm={3}>Время отправки</Label>{cargo.from.date}
-            </FormGroup>
-            <FormGroup row>
-              <Label for="date_to" sm={3}>Время прибытия</Label>{cargo.to.date}
-            </FormGroup>
-            <FormGroup row>
-              <Label for="price" sm={3}>Ориентировочная цена</Label>{cargo.price}
-            </FormGroup>
-            <FormGroup check row>
-              <Button color="primary" onClick={this.handleClick.bind(this, cargo.id)} className="mt-2">
-                Полная информация груза</Button>
-            </FormGroup>
+            <Row>
+              <Col span={6} for="name"><Label>Название груза</Label></Col>
+              <Col span={6}>{cargo.name}</Col>
+            </Row>
+            <Row>
+              <Col span={6} for="from"><Label>Откуда</Label></Col>
+              <Col span={6}>{cargo.from.name}</Col>
+            </Row>
+            <Row>
+              <Col span={6} for="to"><Label>Куда</Label></Col>
+              <Col span={6}>{cargo.to.name}</Col>
+            </Row>
+            <Row>
+              <Col span={6} for="date_from"><Label>Время отправки</Label></Col>
+              <Col span={6}>{cargo.from.date}</Col>
+            </Row>
+            <Row>
+              <Col span={6} for="date_to"><Label>Время прибытия</Label></Col>
+              <Col span={6}>{cargo.to.date}</Col>
+            </Row>
+            <Row>
+              <Col span={6} for="price"><Label>Ориентировочная цена</Label></Col>
+              <Col span={6}>{cargo.price}</Col>
+            </Row>
+
+            <Button type="primary" onClick={this.handleClick.bind(this, cargo.id)} className="mt-2"> Полная информация груза</Button>
+
           </Card><br/>
         </div>)}
     </div>

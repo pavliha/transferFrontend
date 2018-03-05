@@ -17,7 +17,7 @@ export const create = async (values) => {
       lng: values.to.location.lng,
       placeId: values.to.placeId,
     },
-    images: values.upload.map(file => file.response.url),
+    pictures: values.upload.map(file => file.response.url),
     price: values.price,
     weight: values.weight,
     volume: values.volume,
