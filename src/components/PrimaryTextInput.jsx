@@ -7,7 +7,9 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 
 const styles = theme => ({
   root: {
-    padding: 0,
+    paddingLeft: 11,
+    borderRadius: 3,
+    backgroundColor: theme.palette.common.white,
   },
   adornment: {
     marginTop: '8px',
@@ -15,10 +17,8 @@ const styles = theme => ({
     zIndex: '99999',
   },
   input: {
-    marginLeft: '-50px',
-    borderRadius: 3,
-    backgroundColor: theme.palette.common.white,
-    padding: '15px 20px 15px 55px',
+    // backgroundColor: 'black',
+    padding: '15px 15px 15px 0px',
     width: 'calc(100% - 24px)',
     transition: theme.transitions.create(['border-color', 'box-shadow']),
     '&:focus': {
