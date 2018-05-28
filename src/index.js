@@ -1,29 +1,32 @@
-require("react-hot-loader/patch")
-import axios from "axios"
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
-import routes from './routes'
+import { AppContainer } from 'react-hot-loader'
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import store from './store'
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'antd/dist/antd.css'
-import './style.scss'
-
-
-
-window.axios = axios
+import './styles/index.scss'
+import IndexScene from './components/IndexScene'
 
 const render = Component => {
-    ReactDOM.render(
-        <AppContainer>
-            <Component/>
-        </AppContainer>,
-        document.getElementById('root'),
-    )
+  ReactDOM.render(
+    <AppContainer>
+      <Component/>
+    </AppContainer>,
+    document.getElementById('root'),
+  )
 }
 
-render(routes)
+render(() =>
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={IndexScene}/>
+      </Switch>
+    </Router>
+  </Provider>
+)
 
 if (module.hot) {
-    module.hot.accept()
+  module.hot.accept()
 }
