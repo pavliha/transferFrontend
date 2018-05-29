@@ -10,7 +10,7 @@ import Container from '../Container'
 const Banner = () =>
   <Background>
     <Container>
-      <div style={{ height: 700 }} className="d-flex align-items-center">
+      <div style={{ height: 350 }} className="d-flex justify-content-center align-items-center">
         <section className="text-white pt-5 pb-5">
           <Typography className="text-white" variant="display2" gutterBottom>
             Transfer
