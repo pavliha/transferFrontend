@@ -7,30 +7,33 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import withRoot from '../../utils/widthRoot'
+import Container from '../Container'
 
-const styles = () => ({
+const styles = theme => ({
   root: {
+    background: theme.palette.primary.main,
     flexGrow: 1,
   },
   flex: {
     flex: 1,
   },
-
 })
 
 const Header = (props) => {
   const { classes } = props
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="title" color="inherit" className={classes.flex}>
-            Transfer
-          </Typography>
-          <Button color="inherit">Войти</Button>
-          <Button color="inherit">Зарегестрироваться</Button>
-        </Toolbar>
-      </AppBar>
+      <Container>
+        <AppBar position="static">
+          <Toolbar disableGutters>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              Transfer
+            </Typography>
+            <Button color="inherit">Войти</Button>
+            <Button color="inherit">Зарегестрироваться</Button>
+          </Toolbar>
+        </AppBar>
+      </Container>
     </div>
   )
 }

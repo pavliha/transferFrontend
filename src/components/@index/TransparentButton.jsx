@@ -6,6 +6,9 @@ import Button from '@material-ui/core/Button'
 
 const styles = () => ({
   cssRoot: {
+    display: 'block',
+    width: '100%',
+    padding: '15px',
     backgroundColor: 'rgba(0,0,0,0.84)',
     '&:hover': {
       backgroundColor: 'rgba(0,0,0,0.95)',
@@ -14,7 +17,7 @@ const styles = () => ({
 })
 
 const TransparentButton = ({ classes, children, ...rest }) =>
-  <Button {...rest} variant="raised" color="primary" className={classes.cssRoot}>
+  <Button {...rest} variant="raised" color="primary" size="large" className={classes.cssRoot}>
     {children}
   </Button>
 

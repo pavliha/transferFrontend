@@ -9,7 +9,7 @@ const style = {
   backgroundImage: `url(${url})`,
   backgroundPosition: 'center',
   backgroundSize: 'cover',
-  height: '90vh',
+  height: '93.3vh',
   position: 'relative',
 }
 

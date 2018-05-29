@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 import './styles/index.scss'
-import IndexScene from './components/IndexScene'
+import IndexScene from './components/@index/IndexScene'
 
 const render = Component => {
   ReactDOM.render(
