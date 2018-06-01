@@ -4,14 +4,13 @@ import { AppContainer } from 'react-hot-loader'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
-
 import './styles/index.scss'
-import IndexScene from './components/@index/IndexScene'
+import LayoutScene from './components/LayoutScene'
 
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Component/>
+      <Component />
     </AppContainer>,
     document.getElementById('root'),
   )
@@ -21,7 +20,7 @@ render(() =>
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path="/" component={IndexScene}/>
+        <Route path="/" component={LayoutScene} />
       </Switch>
     </Router>
   </Provider>
