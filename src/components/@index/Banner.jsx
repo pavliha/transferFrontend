@@ -2,6 +2,7 @@ import React from 'react'
 import { Icon } from '@material-ui/core'
 import Grid from '@material-ui/core/es/Grid/Grid'
 import Typography from '@material-ui/core/es/Typography/Typography'
+import { Link } from 'react-router-dom'
 import Background from './Background'
 import PrimaryTextInput from './PrimaryTextInput'
 import TransparentButton from './TransparentButton'
@@ -10,7 +11,7 @@ import Container from '../Container'
 const Banner = () =>
   <Background>
     <Container>
-      <div style={{ height: 350 }} className="d-flex justify-content-center align-items-center">
+      <div style={{ height: 400 }} className="d-flex align-items-center">
         <section className="text-white pt-5 pb-5">
           <Typography className="text-white" variant="display2" gutterBottom>
             Transfer
@@ -37,7 +38,7 @@ const Banner = () =>
           />
         </Grid>
         <Grid item md={3} lg={2} xl={2}>
-          <TransparentButton>доставить</TransparentButton>
+          <Link to="/cargo"><TransparentButton>доставить</TransparentButton></Link>
         </Grid>
       </Grid>
     </Container>

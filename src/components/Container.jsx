@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Container = ({ children, className }) =>
-  <div className={`mx-auto ${className}`} style={{ maxWidth: 1280 }}>
+  <div className={`mx-auto ${className}`} style={{ maxWidth: 1200 }}>
     {children}
   </div>
 

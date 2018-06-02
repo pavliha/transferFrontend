@@ -6,7 +6,6 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import withRoot from '../../utils/widthRoot'
 import Container from '../Container'
 
 const styles = theme => ({
@@ -42,4 +41,4 @@ Header.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withRoot(withStyles(styles)(Header))
+export default withStyles(styles)(Header)
