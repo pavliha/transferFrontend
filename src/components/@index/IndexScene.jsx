@@ -6,6 +6,7 @@ import Banner from './Banner'
 import CarriersCounter from './CarriersCounter'
 import Container from '../Container'
 import { loadPopularRoute } from '../../actions/popularRoute.action'
+import InfoScene from './InfoScene'
 
 class IndexScene extends React.Component {
   componentDidMount() {
@@ -30,7 +31,7 @@ class IndexScene extends React.Component {
             )}
           </Container>
         </section>
-
+        <InfoScene />
       </div>
     )
   }
