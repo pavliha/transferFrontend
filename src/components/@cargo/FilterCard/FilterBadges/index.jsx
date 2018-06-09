@@ -2,9 +2,9 @@
 /* eslint-disable-next-line object-curly-newline */
 import React from 'react'
 import PropTypes from 'prop-types'
-import Badge from '../../Badge'
+import Badge from './FilterBadge'
 import connector from '../connector'
-import filterBadges from '../../../utils/filterBadges'
+import filterBadges from '../../../../utils/filterBadges'
 
 const FilterBadges = ({ badges, selected, actions }) => {
   const filteredBadges = filterBadges(badges, selected)

@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@material-ui/core/es/TextField/TextField'
-import Geosuggest from '../../Geosuggest'
+import Geosuggest from '../../../Geosuggest/index'
 
 export default {
   from: {

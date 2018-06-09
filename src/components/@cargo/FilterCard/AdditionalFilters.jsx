@@ -3,8 +3,8 @@ import Typography from '@material-ui/core/es/Typography/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import connector from './connector'
-import FilterBadges from './FilterBadges'
-import filterBadges from '../../utils/filterBadges'
+import FilterBadges from './FilterBadges/index'
+import filterBadges from '../../../utils/filterBadges'
 
 const styles = theme => ({
   root: {

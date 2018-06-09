@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as actions from '../../actions/filters.action'
+import * as actions from '../../../actions/filters.action'
 
 const initMapStateToProps = state => state.filtersReducer
 
