@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 import Banner from './Banner'
 import CarriersCounter from './CarriersCounter'
 import Container from '../Container'
-import { loadPopularRoute } from '../../actions/popularRoutes.action'
-import InfoScene from './InfoScene'
+import { loadPopularRoutes } from '../../actions/popularRoutes.action'
+import Marketing from './Marketing'
 
 class IndexScene extends React.Component {
   componentDidMount() {
-    this.props.dispatch(loadPopularRoute())
+    this.props.dispatch(loadPopularRoutes())
   }
 
   render() {
@@ -31,7 +31,7 @@ class IndexScene extends React.Component {
             )}
           </Container>
         </section>
-        <InfoScene />
+        <Marketing />
       </div>
     )
   }

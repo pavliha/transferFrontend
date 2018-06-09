@@ -31,6 +31,11 @@ const theme = createMuiTheme({
       dark: green[700],
     },
   },
+  typography: {
+    caption: {
+      fontSize: '0.7rem',
+    },
+  },
 })
 
 function withRoot(Component) {
