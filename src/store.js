@@ -3,9 +3,11 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import promiseMiddleware from 'redux-promise-middleware'
 import popularRoute from './reducers/popularRoute.reducer'
+import createCargo from './reducers/createCargo.reducer'
 
 const reducers = combineReducers({
   popularRoute,
+  createCargo,
 })
 
 const store = createStore(

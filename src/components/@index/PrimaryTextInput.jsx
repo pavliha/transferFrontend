@@ -33,19 +33,31 @@ const styles = theme => ({
 
 const PrimaryTextInput = ({ className, classes, icon, placeholder, ...rest }) =>
   <TextField
-    className={className}
     fullWidth
     placeholder={placeholder}
+    id="bootstrap-input"
     {...rest}
     InputProps={{
       startAdornment: (
-        <InputAdornment classes={{ root: classes.adornment }} position="start">
+        <InputAdornment
+          classes={{
+            root: classes.adornment,
+          }}
+          position="start"
+        >
           {icon}
         </InputAdornment>
       ),
       disableUnderline: true,
+      classes: {
+        root: classes.root,
+        input: classes.input,
+      },
     }}
-    InputLabelProps={{ shrink: true, className: classes.formLabel }}
+    InputLabelProps={{
+      shrink: true,
+      className: classes.formLabel,
+    }}
   />
 
 PrimaryTextInput.propTypes = {
@@ -61,3 +73,19 @@ PrimaryTextInput.defaultProps = {
   icon: '',
 }
 export default withStyles(styles)(PrimaryTextInput)
+
+// <TextField
+// className={className}
+// fullWidth
+// placeholder={placeholder}
+// {...rest}
+// InputProps={{
+//   startAdornment: (
+//     <InputAdornment classes={{ root: classes.adornment }} position="start">
+//       {icon}
+//     </InputAdornment>
+//   ),
+//     disableUnderline: true,
+// }}
+// InputLabelProps={{ shrink: true, className: classes.formLabel }}
+// />
