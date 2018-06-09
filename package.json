@@ -17,6 +17,7 @@
     "history": "^4.7.2",
     "npm": "^6.1.0",
     "prop-types": "^15.6.1",
+    "rc-form": "^2.2.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-hot-loader": "^4.2.0",

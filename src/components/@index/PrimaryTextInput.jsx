@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types,object-curly-newline */
+/* eslint-disable object-curly-newline */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -31,44 +31,32 @@ const styles = theme => ({
   },
 })
 
-
-const PrimaryTextInput = ({ classes, icon, placeholder, ...rest }) =>
+const PrimaryTextInput = ({ className, classes, icon, placeholder, ...rest }) =>
   <TextField
+    className={className}
     fullWidth
     placeholder={placeholder}
-    id="bootstrap-input"
     {...rest}
     InputProps={{
       startAdornment: (
-        <InputAdornment
-          classes={{
-            root: classes.adornment,
-          }}
-          position="start"
-        >
+        <InputAdornment classes={{ root: classes.adornment }} position="start">
           {icon}
         </InputAdornment>
       ),
       disableUnderline: true,
-      classes: {
-        root: classes.root,
-        input: classes.input,
-      },
     }}
-    InputLabelProps={{
-      shrink: true,
-      className: classes.formLabel,
-    }}
+    InputLabelProps={{ shrink: true, className: classes.formLabel }}
   />
 
-
 PrimaryTextInput.propTypes = {
+  className: PropTypes.string,
   placeholder: PropTypes.string,
   icon: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
   classes: PropTypes.object.isRequired,
 }
 
 PrimaryTextInput.defaultProps = {
+  className: '',
   placeholder: '',
   icon: '',
 }
