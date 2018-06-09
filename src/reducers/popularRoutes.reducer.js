@@ -1,8 +1,8 @@
-import { LOAD_POPULAR_ROUTE_FULFILLED, LOAD_POPULAR_ROUTE_PENDING } from '../actions/popularRoute.action'
+import { LOAD_POPULAR_ROUTE_FULFILLED, LOAD_POPULAR_ROUTE_PENDING } from '../actions/popularRoutes.action'
 
 const initialState = {
   loading: false,
-  popularRoute: [],
+  popularRoutes: [],
 }
 
 const popularRoute = (state = initialState, { type, payload }) => {
@@ -16,7 +16,7 @@ const popularRoute = (state = initialState, { type, payload }) => {
     case LOAD_POPULAR_ROUTE_FULFILLED: {
       return {
         ...state,
-        popularRoute: payload,
+        popularRoutes: payload,
       }
     }
     default: {

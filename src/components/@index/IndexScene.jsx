@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Banner from './Banner'
 import CarriersCounter from './CarriersCounter'
 import Container from '../Container'
-import { loadPopularRoute } from '../../actions/popularRoute.action'
+import { loadPopularRoute } from '../../actions/popularRoutes.action'
 import InfoScene from './InfoScene'
 
 class IndexScene extends React.Component {
@@ -14,14 +14,14 @@ class IndexScene extends React.Component {
   }
 
   render() {
-    const { popularRoute } = this.props
+    const { popularRoutes } = this.props
     return (
       <div>
         <Banner />
 
         <section className="bg-dark">
           <Container className="p-5 d-flex justify-content-around">
-            {popularRoute.map(route =>
+            {popularRoutes.map(route =>
               <CarriersCounter
                 key={route.id}
                 number={route.number}
@@ -38,11 +38,11 @@ class IndexScene extends React.Component {
 }
 
 const mapStateToProps = (store) => ({
-  popularRoute: store.popularRoute.popularRoute,
+  popularRoutes: store.popularRoutes.popularRoutes,
 })
 
 IndexScene.propTypes = {
-  popularRoute: PropTypes.array.isRequired,
+  popularRoutes: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
 }
 
