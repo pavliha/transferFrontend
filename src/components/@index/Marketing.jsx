@@ -21,7 +21,7 @@ const styles = {
   },
 }
 
-const InfoScene = ({ classes }) =>
+const Marketing = ({ classes }) =>
   <TextInfo>
     <Container className="pt-5 pl-5">
       <Typography className={classes.center} variant="title">ПОЧЕМУ МЫ?</Typography>
@@ -75,8 +75,8 @@ const InfoScene = ({ classes }) =>
     </Container>
   </TextInfo>
 
-InfoScene.propTypes = {
+Marketing.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(InfoScene)
+export default withStyles(styles)(Marketing)

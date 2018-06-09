@@ -1,12 +1,16 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
+// import {browserHistory} from 'history'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
+import { Link } from 'react-router-dom'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Container from '../Container'
+import TransparentButton from '../@index/TransparentButton'
 
 const styles = theme => ({
   root: {
@@ -18,27 +22,40 @@ const styles = theme => ({
   },
 })
 
-const Header = (props) => {
-  const { classes } = props
-  return (
-    <div className={classes.root}>
-      <Container>
-        <AppBar position="static">
-          <Toolbar disableGutters>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              Transfer
-            </Typography>
-            <Button color="inherit">Войти</Button>
-            <Button color="inherit">Зарегестрироваться</Button>
-          </Toolbar>
-        </AppBar>
-      </Container>
-    </div>
-  )
+class Header extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick() {
+    this.props.history.push('/')
+  }
+
+  render() {
+    const { classes } = this.props
+    return (
+      <div className={classes.root}>
+        <Container>
+          <AppBar position="static">
+            <Toolbar disableGutters>
+              <Typography onClick={this.handleClick} variant="title" color="inherit" className={classes.flex}>
+                Transfer
+              </Typography>
+              <Link to="/cargo/create"><TransparentButton>Добавить Груз</TransparentButton></Link>
+              <Button color="inherit">Войти</Button>
+              <Button color="inherit">Зарегестрироваться</Button>
+            </Toolbar>
+          </AppBar>
+        </Container>
+      </div>
+    )
+  }
 }
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
+  history: PropTypes.func.isRequired,
 }
 
-export default withStyles(styles)(Header)
+export default withRouter(withStyles(styles)(Header))

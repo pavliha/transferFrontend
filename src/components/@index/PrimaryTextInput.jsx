@@ -34,6 +34,7 @@ const styles = theme => ({
 
 const PrimaryTextInput = ({ classes, icon, placeholder, ...rest }) =>
   <TextField
+    fullWidth
     placeholder={placeholder}
     id="bootstrap-input"
     {...rest}

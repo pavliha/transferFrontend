@@ -4,6 +4,7 @@ import IndexScene from './@index/IndexScene'
 import Header from './Header'
 import CargoScene from './@cargo/CargoScene'
 import withTheme from '../utils/withTheme'
+import CargoCreateScene from './@createCargo/CargoCreateScene'
 
 const LayoutScene = () =>
   <main>
@@ -13,6 +14,7 @@ const LayoutScene = () =>
     <Switch>
       <Route exact path="/" component={IndexScene} />
       <Route exact path="/cargo" component={CargoScene} />
+      <Route exact path="/cargo/create" component={CargoCreateScene} />
     </Switch>
   </main>
 
