@@ -1,23 +1,49 @@
+/* eslint-disable react/forbid-prop-types, function-paren-newline */
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import Banner from './Banner'
 import CarriersCounter from './CarriersCounter'
 import Container from '../Container'
+import { loadPopularRoute } from '../../actions/popularRoute.action'
+import InfoScene from './InfoScene'
 
-const IndexScene = () =>
-  <div>
-    <Banner />
+class IndexScene extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(loadPopularRoute())
+  }
 
-    <section className="bg-dark">
-      <Container className="p-5 d-flex justify-content-around">
-        <CarriersCounter number={90} from="Запорожье" to="Киев" />
-        <CarriersCounter number={90} from="Запорожье" to="Киев" />
-        <CarriersCounter number={90} from="Запорожье" to="Киев" />
-        <CarriersCounter number={90} from="Запорожье" to="Киев" />
-      </Container>
-    </section>
-  </div>
+  render() {
+    const { popularRoute } = this.props
+    return (
+      <div>
+        <Banner />
 
-IndexScene.propTypes = {}
+        <section className="bg-dark">
+          <Container className="p-5 d-flex justify-content-around">
+            {popularRoute.map(route =>
+              <CarriersCounter
+                key={route.id}
+                number={route.number}
+                from={route.from}
+                to={route.to}
+              />,
+            )}
+          </Container>
+        </section>
+        <InfoScene />
+      </div>
+    )
+  }
+}
 
-export default IndexScene
+const mapStateToProps = (store) => ({
+  popularRoute: store.popularRoute.popularRoute,
+})
+
+IndexScene.propTypes = {
+  popularRoute: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps)(IndexScene)
