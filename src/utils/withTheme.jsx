@@ -7,6 +7,18 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
+  typography: {
+    fontSize: 13,
+  },
+
+  spacing: {
+    size1: '0.25rem',
+    size2: '0.50rem',
+    size3: '1rem',
+    size4: '1.5rem',
+    size5: '3rem',
+  },
+
   palette: {
     primary: {
       light: purple[300],

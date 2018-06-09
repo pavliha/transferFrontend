@@ -8,6 +8,8 @@ module.exports = {
     'arrow-parens': 0,
     'no-param-reassign': ['error', { 'props': false }],
     'semi': [2, 'never'],
+    'react/forbid-prop-types': 0,
+    'no-unused-vars': 0,
     'no-plusplus': 0,
     // disable rules from base configurations
     'jsx-a11y/tabindex-no-positive': 'off',

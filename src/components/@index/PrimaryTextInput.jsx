@@ -31,7 +31,6 @@ const styles = theme => ({
   },
 })
 
-
 const PrimaryTextInput = ({ classes, icon, placeholder, ...rest }) =>
   <TextField
     placeholder={placeholder}
@@ -60,10 +59,9 @@ const PrimaryTextInput = ({ classes, icon, placeholder, ...rest }) =>
     }}
   />
 
-
 PrimaryTextInput.propTypes = {
   placeholder: PropTypes.string,
-  icon: PropTypes.oneOfType(PropTypes.string, PropTypes.node),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   classes: PropTypes.object.isRequired,
 }
 
