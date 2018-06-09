@@ -1,4 +1,5 @@
 import React from 'react'
+import { createForm, formShape } from 'rc-form'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/es/Grid/Grid'
 import { withStyles } from '@material-ui/core/styles'
@@ -9,6 +10,9 @@ import PrimaryTextInput from '../@index/PrimaryTextInput'
 // import ClearIcon from '@material-ui/icons/Clear'
 import Container from '../Container'
 import Asterisks from './Asterisks'
+import TransparentButton from '../@index/TransparentButton'
+import RequiredInput from './RequiredInput'
+
 
 const styles = theme => ({
   root: {
@@ -18,11 +22,31 @@ const styles = theme => ({
   flex: {
     flex: 1,
   },
+  color: {
+    '&::-webkit-input-placeholder': {
+      color: theme.palette.error.dark,
+    },
+    color: theme.palette.error.dark,
+  },
+
+
 })
 
+
 class CargoCreateScene extends React.Component {
+  static propTypes = {
+    form: formShape,
+  }
+
+  submit = () => {
+    this.props.form.validateFields((error, value) => {
+      console.log(error, value)
+    })
+  }
+
   render() {
     const { classes } = this.props
+    const { getFieldProps, getFieldError } = this.props.form
     return (
       <div className={classes.root}>
         <Container>
@@ -34,9 +58,12 @@ class CargoCreateScene extends React.Component {
                     <Asterisks />
                     Укажите заголовок груза
                   </Typography>
-                  <PrimaryTextInput
-                    icon={<Icon>add_circle</Icon>}
-                    placeholder="Коробка конфет, мешок картошки"
+                  <RequiredInput
+                    icon="add_circle"
+                    fieldError="name"
+                    textPlaceholder="Коробка конфет, мешок картошки"
+                    getFieldProps={getFieldProps}
+                    getFieldError={getFieldError}
                   />
                 </div>
 
@@ -45,9 +72,12 @@ class CargoCreateScene extends React.Component {
                     <Asterisks />
                     Откуда забрать?
                   </Typography>
-                  <PrimaryTextInput
-                    icon={<Icon>my_location</Icon>}
-                    placeholder="Запорожье"
+                  <RequiredInput
+                    icon="my_location"
+                    fieldError="whence"
+                    textPlaceholder="Запорожье"
+                    getFieldProps={getFieldProps}
+                    getFieldError={getFieldError}
                   />
                 </div>
 
@@ -56,9 +86,12 @@ class CargoCreateScene extends React.Component {
                     <Asterisks />
                     Куда доставить?
                   </Typography>
-                  <PrimaryTextInput
-                    icon={<Icon>my_location</Icon>}
-                    placeholder="Днепр"
+                  <RequiredInput
+                    icon="my_location"
+                    fieldError="where"
+                    textPlaceholder="Днепр"
+                    getFieldProps={getFieldProps}
+                    getFieldError={getFieldError}
                   />
                 </div>
 
@@ -89,12 +122,12 @@ class CargoCreateScene extends React.Component {
                     icon={<Icon>date_range</Icon>}
                     placeholder="Например: 12 июля 2018"
                   />
-                  {/*<ClearIcon />*/}
+                  {/* <ClearIcon /> */}
                   <Typography variant="caption" color="inherit">
                     Укажите дату когда вы будете забирать груз у перевозщика
                   </Typography>
-
                 </div>
+                <TransparentButton onClick={this.submit}>добавить</TransparentButton>
               </Grid>
             </Grid>
           </AppBar>
@@ -108,4 +141,4 @@ CargoCreateScene.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(CargoCreateScene)
+export default createForm()(withStyles(styles)(CargoCreateScene))

@@ -2,7 +2,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
-// import {browserHistory} from 'history'
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import { Link } from 'react-router-dom'
@@ -44,7 +43,7 @@ class Header extends React.Component {
               </Typography>
               <Link to="/cargo/create"><TransparentButton>Добавить Груз</TransparentButton></Link>
               <Button color="inherit">Войти</Button>
-              <Button color="inherit">Зарегестрироваться</Button>
+              <Button color="inherit">Зарегистрироваться</Button>
             </Toolbar>
           </AppBar>
         </Container>
@@ -55,7 +54,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  history: PropTypes.func.isRequired,
+  history: PropTypes.any.isRequired,
 }
 
 export default withRouter(withStyles(styles)(Header))
