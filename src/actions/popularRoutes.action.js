@@ -1,14 +1,14 @@
-import popularRoute from '../popularRoute.json'
+import popularRoutes from '../popularRoute.json'
 
-export const LOAD_POPULAR_ROUTE_PENDING = 'LOAD_POPULAR_ROUTE_PENDING'
-export const LOAD_POPULAR_ROUTE_FULFILLED = 'LOAD_POPULAR_ROUTE_FULFILLED'
+export const LOAD_POPULAR_ROUTES_PENDING = 'LOAD_POPULAR_ROUTES_PENDING'
+export const LOAD_POPULAR_ROUTES_FULFILLED = 'LOAD_POPULAR_ROUTES_FULFILLED'
 
-export const loadPopularRoute = () => dispatch => {
+export const loadPopularRoutes = () => dispatch => {
   dispatch({
-    type: LOAD_POPULAR_ROUTE_PENDING,
+    type: LOAD_POPULAR_ROUTES_PENDING,
   })
   setTimeout(() => dispatch({
-    type: LOAD_POPULAR_ROUTE_FULFILLED,
-    payload: popularRoute,
+    type: LOAD_POPULAR_ROUTES_FULFILLED,
+    payload: popularRoutes,
   }), 500)
 }
