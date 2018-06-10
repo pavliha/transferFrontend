@@ -1,26 +1,45 @@
 import React from 'react'
+import moment from 'moment'
 import TextField from '@material-ui/core/es/TextField/TextField'
-import Geosuggest from '../../../Geosuggest/index'
+import Geosuggest from '../../../Geosuggest'
 
 export default {
   from: {
     label: 'Откуда забирать?',
     component: <Geosuggest name="from" fullWidth label="Город" />,
+    validate: ['required', 'location'],
   },
 
   to: {
     label: 'Куда отвезти?',
     component: <Geosuggest name="to" fullWidth label="Город" />,
+    validate: ['required', 'location'],
   },
 
   time: {
     label: 'Во сколько время забрать груз?',
-    component: <TextField name="time" fullWidth label="Время" />,
+    component: <TextField
+      label="Время"
+      type="time"
+      fullWidth
+      initial="07:30"
+      InputLabelProps={{ shrink: true }}
+      inputProps={{ step: 300 }}
+    />,
   },
 
   date_from: {
     label: 'Какого числа забрать груз?',
-    component: <TextField name="date_from" fullWidth label="Время" />,
+    component: <TextField
+      id="date"
+      label="Дата"
+      fullWidth
+      type="date"
+      initial={moment().format('YYYY-MM-DD')}
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />,
   },
 
   pictures: {

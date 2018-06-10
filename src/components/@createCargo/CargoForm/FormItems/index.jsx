@@ -1,43 +1,35 @@
 /* eslint-disable no-prototype-builtins */
 import React from 'react'
 import PropTypes from 'prop-types'
-import filters from './formItems'
-import FormLabel from './FormLabel'
+import formItems from './formItems'
+import FormItem from './FormItem'
 import connector from '../connector'
 
-class FormItems extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+const FormItems = ({ required, selected, actions, formItemDecorator }) =>
+  selected.map((name, index) => {
+    if (!formItems.hasOwnProperty(name)) {
+      throw new Error('form item was not found')
+    }
 
-  render() {
-    const { required, selected, actions } = this.props
+    const { component, rules, label } = formItems[name]
 
-    return selected.map((filterName, index) => {
-      if (!filters.hasOwnProperty(filterName)) {
-        throw new Error('filter was not found')
-      }
-
-      const filter = filters[filterName]
-      return (
-        <FormLabel
-          isRequired={!!required[index]}
-          onClose={() => actions.filter.remove(filterName)}
-          key={index}
-          title={filter.label}
-        >
-          {filter.component}
-        </FormLabel>
-      )
-    })
-  }
-}
+    return (
+      <FormItem
+        isRequired={!!required[index]}
+        onClose={() => actions.filter.remove(name)}
+        key={index}
+        title={label}
+      >
+        {formItemDecorator({ name, rules })(component)}
+      </FormItem>
+    )
+  })
 
 FormItems.propTypes = {
   actions: PropTypes.object.isRequired,
   selected: PropTypes.array.isRequired,
   required: PropTypes.array.isRequired,
+  formItemDecorator: PropTypes.func.isRequired,
 
 }
 

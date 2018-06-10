@@ -16,7 +16,7 @@ const styles = theme => ({
   },
 })
 
-const FormLabel = ({ title, children, classes, onClose, isRequired }) =>
+const FormItem = ({ title, children, classes, onClose, isRequired }) =>
   <div className={classes.root}>
     <Typography variant="subheading">
       {!isRequired ?
@@ -28,7 +28,7 @@ const FormLabel = ({ title, children, classes, onClose, isRequired }) =>
     {children}
   </div>
 
-FormLabel.propTypes = ({
+FormItem.propTypes = ({
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   isRequired: PropTypes.bool,
@@ -37,9 +37,9 @@ FormLabel.propTypes = ({
 })
 
 // noinspection JSUnusedGlobalSymbols
-FormLabel.defaultProps = {
+FormItem.defaultProps = {
   onClose: () => {},
   isRequired: false,
 }
 
-export default withStyles(styles)(FormLabel)
+export default withStyles(styles)(FormItem)

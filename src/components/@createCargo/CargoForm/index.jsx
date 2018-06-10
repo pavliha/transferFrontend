@@ -7,25 +7,56 @@ import CardActions from '@material-ui/core/es/CardActions/CardActions'
 import Button from '@material-ui/core/es/Button/Button'
 import AdditionalFormItems from './AdditionalFormItems'
 import FormItems from './FormItems'
+import Form from '../../../utils/form/index'
 
 const style = theme => ({
   root: {
     margin: theme.spacing.size4,
   },
 })
-const CargoForm = ({ classes }) =>
-  <Card className={classes.root}>
-    <CardContent>
-      <FormItems />
-      <AdditionalFormItems />
-    </CardContent>
-    <CardActions>
-      <Button fullWidth variant="raised" size="large" color="primary">Добавить груз</Button>
-    </CardActions>
-  </Card>
 
-CargoForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+class CargoForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleSubmit() {
+    const { form } = this.props
+
+    // eslint-disable-next-line no-console
+    console.log(form)
+  }
+
+  render() {
+    const { classes, formItemDecorator } = this.props
+
+    return (
+      <Card className={classes.root}>
+        <CardContent>
+          <FormItems formItemDecorator={formItemDecorator} />
+          <AdditionalFormItems />
+        </CardContent>
+        <CardActions>
+          <Button
+            fullWidth
+            variant="raised"
+            size="large"
+            color="primary"
+            onClick={this.handleSubmit}
+          >
+            Добавить груз
+          </Button>
+        </CardActions>
+      </Card>
+    )
+  }
 }
 
-export default withStyles(style)(CargoForm)
+CargoForm.propTypes = {
+  form: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  formItemDecorator: PropTypes.func.isRequired,
+}
+
+export default withStyles(style)(Form(CargoForm))
