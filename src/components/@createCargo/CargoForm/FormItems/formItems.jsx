@@ -6,13 +6,13 @@ import Geosuggest from '../../../Geosuggest'
 export default {
   from: {
     label: 'Откуда забирать?',
-    component: <Geosuggest name="from" fullWidth label="Город" />,
+    component: <Geosuggest name="from" fullWidth label="Адрес" />,
     validate: ['required', 'location'],
   },
 
   to: {
     label: 'Куда отвезти?',
-    component: <Geosuggest name="to" fullWidth label="Город" />,
+    component: <Geosuggest name="to" fullWidth label="Адрес" />,
     validate: ['required', 'location'],
   },
 
@@ -22,7 +22,7 @@ export default {
       label="Время"
       type="time"
       fullWidth
-      initial="07:30"
+      initial="18:30"
       InputLabelProps={{ shrink: true }}
       inputProps={{ step: 300 }}
     />,

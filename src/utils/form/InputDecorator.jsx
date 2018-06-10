@@ -1,8 +1,8 @@
 import React from 'react'
 import isPrimitive from '../isPrimitive'
 
-const NewInputHOC = (name, Input, onChange, form) =>
-  class NewInput extends React.Component {
+const InputDecorator = ({ name }, Input, onChange, form) =>
+  class extends React.Component {
     constructor(props) {
       super(props)
       const initialValue = form[name] || Input.props.initial || ''
@@ -25,5 +25,5 @@ const NewInputHOC = (name, Input, onChange, form) =>
     }
   }
 
-export default NewInputHOC
+export default InputDecorator
 

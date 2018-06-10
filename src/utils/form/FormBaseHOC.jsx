@@ -1,5 +1,5 @@
 import React from 'react'
-import NewInputHOC from './NewInputHOC'
+import InputDecorator from './InputDecorator'
 
 const FormBaseHOC = (Component) =>
   class extends React.Component {
@@ -13,7 +13,7 @@ const FormBaseHOC = (Component) =>
         form[key] = value
         this.setState({ form })
       }
-      const NewInput = NewInputHOC(params.name, Input, onChange, form)
+      const NewInput = InputDecorator(params, Input, onChange, form)
       return <NewInput />
     }
 
