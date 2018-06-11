@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-prop-types,object-curly-newline */
+/* eslint-disable object-curly-newline */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
@@ -33,17 +33,12 @@ const styles = theme => ({
 
 const PrimaryTextInput = ({ classes, icon, placeholder, ...rest }) =>
   <TextField
+    fullWidth
     placeholder={placeholder}
-    id="bootstrap-input"
     {...rest}
     InputProps={{
       startAdornment: (
-        <InputAdornment
-          classes={{
-            root: classes.adornment,
-          }}
-          position="start"
-        >
+        <InputAdornment classes={{ root: classes.adornment }} position="start">
           {icon}
         </InputAdornment>
       ),

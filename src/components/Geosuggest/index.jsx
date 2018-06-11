@@ -6,8 +6,10 @@ import PropTypes from 'prop-types'
 class Geosuggest extends Component {
   constructor(props) {
     super(props)
-
-    this.onPlaceChange = props.onPlaceChange
+    this.state = {
+      value: props.value,
+    }
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount() {
@@ -15,38 +17,39 @@ class Geosuggest extends Component {
       const inputElement = document.getElementsByName(this.props.name)[0]
       this.apiObj = new window.google.maps.places.Autocomplete(inputElement, this.props.options)
       this.apiObj.addListener('place_changed', () => {
-        this.onPlaceChange(this.apiObj.getPlace())
+        this.props.onChange(this.apiObj.getPlace().formatted_address)
       })
     } else {
       console.error('Google API object is not defined')
     }
   }
 
+  handleChange(e) {
+    this.setState({ value: e.target.value })
+  }
+
   render() {
     const {
-      onPlaceChange,
       ...props
     } = this.props
 
-    if (onPlaceChange !== this.onPlaceChange) {
-      this.onPlaceChange = onPlaceChange
-    }
-
     return (
-      <TextField {...props} />
+      <TextField value={this.state.value} {...props} />
     )
   }
 }
 
 Geosuggest.propTypes = {
   name: PropTypes.string,
-  onPlaceChange: PropTypes.func,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
   options: PropTypes.shape({}),
 }
 
 Geosuggest.defaultProps = {
   name: 'gesuggest',
-  onPlaceChange: () => {},
+  value: '',
+  onChange: () => {},
   options: {},
 }
 
