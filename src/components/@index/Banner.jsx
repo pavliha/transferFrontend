@@ -24,20 +24,20 @@ const Banner = () =>
           </ul>
         </section>
       </div>
-      <Grid container className="pt-5 pb-5" alignItems="center" justify="center">
-        <Grid item md={4} lg={3} xl={3}>
+      <Grid container className="pt-5 pb-5" alignItems="center" spacing={24} justify="center">
+        <Grid item md={4} lg={3}>
           <PrimaryTextInput
             icon={<Icon>my_location</Icon>}
             placeholder="Откуда забрать ваш груз?"
           />
         </Grid>
-        <Grid item md={4} lg={3} xl={3}>
+        <Grid item md={4} lg={3}>
           <PrimaryTextInput
             icon={<Icon>my_location</Icon>}
             placeholder="Куда отвезти ваш груз?"
           />
         </Grid>
-        <Grid item md={3} lg={2} xl={2}>
+        <Grid item md={3} lg={2}>
           <Link to="/cargo"><TransparentButton>доставить</TransparentButton></Link>
         </Grid>
       </Grid>

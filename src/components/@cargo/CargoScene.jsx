@@ -7,7 +7,7 @@ import CargoList from './CargoList'
 const CargoScene = () =>
   <Container className="mt-4">
     <Grid container justify="space-between">
-      <Grid item sm={12} md={6} lg={4} xl={3}>
+      <Grid item sm={12} md={6} lg={4}>
         <FilterCard />
       </Grid>
       <Grid item md={8} xs={9} className="pl-3">
