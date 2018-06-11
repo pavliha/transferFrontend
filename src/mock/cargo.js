@@ -11,6 +11,7 @@ for (let i = 1; i <= 10; i++) {
     time: faker.date.recent(),
     date_from: faker.date.recent(),
     date_to: faker.date.recent(),
+    primary_picture: 'https://picsum.photos/400/400',
     pictures: [
       'https://picsum.photos/200/200',
       'https://picsum.photos/200/200',
