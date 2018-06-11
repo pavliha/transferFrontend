@@ -22,10 +22,12 @@ class CargoForm extends React.Component {
   }
 
   handleSubmit() {
-    const { form } = this.props
+    const { form, validate } = this.props
 
-    // eslint-disable-next-line no-console
-    console.log(form)
+    validate().then(result => {
+      // eslint-disable-next-line no-console
+      console.log(result)
+    })
   }
 
   render() {
@@ -55,6 +57,7 @@ class CargoForm extends React.Component {
 
 CargoForm.propTypes = {
   form: PropTypes.object.isRequired,
+  validate: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   formItemDecorator: PropTypes.func.isRequired,
 }

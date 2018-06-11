@@ -11,7 +11,7 @@ const FormItems = ({ required, selected, actions, formItemDecorator }) =>
       throw new Error('form item was not found')
     }
 
-    const { component, rules, label } = formItems[name]
+    const { component, label } = formItems[name]
 
     return (
       <FormItem
@@ -20,7 +20,7 @@ const FormItems = ({ required, selected, actions, formItemDecorator }) =>
         key={index}
         title={label}
       >
-        {formItemDecorator({ name, rules })(component)}
+        {formItemDecorator(component)}
       </FormItem>
     )
   })
