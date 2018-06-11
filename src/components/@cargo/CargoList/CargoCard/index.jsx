@@ -50,7 +50,7 @@ const CargoCard = ({ classes, cargo }) => {
                 {title}
               </Typography>
             </Grid>
-            <Grid xs={5}>
+            <Grid item xs={5}>
               <PictureCargoBadge pictures={pictures} />
             </Grid>
           </Grid>
