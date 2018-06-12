@@ -4,7 +4,7 @@ import IndexScene from './@index/IndexScene'
 import Header from './Header'
 import CargoScene from './@cargo/CargoScene'
 import withTheme from '../utils/withTheme'
-import CargoCreateScene from './@createCargo/CargoCreateScene'
+import CargoCreateScene from './@cargo-create/CargoCreateScene'
 
 const LayoutScene = () =>
   <main>
