@@ -2,14 +2,14 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/es/Button/Button'
 import Card from '@material-ui/core/es/Card/Card'
 import Grid from '@material-ui/core/es/Grid/Grid'
 import Typography from '@material-ui/core/es/Typography/Typography'
 import Icon from '@material-ui/core/es/Icon/Icon'
-import CargoBadges from '../../../CargoBadges'
-import PictureCargoBadge from './PictureCargoBadge'
+import CargoBadges from '../../CargoBadges'
+import connector from '../connector'
+import LargePictureCargoBadge from './LargePictureCargoBadge'
+import InfoTable from './InfoTable'
 
 const styles = theme => ({
   root: {
@@ -31,25 +31,40 @@ const styles = theme => ({
   detailsButton: {
     marginTop: theme.spacing.size1,
   },
+  descriptionBadge: {
+    padding: theme.spacing.size2,
+  },
+  description: {
+    padding: theme.spacing.size1,
+  },
 })
 
-const CargoCard = ({ classes, cargo }) => {
-  const { id, from, to, pictures, primary_picture, title, ...rest } = cargo
+const ExtendedCargoCard = ({ classes, cargo }) => {
+  const {
+    id,
+    from,
+    to,
+    pictures,
+    description,
+    crosses_border,
+    distance,
+    primary_picture,
+    title,
+    updated_at,
+    ...rest
+  } = cargo
 
   const other = Object.keys(rest).map(key => ({ key, value: rest[key] }))
 
   return (
     <Card className={classes.root} key={id}>
-      <Grid container>
-        <Grid item xs={9}>
+      <Grid spacing={8} container>
+        <Grid item xs={8}>
           <Grid container alignItems="center">
             <Grid item xs={7}>
               <Typography gutterBottom variant="headline">
                 {title}
               </Typography>
-            </Grid>
-            <Grid item xs={5}>
-              <PictureCargoBadge pictures={pictures} />
             </Grid>
           </Grid>
           <div className={classes.locations}>
@@ -62,24 +77,35 @@ const CargoCard = ({ classes, cargo }) => {
               <Typography className={classes.location_text}>{to}</Typography>
             </div>
           </div>
-          <CargoBadges badges={other} />
+
+          <CargoBadges extended badges={other} />
+
+          <LargePictureCargoBadge pictures={pictures} />
+
+          <div className={classes.description}>
+            <Typography variant="subheading">Описание:</Typography>
+            <Typography variant="body1">
+              {description}
+            </Typography>
+          </div>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <img src={primary_picture} alt="primary" width="100%" />
-          <Link to={`/cargo/${id}`}>
-            <Button fullWidth color="primary" variant="raised" className={classes.detailsButton}>
-              Подробее
-            </Button>
-          </Link>
+          <InfoTable
+            id={id}
+            distance={distance}
+            countryBorder={crosses_border}
+            datetime={updated_at}
+          />
         </Grid>
       </Grid>
     </Card>
   )
 }
 
-CargoCard.propTypes = {
+ExtendedCargoCard.propTypes = {
   cargo: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(CargoCard)
+export default connector(withStyles(styles)(ExtendedCargoCard))

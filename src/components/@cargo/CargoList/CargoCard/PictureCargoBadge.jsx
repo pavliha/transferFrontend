@@ -3,7 +3,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import Avatar from '@material-ui/core/es/Avatar/Avatar'
-import CargoBadge from './CargoBadge'
+import CargoBadge from '../../../CargoBadges/CargoBadge'
 
 const styles = theme => ({
   photo: {

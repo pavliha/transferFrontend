@@ -4,7 +4,7 @@ import Container from '../Container'
 import FilterCard from './FilterCard'
 import CargoList from './CargoList'
 
-const CargoScene = () =>
+const CargoListScene = () =>
   <Container className="mt-4">
     <Grid container justify="space-between">
       <Grid item sm={12} md={6} lg={4}>
@@ -16,4 +16,4 @@ const CargoScene = () =>
     </Grid>
   </Container>
 
-export default CargoScene
+export default CargoListScene

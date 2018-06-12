@@ -24,10 +24,12 @@ const styles = theme => ({
 
   value: {
     display: 'flex',
+    flex: 1,
+    justifyContent: 'space-around',
     borderRadius: 1,
     background: theme.palette.common.white,
     color: theme.palette.common.black,
-    padding: '2px',
+    padding: '2px 5px',
     fontSize: theme.typography.caption.fontSize,
   },
 })

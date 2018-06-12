@@ -6,16 +6,18 @@ import moment from 'moment'
 import truncate from 'lodash/truncate'
 import PropTypes from 'prop-types'
 import CargoBadge from './CargoBadge'
-import connector from '../../connector'
+import connector from '../@cargo-id/connector'
 
 const styles = theme => ({
   photo: {
+    width: 125,
+    height: 125,
     borderRadius: '5%',
-    margin: 2,
+    margin: 5,
   },
 })
 
-const CargoBadges = ({ badges, classes }) =>
+const CargoBadges = ({ badges, classes, extended }) =>
   badges.map((badge, index) => {
     let label
     let value
@@ -51,7 +53,7 @@ const CargoBadges = ({ badges, classes }) =>
         break
       case 'description':
         label = 'описание'
-        value = truncate(badge.value)
+        value = extended ? badge.value : truncate(badge.value)
         break
       case 'transport_type':
         label = 'транспорт'
@@ -63,9 +65,13 @@ const CargoBadges = ({ badges, classes }) =>
         value = badge.value
         break
 
-      default:
-        label = badge.key
+      case 'distance':
+        label = 'растояние'
         value = badge.value
+        break
+
+      default:
+        return null
     }
     return <CargoBadge key={index} label={label} value={value} />
   })
@@ -73,7 +79,11 @@ const CargoBadges = ({ badges, classes }) =>
 CargoBadges.propTypes = {
   classes: PropTypes.object.isRequired,
   badges: PropTypes.array.isRequired,
+  extended: PropTypes.bool,
 }
 
+CargoBadges.defaultProps = {
+  extended: false,
+}
 // noinspection JSUnusedGlobalSymbols
 export default connector(withStyles(styles)(CargoBadges))
