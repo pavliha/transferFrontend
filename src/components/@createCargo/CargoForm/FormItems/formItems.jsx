@@ -1,15 +1,18 @@
 import React from 'react'
 import moment from 'moment'
+import Select from '@material-ui/core/es/Select/Select'
+import MenuItem from '@material-ui/core/es/MenuItem/MenuItem'
 import TextField from '@material-ui/core/es/TextField/TextField'
+import InputAdornment from '@material-ui/core/es/InputAdornment/InputAdornment'
 import Geosuggest from '../../../Geosuggest'
 
 export default {
   from: {
     label: 'Откуда забирать?',
     component: <Geosuggest
+      id="from"
       name="from"
       fullWidth
-      rules={['required']}
       label="Адрес"
     />,
   },
@@ -17,8 +20,8 @@ export default {
   to: {
     label: 'Куда отвезти?',
     component: <Geosuggest
+      id="to"
       name="to"
-      rules={['required']}
       fullWidth
       label="Адрес"
     />,
@@ -28,9 +31,9 @@ export default {
     label: 'Во сколько время забрать груз?',
     component: <TextField
       label="Время"
+      id="time"
       type="time"
       fullWidth
-      rules={['time']}
       initial="18:30"
       InputLabelProps={{ shrink: true }}
       inputProps={{ step: 300 }}
@@ -40,10 +43,24 @@ export default {
   date_from: {
     label: 'Какого числа забрать груз?',
     component: <TextField
-      id="date"
+      id="date_from"
       label="Дата"
       fullWidth
-      rules={['date']}
+      type="date"
+      initial={moment().format('YYYY-MM-DD')}
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />,
+  },
+
+  date_to: {
+    label: 'До какой даты доставить?',
+    component: <TextField
+      id="date_to"
+      label="Дата"
+      fullWidth
+      name="date_to"
       type="date"
       initial={moment().format('YYYY-MM-DD')}
       InputLabelProps={{
@@ -64,17 +81,29 @@ export default {
 
   weight: {
     label: 'Какой вес?',
-    component: <TextField name="weight" fullWidth label="Вес" />,
-  },
+    component: <TextField
+      name="weight"
+      fullWidth
+      type="number"
+      label="Вес"
+      InputProps={{
+        endAdornment: <InputAdornment position="end">кг</InputAdornment>,
+      }}
 
-  date_to: {
-    label: 'До какой даты доставить?',
-    component: <TextField name="date_to" fullWidth label="Дата" />,
+    />,
   },
 
   volume: {
     label: 'Какой обьем?',
-    component: <TextField name="volume" fullWidth label="Обьем" />,
+    component: <TextField
+      name="volume"
+      fullWidth
+      type="number"
+      label="Обьем"
+      InputProps={{
+        endAdornment: <InputAdornment position="end">м³</InputAdornment>,
+      }}
+    />,
   },
 
   description: {
@@ -84,11 +113,32 @@ export default {
 
   transport_type: {
     label: 'Какой тип траспорта нужен?',
-    component: <TextField name="transport_type" fullWidth label="Выбрать" />,
+    component: (
+      <Select
+        id="transport-input"
+        label="Выбрать"
+        fullWidth
+        inputProps={{
+          name: 'transport_type',
+          id: 'transport_type',
+        }}
+      >
+        <MenuItem value={10}>Легковой</MenuItem>
+        <MenuItem value={20}>Грузовой</MenuItem>
+        <MenuItem value={30}>Специальный</MenuItem>
+      </Select>
+    ),
   },
 
   payment: {
     label: 'Сколько планируете заплатить?',
-    component: <TextField name="payment" fullWidth label="Сумма" />,
+    component: <TextField
+      name="payment"
+      fullWidth
+      label="Сумма"
+      InputProps={{
+        endAdornment: <InputAdornment position="end">грн</InputAdornment>,
+      }}
+    />,
   },
 }

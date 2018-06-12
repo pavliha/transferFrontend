@@ -48,7 +48,7 @@ class Geosuggest extends Component {
 Geosuggest.propTypes = {
   name: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   onBlur: PropTypes.func,
   options: PropTypes.shape({}),
 }

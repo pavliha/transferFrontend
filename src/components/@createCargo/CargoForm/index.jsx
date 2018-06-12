@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withFormik } from 'formik'
+import moment from 'moment'
 import Yup from 'yup'
 import Card from '@material-ui/core/es/Card/Card'
 import { withStyles } from '@material-ui/core/styles'
@@ -51,17 +52,41 @@ CargoForm.propTypes = {
 }
 
 const EnhancedForm = withFormik({
-  mapPropsToValues: () => ({ from: '' }),
+  mapPropsToValues: () => ({
+    from: '',
+    to: '',
+    time: '18:30',
+    date_from: moment().format('YYYY-MM-DD'),
+    date_to: moment().format('YYYY-MM-DD'),
+    pictures: [],
+    dimensions: '',
+    weight: '',
+    volume: '',
+    description: '',
+    transport_type: '',
+
+  }),
 
   // Custom sync validation
 
   validationSchema: Yup.object().shape({
-    from: Yup.object(),
+    from: Yup.string().required('Это поле является обязательным для заполнения!'),
+    to: Yup.string().required('Это поле является обязательным для заполнения!'),
+    date_from: Yup.date(),
+    date_to: Yup.date(),
+    pictures: Yup.array(),
+    dimensions: Yup.string(),
+    weight: Yup.number(),
+    volume: Yup.number(),
+    description: Yup.string(),
+    transport_type: Yup.string(),
+    payment: Yup.number(),
   }),
 
   handleSubmit: (values, { setSubmitting }) => {
     setTimeout(() => {
-      console.log(JSON.stringify(values, null, 2))
+      // eslint-disable-next-line no-console
+      console.log(values)
       setSubmitting(false)
     }, 100)
   },
