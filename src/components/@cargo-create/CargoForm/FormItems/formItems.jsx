@@ -123,9 +123,9 @@ export default {
           id: 'transport_type',
         }}
       >
-        <MenuItem value={10}>Легковой</MenuItem>
-        <MenuItem value={20}>Грузовой</MenuItem>
-        <MenuItem value={30}>Специальный</MenuItem>
+        <MenuItem value="light">Легковой</MenuItem>
+        <MenuItem value="cargo">Грузовой</MenuItem>
+        <MenuItem value="special">Специальный</MenuItem>
       </Select>
     ),
   },
