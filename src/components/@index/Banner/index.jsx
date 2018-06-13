@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Background from './Background'
 import PrimaryTextInput from './PrimaryTextInput'
 import TransparentButton from './TransparentButton'
-import Container from '../Container'
+import Container from '../../Container'
 
 const Banner = () =>
   <Background>

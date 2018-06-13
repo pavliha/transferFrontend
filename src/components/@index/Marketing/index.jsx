@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/es/Typography/Typography'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-import Container from '../Container'
+import Container from '../../Container'
 import TextInfo from './TextInfo'
 
 const styles = {

@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Container from '../Container'
-import TransparentButton from '../@index/TransparentButton'
+import TransparentButton from '../@index/Banner/TransparentButton'
 
 const styles = theme => ({
   root: {
