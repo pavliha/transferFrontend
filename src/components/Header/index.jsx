@@ -30,8 +30,8 @@ const Header = ({ classes }) =>
             <Link to="/">Transfer</Link>
           </Typography>
           <Link to="/cargo/create"><TransparentButton>Добавить Груз</TransparentButton></Link>
-          <Button color="inherit">Войти</Button>
-          <Button color="inherit">Зарегистрироваться</Button>
+          <Link to="/login"><Button color="inherit">Войти</Button></Link>
+          <Link to="/register"><Button color="inherit">Зарегистрироваться</Button></Link>
         </Toolbar>
       </AppBar>
     </Container>
