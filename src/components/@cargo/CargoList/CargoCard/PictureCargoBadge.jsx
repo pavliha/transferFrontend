@@ -15,7 +15,7 @@ const PictureCargoBadge = ({ classes, pictures }) =>
   <CargoBadge
     label="фото"
     value={pictures.map((img, index) =>
-      <Avatar key={index} className={classes.photo} src={img} />,
+      <Avatar key={index} className={classes.photo} src={img.url} />,
     )}
   />
 

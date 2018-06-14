@@ -2,6 +2,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/es/Button/Button'
 import Card from '@material-ui/core/es/Card/Card'
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/es/Typography/Typography'
 import Icon from '@material-ui/core/es/Icon/Icon'
 import CargoBadges from '../../../CargoBadges'
 import PictureCargoBadge from './PictureCargoBadge'
+import CargoBadge from '../../../CargoBadges/CargoBadge'
 
 const styles = theme => ({
   root: {
@@ -34,7 +36,7 @@ const styles = theme => ({
 })
 
 const CargoCard = ({ classes, cargo }) => {
-  const { id, from, to, pictures, primary_picture, title, ...rest } = cargo
+  const { id, from, to, pictures, created_at, updated_at, primary_picture, title, ...rest } = cargo
 
   const other = Object.keys(rest).map(key => ({ key, value: rest[key] }))
 
@@ -55,13 +57,15 @@ const CargoCard = ({ classes, cargo }) => {
           <div className={classes.locations}>
             <div className={classes.location}>
               <Icon>send</Icon>
-              <Typography className={classes.location_text}>{from}</Typography>
+              <Typography className={classes.location_text}>{from.address}</Typography>
             </div>
             <div className={classes.location}>
               <Icon className={classes.rotated}>call_missed_outgoing</Icon>
-              <Typography className={classes.location_text}>{to}</Typography>
+              <Typography className={classes.location_text}>{to.address}</Typography>
             </div>
           </div>
+          <CargoBadge label="дата отправления" value={moment(from.date).format('DD MMMM YYYY')} />
+          <CargoBadge label="дата прибытия" value={moment(to.date).format('DD MMMM YYYY')} />
           <CargoBadges badges={other} />
         </Grid>
         <Grid item xs={3}>

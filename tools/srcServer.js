@@ -19,7 +19,7 @@ const bundler = webpack(config)
 
 // Run Browsersync and use middleware for Hot Module Replacement
 browserSync({
-  port: 3333,
+  port: 2000,
   open: false,
   ui: {
     port: 3001,

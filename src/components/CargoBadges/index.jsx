@@ -27,14 +27,6 @@ const CargoBadges = ({ badges, classes, extended }) =>
         label = 'время'
         value = moment(badge.value).format('LT')
         break
-      case 'date_from':
-        label = 'дата отправления'
-        value = moment(badge.value).format('DD MMMM YYYY')
-        break
-      case 'date_to':
-        label = 'дата прибытия'
-        value = moment(badge.value).format('DD MMMM YYYY')
-        break
       case 'pictures':
         label = 'фото'
         value = badge.value.map(img => <Avatar className={classes.photo} src={img} />)

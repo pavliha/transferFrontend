@@ -2,6 +2,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 import Card from '@material-ui/core/es/Card/Card'
 import Grid from '@material-ui/core/es/Grid/Grid'
 import Typography from '@material-ui/core/es/Typography/Typography'
@@ -10,6 +11,7 @@ import CargoBadges from '../../CargoBadges'
 import connector from '../connector'
 import LargePictureCargoBadge from './LargePictureCargoBadge'
 import InfoTable from './InfoTable'
+import CargoBadge from '../../CargoBadges/CargoBadge'
 
 const styles = theme => ({
   root: {
@@ -70,14 +72,15 @@ const ExtendedCargoCard = ({ classes, cargo }) => {
           <div className={classes.locations}>
             <div className={classes.location}>
               <Icon>send</Icon>
-              <Typography className={classes.location_text}>{from}</Typography>
+              <Typography className={classes.location_text}>{from.address}</Typography>
             </div>
             <div className={classes.location}>
               <Icon className={classes.rotated}>call_missed_outgoing</Icon>
-              <Typography className={classes.location_text}>{to}</Typography>
+              <Typography className={classes.location_text}>{to.address}</Typography>
             </div>
           </div>
-
+          <CargoBadge label="дата отправления" value={moment(from.date).format('DD MMMM YYYY')} />
+          <CargoBadge label="дата прибытия" value={moment(to.date).format('DD MMMM YYYY')} />
           <CargoBadges extended badges={other} />
 
           <LargePictureCargoBadge pictures={pictures} />

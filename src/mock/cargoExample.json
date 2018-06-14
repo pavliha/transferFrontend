@@ -1,0 +1,45 @@
+{
+  "id": 1,
+  "title": "Коробка с вафлями",
+  "from": {
+    "address": "539 Крюкова пл., North Владислав",
+    "lat": 42.4140522,
+    "lng": -71.15078410000001,
+    "placeId": "ChIJxY9MM1d244kRpTrdHZadXcQ",
+    "date": "2018-06-12T18:42:43.618Z",
+    "time": "2018-06-12T17:59:12.683Z"
+  },
+  "to": {
+    "address": "580 Эдуард площадь, South Ангелина",
+    "date": "2018-06-13T07:19:19.700Z",
+    "time": "2018-06-13T05:17:03.041Z",
+    "lat": 40.420589,
+    "lng": -3.7068970000000263,
+    "placeId": "ChIJwdMPi3woQg0RprFwuLalZYA"
+  },
+  "primary_picture": "https://picsum.photos/400/400",
+  "pictures": [
+    "https://picsum.photos/200/200",
+    "https://picsum.photos/200/200",
+    "https://picsum.photos/200/200",
+    "https://picsum.photos/200/200"
+  ],
+  "weight": 37,
+  "dimensions": "14x13x34",
+  "volume": "1m³",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,\n         when an unknown printer took a galley of type and scrambled it to make a type specimen book. \n         It has survived not only five centuries, but also the leap into electronic typesetting,\n         remaining essentially unchanged. \n         It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\n         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n      ",
+  "transport_type": "специальный",
+  "payment": "136 USD",
+  "distance": "240 км",
+  "crosses_border": true,
+  "created_at": "2018-06-13T00:06:20.166Z",
+  "updated_at": "2018-06-13T05:43:58.646Z",
+  "user": {
+    "id": 1,
+    "avatar_url": "https://randomuser.me/api/portraits/men/44.jpg",
+    "full_name": "Макар Зимин",
+    "succeeded": 15,
+    "phone": "(977)164-14-59",
+    "email": "41@ya.ru"
+  }
+}

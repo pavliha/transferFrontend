@@ -27,7 +27,7 @@ const LargePictureCargoBadge = ({ classes, pictures }) =>
   <div className={classes.root}>
     {
       pictures.map((img, index) =>
-        <Avatar key={index} className={classes.photo} src={img} />)
+        <Avatar key={index} className={classes.photo} src={img.url} />)
     }
   </div>
 LargePictureCargoBadge.propTypes = {
