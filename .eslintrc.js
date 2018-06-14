@@ -12,6 +12,7 @@ module.exports = {
     'react/forbid-prop-types': 0,
     'object-curly-newline': 0,
     'no-unused-vars': 0,
+    'padded-blocks': 0,
     'no-plusplus': 0,
     // disable rules from base configurations
     'jsx-a11y/tabindex-no-positive': 'off',

@@ -11,6 +11,7 @@ const styles = theme => ({
 })
 
 class Alert extends React.Component {
+
   handleClose = () => {
     this.props.actions.alert.hide()
   }
