@@ -22,19 +22,45 @@ const styles = theme => ({
   },
 })
 
-class RegisterCard extends React.Component {
+class LoginCard extends React.Component {
   state = {
     isSubmited: false,
   }
+
   handleSubmit = (e) => {
     const { handleSubmit } = this.props
     this.setState({ isSubmited: true })
+
     handleSubmit(e)
   }
 
-  render() {
-    const { classes, values, errors, handleChange, handleBlur, isSubmitting, touched } = this.props
+  serverError = (fieldName) => {
+    const { auth } = this.props
+    const serverErrors = {}
+    auth.errors.forEach(error => {
+      serverErrors[error.field] = error.message
+    })
+
+    return serverErrors[fieldName]
+  }
+
+  hasError = (fieldName) => {
     const { isSubmited } = this.state
+    const { errors, touched } = this.props
+
+    return (!!errors[fieldName] && touched[fieldName] && isSubmited) || this.serverError(fieldName)
+  }
+
+  showHelperError = (fieldName) => {
+    const { errors, touched } = this.props
+
+
+    return (touched[fieldName] && errors[fieldName]) || this.serverError(fieldName)
+  }
+
+  render() {
+    const { classes, values, handleChange, handleBlur, isSubmitting } = this.props
+
     return (
       <Card className={classes.root}>
         <form onSubmit={this.handleSubmit}>
@@ -43,8 +69,8 @@ class RegisterCard extends React.Component {
             <TextField
               className={classes.input}
               fullWidth
-              error={!!errors.email && touched.email && isSubmited}
-              helperText={touched.email && errors.email}
+              error={this.hasError('email')}
+              helperText={this.showHelperError('email')}
               type="email"
               name="email"
               label="email"
@@ -52,13 +78,13 @@ class RegisterCard extends React.Component {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <Typography variant="subheading">Придумайте пароль:</Typography>
+            <Typography variant="subheading">Введите ваш пароль:</Typography>
             <TextField
               className={classes.input}
               fullWidth
               name="password"
-              error={!!errors.password && touched.password && isSubmited}
-              helperText={errors.password}
+              error={this.hasError('password')}
+              helperText={this.showHelperError('password')}
               type="password"
               label="пароль"
               value={values.password}
@@ -83,7 +109,8 @@ class RegisterCard extends React.Component {
   }
 }
 
-RegisterCard.propTypes = {
+LoginCard.propTypes = {
+  auth: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   values: PropTypes.object.isRequired,
   touched: PropTypes.object.isRequired,
@@ -94,4 +121,4 @@ RegisterCard.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
 }
 
-export default withStyles(styles)(loginFormik(connector(RegisterCard)))
+export default withStyles(styles)(loginFormik(connector(LoginCard)))

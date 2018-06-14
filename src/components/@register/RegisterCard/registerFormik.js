@@ -9,6 +9,9 @@ const registerFormik = withFormik({
     name: Yup.string()
       .required('Это поле является обязательным'),
 
+    phone: Yup.string()
+      .required('Это поле является обязательным'),
+
     email: Yup.string()
       .email('Неправильный email адрес!')
       .required('Это поле является обязательным'),
@@ -21,6 +24,7 @@ const registerFormik = withFormik({
   mapPropsToValues: () => ({
     name: '',
     email: '',
+    phone: '',
     password: '',
   }),
 

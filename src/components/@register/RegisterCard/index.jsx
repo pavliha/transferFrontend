@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/es/CardContent/CardContent'
 import Button from '@material-ui/core/es/Button/Button'
 import Typography from '@material-ui/core/es/Typography/Typography'
 import registerFormik from './registerFormik'
+import connector from './connector'
 
 const styles = theme => ({
   root: {
@@ -28,12 +29,35 @@ class RegisterCard extends React.Component {
   handleSubmit = (e) => {
     const { handleSubmit } = this.props
     this.setState({ isSubmited: true })
+
     handleSubmit(e)
   }
 
-  render() {
-    const { classes, values, errors, handleChange, handleBlur, isSubmitting, touched } = this.props
+  serverError = (fieldName) => {
+    const { auth } = this.props
+    const serverErrors = {}
+    auth.errors.forEach(error => {
+      serverErrors[error.field] = error.message
+    })
+
+    return serverErrors[fieldName]
+  }
+
+  hasError = (fieldName) => {
     const { isSubmited } = this.state
+    const { errors, touched } = this.props
+
+    return (!!errors[fieldName] && touched[fieldName] && isSubmited) || this.serverError(fieldName)
+  }
+
+  showHelperError = (fieldName) => {
+    const { errors, touched } = this.props
+
+    return (touched[fieldName] && errors[fieldName]) || this.serverError(fieldName)
+  }
+
+  render() {
+    const { classes, values, handleChange, handleBlur, isSubmitting } = this.props
     return (
       <Card className={classes.root}>
         <form onSubmit={this.handleSubmit}>
@@ -42,8 +66,8 @@ class RegisterCard extends React.Component {
             <TextField
               className={classes.input}
               fullWidth
-              error={!!errors.name && touched.email && isSubmited}
-              helperText={touched.email && errors.name}
+              error={this.hasError('name')}
+              helperText={this.showHelperError('name')}
               type="text"
               name="name"
               label="имя и фамилия"
@@ -55,12 +79,25 @@ class RegisterCard extends React.Component {
             <TextField
               className={classes.input}
               fullWidth
-              error={!!errors.email && touched.email && isSubmited}
-              helperText={touched.email && errors.email}
+              error={this.hasError('email')}
+              helperText={this.showHelperError('email')}
               type="email"
               name="email"
               label="email"
               value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <Typography variant="subheading">Введите ваш номер телефона:</Typography>
+            <TextField
+              className={classes.input}
+              fullWidth
+              name="phone"
+              error={this.hasError('phone')}
+              helperText={this.showHelperError('phone')}
+              type="tel"
+              label="номер телефона"
+              value={values.phone}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -69,8 +106,8 @@ class RegisterCard extends React.Component {
               className={classes.input}
               fullWidth
               name="password"
-              error={!!errors.password && touched.password && isSubmited}
-              helperText={errors.password}
+              error={this.hasError('password')}
+              helperText={this.showHelperError('password')}
               type="password"
               label="пароль"
               autoComplete="current-password"
@@ -105,6 +142,7 @@ RegisterCard.propTypes = {
   handleBlur: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
+  auth: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(registerFormik(RegisterCard))
+export default withStyles(styles)(registerFormik(connector(RegisterCard)))
