@@ -8,6 +8,7 @@ import CargoCreateScene from './@cargo-create/CargoCreateScene'
 import CargoScene from './@cargo-id/CargoScene'
 import RegisterScene from './@register/RegisterScene'
 import LoginScene from './@login/LoginScene'
+import Alert from './Alert'
 
 const LayoutScene = () =>
   <main>
@@ -20,6 +21,7 @@ const LayoutScene = () =>
       <Route exact path="/cargo/create" component={CargoCreateScene} />
       <Route exact path="/cargo/:id" component={CargoScene} />
     </Switch>
+    <Alert />
   </main>
 
 LayoutScene.propTypes = {}

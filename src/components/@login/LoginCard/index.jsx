@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/es/CardContent/CardContent'
 import Button from '@material-ui/core/es/Button/Button'
 import Typography from '@material-ui/core/es/Typography/Typography'
 import loginFormik from './loginFormik'
+import connector from './connector'
 
 const styles = theme => ({
   root: {
@@ -73,7 +74,7 @@ class RegisterCard extends React.Component {
               color="primary"
               disabled={isSubmitting}
             >
-              Зарегистрироваться
+              Войти
             </Button>
           </CardActions>
         </form>
@@ -93,4 +94,4 @@ RegisterCard.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
 }
 
-export default withStyles(styles)(loginFormik(RegisterCard))
+export default withStyles(styles)(loginFormik(connector(RegisterCard)))

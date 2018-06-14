@@ -1,5 +1,7 @@
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
+import store from '../../../store'
+import * as auth from '../../../actions/auth.action'
 
 const loginFormik = withFormik({
   validationSchema: Yup.object().shape({
@@ -14,14 +16,13 @@ const loginFormik = withFormik({
 
   }),
   mapPropsToValues: () => ({
-    name: '',
     email: '',
     password: '',
   }),
 
   handleSubmit: (values, { setSubmitting }) => {
     // eslint-disable-next-line no-console
-    console.log(values)
+    store.dispatch(auth.login(values))
     setSubmitting(false)
   },
   displayName: 'LoginForm',

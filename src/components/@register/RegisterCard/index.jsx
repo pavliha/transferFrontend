@@ -73,6 +73,7 @@ class RegisterCard extends React.Component {
               helperText={errors.password}
               type="password"
               label="пароль"
+              autoComplete="current-password"
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
