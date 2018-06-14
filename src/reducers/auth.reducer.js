@@ -6,6 +6,7 @@ import {
   REGISTER_USER_PENDING,
   REGISTER_USER_FULFILLED,
   REGISTER_USER_REJECTED,
+  LOAD_SAVED_USER,
 } from '../actions/auth.action'
 
 const initialState = {
@@ -26,7 +27,7 @@ const authReducer = (state = initialState, { type, payload }) => {
     case LOGIN_USER_FULFILLED: {
       return {
         ...state,
-        user: Cache.get('user'),
+        user: payload,
         loading: false,
       }
     }
@@ -37,6 +38,13 @@ const authReducer = (state = initialState, { type, payload }) => {
         errors: payload,
         loading: false,
 
+      }
+    }
+
+    case LOAD_SAVED_USER: {
+      return {
+        ...state,
+        user: payload,
       }
     }
 

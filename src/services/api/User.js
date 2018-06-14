@@ -15,14 +15,25 @@ class User {
     return user
   }
 
+  getSaved() {
+    return Cache.get('user')
+  }
+
+  save(user) {
+    Cache.put('user', user)
+  }
+
   async login(credentials) {
-    const { token, refreshToken } = await Http.post('/login', credentials)
-    Token.remember(token, refreshToken)
 
-    const user = JWT(token).data
-    this.save(user)
+    if (!Cache.has('user') || !Cache.has('token')) {
+      const { token, refreshToken } = await Http.post('/login', credentials)
+      Token.remember(token, refreshToken)
 
-    return user
+      const user = JWT(token).data
+      this.save(user)
+    }
+
+    return this.getSaved()
   }
 
   // noinspection JSUnusedGlobalSymbols
@@ -30,9 +41,6 @@ class User {
     Cache.put('user', null)
   }
 
-  save(user) {
-    Cache.put('user', user)
-  }
 }
 
 export default new User()
