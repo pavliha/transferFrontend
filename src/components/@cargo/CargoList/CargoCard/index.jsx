@@ -33,6 +33,11 @@ const styles = theme => ({
   detailsButton: {
     marginTop: theme.spacing.size1,
   },
+  primaryPicture: {
+    width: 200,
+    height: 200,
+    background: 'rgba(0,0,0,0.1)',
+  },
 })
 
 const CargoCard = ({ classes, cargo }) => {
@@ -69,7 +74,9 @@ const CargoCard = ({ classes, cargo }) => {
           <CargoBadges badges={other} />
         </Grid>
         <Grid item xs={3}>
-          <img src={primary_picture} alt="primary" width="100%" />
+          <div className={classes.primaryPicture}>
+            {primary_picture && <img src={primary_picture} alt="primary" width="100%" />}
+          </div>
           <Link to={`/cargo/${id}`}>
             <Button fullWidth color="primary" variant="raised" className={classes.detailsButton}>
               Подробее
