@@ -31,7 +31,7 @@ const FormItems = ({ required, selected, actions, form, hasError, showHelperErro
       helperText: showHelperError(name),
     })(component)
 
-    if (name === 'from' || name === 'to') {
+    if (name === 'from' || name === 'to' || name === 'pictures') {
       Input = decorator({
         value: values[name],
         error: hasError(name),

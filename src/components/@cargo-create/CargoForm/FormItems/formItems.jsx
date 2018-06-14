@@ -4,6 +4,7 @@ import Select from '@material-ui/core/es/Select/Select'
 import MenuItem from '@material-ui/core/es/MenuItem/MenuItem'
 import TextField from '@material-ui/core/es/TextField/TextField'
 import InputAdornment from '@material-ui/core/es/InputAdornment/InputAdornment'
+import PictureUpload from './PictureUpload'
 import Geosuggest from '../../../Geosuggest'
 
 export default {
@@ -71,7 +72,7 @@ export default {
 
   pictures: {
     label: 'Добавить фотографий?',
-    component: <TextField name="pictures" fullWidth label="Что на картинке?" />,
+    component: <PictureUpload name="pictures" fullWidth />,
   },
 
   dimensions: {

@@ -30,6 +30,7 @@
     "react-dom": "^16.4.0",
     "react-google-maps": "^9.4.5",
     "react-hot-loader": "^4.2.0",
+    "react-images-upload": "^1.1.99",
     "react-redux": "^5.0.7",
     "react-router": "latest",
     "react-router-dom": "^4.2.2",
@@ -38,6 +39,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.2.0",
+    "url-loader": "^1.0.1",
     "yup": "0.24.1"
   },
   "devDependencies": {
