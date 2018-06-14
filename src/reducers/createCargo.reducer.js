@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   badges: [
+    { title: 'название' },
     { from: 'откуда' },
     { to: 'куда' },
     { time: 'время' },
@@ -21,8 +22,8 @@ const initialState = {
     { transport_type: 'тип транспорта' },
     { payment: 'оплата' },
   ],
-  required: ['from', 'to'],
-  selected: ['from', 'to'],
+  required: ['title', 'from', 'to'],
+  selected: ['title', 'from', 'to'],
   loading: false,
 }
 

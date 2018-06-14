@@ -8,6 +8,17 @@ import PictureUpload from './PictureUpload'
 import Geosuggest from '../../../Geosuggest'
 
 export default {
+
+  title: {
+    label: 'Что у вас за груз?',
+    component: <TextField
+      name="title"
+      fullWidth
+      placeholder="Например: Ящик картошки"
+      label="Название груза"
+    />,
+  },
+
   from: {
     label: 'Откуда забирать?',
     component: <Geosuggest

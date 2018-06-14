@@ -33,14 +33,19 @@ const styles = theme => ({
     fontSize: theme.typography.caption.fontSize,
   },
 })
-const CargoBadge = ({ classes, label, value }) =>
-  <span
-    role="button"
-    className={classes.root}
-  >
-    <span className={classes.label}>{label}</span>
-    <span className={classes.value}>{value}</span>
-  </span>
+const CargoBadge = ({ classes, label, value }) => {
+  if (!value) return null
+  if (!value.length) return null
+  return (
+    <span
+      role="button"
+      className={classes.root}
+    >
+      <span className={classes.label}>{label}</span>
+      <span className={classes.value}>{value}</span>
+    </span>
+  )
+}
 
 CargoBadge.propTypes = {
   classes: PropTypes.object.isRequired,

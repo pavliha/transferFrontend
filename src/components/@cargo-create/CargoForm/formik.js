@@ -1,9 +1,12 @@
 import Yup from 'yup'
 import moment from 'moment'
 import { withFormik } from 'formik'
+import * as createCargoAction from '../../../actions/createCargo.action'
+import store from '../../../store'
 
 export default withFormik({
   mapPropsToValues: () => ({
+    title: '',
     from: '',
     to: '',
     time: '18:30',
@@ -21,6 +24,7 @@ export default withFormik({
   // Custom sync validation
 
   validationSchema: Yup.object().shape({
+    title: Yup.string().required('Это поле является обязательным для заполнения!'),
     from: Yup.object().required('Это поле является обязательным для заполнения!'),
     to: Yup.object().required('Это поле является обязательным для заполнения!'),
     date_from: Yup.date(),
@@ -35,11 +39,37 @@ export default withFormik({
   }),
 
   handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      // eslint-disable-next-line no-console
-      console.log(values)
-      setSubmitting(false)
-    }, 100)
+
+    const form = {
+      title: values.title,
+      from: {
+        address: values.from.formatted_address,
+        lat: values.from.geometry.location.lat(),
+        lng: values.from.geometry.location.lng(),
+        placeId: values.from.place_id,
+        date: values.date_from,
+        time: values.time,
+      },
+      to: {
+        address: values.to.formatted_address,
+        lat: values.to.geometry.location.lat(),
+        lng: values.to.geometry.location.lng(),
+        placeId: values.to.place_id,
+        date: values.date_to,
+        time: values.time,
+      },
+      primary_picture: values.pictures[0],
+      pictures: values.pictures,
+      weight: values.weight,
+      dimensions: values.dimensions,
+      volume: values.volume,
+      description: values.description,
+      transport_type: values.transport_type,
+      payment: values.payment,
+    }
+
+    store.dispatch(createCargoAction.submit(form))
+    setSubmitting(false)
   },
 
   displayName: 'CargoForm', // helps with React DevTools

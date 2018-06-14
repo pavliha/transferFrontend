@@ -22,6 +22,8 @@ const CargoBadges = ({ badges, classes, extended }) =>
     let label
     let value
 
+    if (!badge.value) return null
+
     switch (badge.key) {
       case 'time':
         label = 'время'
