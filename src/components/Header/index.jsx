@@ -8,7 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Container from '../Container'
-import TransparentButton from '../@index/Banner/TransparentButton'
+import connector from './connector'
+import UserMenu from './UserMenu'
 
 const styles = theme => ({
   root: {
@@ -21,7 +22,7 @@ const styles = theme => ({
   },
 })
 
-const Header = ({ classes }) =>
+const Header = ({ classes, auth, actions }) =>
   <div className={classes.root}>
     <Container>
       <AppBar position="static">
@@ -29,9 +30,18 @@ const Header = ({ classes }) =>
           <Typography variant="title" color="inherit" className={classes.flex}>
             <Link to="/">Transfer</Link>
           </Typography>
-          <Link to="/cargo/create"><TransparentButton>Добавить Груз</TransparentButton></Link>
-          <Link to="/login"><Button color="inherit">Войти</Button></Link>
-          <Link to="/register"><Button color="inherit">Зарегистрироваться</Button></Link>
+          <Link to="/cargo"><Button color="inherit">Поиск грузов</Button></Link>
+          <Link to="/cargo/create"><Button color="inherit">Добавить Груз</Button></Link>
+          {auth.user ?
+            <React.Fragment>
+              <UserMenu user={auth.user} onLogout={() => actions.auth.logout()} />
+
+            </React.Fragment> :
+            <React.Fragment>
+              <Link to="/login"><Button color="inherit">Войти</Button></Link>
+              <Link to="/register"><Button color="inherit">Зарегистрироваться</Button></Link>
+            </React.Fragment>
+          }
         </Toolbar>
       </AppBar>
     </Container>
@@ -39,6 +49,8 @@ const Header = ({ classes }) =>
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Header)
+export default withStyles(styles)(connector(Header))

@@ -7,7 +7,7 @@ import connector from '../connector'
 
 const decorator = params => Input => React.cloneElement(Input, params)
 
-const FormItems = ({ required, selected, actions, form }) =>
+const FormItems = ({ required, selected, actions, form, hasError, showHelperError }) =>
   selected.map((name, index) => {
     if (!formItems.hasOwnProperty(name)) {
       throw new Error('form item was not found')
@@ -15,7 +15,6 @@ const FormItems = ({ required, selected, actions, form }) =>
 
     const {
       values,
-      errors,
       handleChange,
       handleBlur,
       setFieldValue,
@@ -28,18 +27,17 @@ const FormItems = ({ required, selected, actions, form }) =>
       value: values[name],
       onChange: handleChange,
       onBlur: handleBlur,
-      error: !!errors[name],
-      helperText: errors[name],
-
+      error: hasError(name),
+      helperText: showHelperError(name),
     })(component)
 
     if (name === 'from' || name === 'to') {
       Input = decorator({
         value: values[name],
-        error: !!errors[name],
+        error: hasError(name),
         onChange: setFieldValue,
         onBlur: setFieldTouched,
-        helperText: errors[name],
+        helperText: showHelperError(name),
       })(component)
     }
 

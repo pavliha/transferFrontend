@@ -7,7 +7,7 @@ class Geosuggest extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: props.value,
+      value: props.value.formatted_address,
     }
   }
 

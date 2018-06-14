@@ -38,7 +38,8 @@ class User {
 
   // noinspection JSUnusedGlobalSymbols
   logout() {
-    Cache.put('user', null)
+    Cache.remove('user')
+    Token.clear()
   }
 
 }

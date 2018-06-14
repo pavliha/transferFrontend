@@ -15,6 +15,11 @@ class Token {
     localStorage.setItem('token', token)
     localStorage.setItem('refreshToken', refreshToken)
   }
+
+  clear() {
+    localStorage.removeItem('token')
+    localStorage.removeItem('refreshToken')
+  }
 }
 
 export default new Token()

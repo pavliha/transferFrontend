@@ -6,11 +6,11 @@ import {
   REGISTER_USER_PENDING,
   REGISTER_USER_FULFILLED,
   REGISTER_USER_REJECTED,
-  LOAD_SAVED_USER,
+  LOAD_SAVED_USER, LOGOUT_USER,
 } from '../actions/auth.action'
 
 const initialState = {
-  user: {},
+  user: null,
   errors: [],
   error: false,
   loading: false,
@@ -68,6 +68,12 @@ const authReducer = (state = initialState, { type, payload }) => {
         errors: payload,
         loading: false,
 
+      }
+    }
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        user: null,
       }
     }
     default: {

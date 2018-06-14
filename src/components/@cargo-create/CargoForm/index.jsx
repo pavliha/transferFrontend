@@ -1,9 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withFormik } from 'formik'
-import moment from 'moment'
-import Yup from 'yup'
 import Card from '@material-ui/core/es/Card/Card'
 import { withStyles } from '@material-ui/core/styles'
 import CardContent from '@material-ui/core/es/CardContent/CardContent'
@@ -11,6 +8,7 @@ import CardActions from '@material-ui/core/es/CardActions/CardActions'
 import Button from '@material-ui/core/es/Button/Button'
 import AdditionalFormItems from './AdditionalFormItems'
 import FormItems from './FormItems'
+import formik from './formik'
 
 const style = theme => ({
   root: {
@@ -19,14 +17,43 @@ const style = theme => ({
 })
 
 class CargoForm extends React.Component {
+
+  state = {
+    isSubmited: false,
+  }
+
+  handleSubmit = (e) => {
+    const { handleSubmit } = this.props
+    this.setState({ isSubmited: true })
+
+    handleSubmit(e)
+  }
+
+  hasError = (fieldName) => {
+    const { isSubmited } = this.state
+    const { errors, touched } = this.props
+
+    return (!!errors[fieldName] && touched[fieldName] && isSubmited)
+  }
+
+  showHelperError = (fieldName) => {
+    const { errors, touched } = this.props
+
+    return (touched[fieldName] && errors[fieldName])
+  }
+
   render() {
     const { classes, ...form } = this.props
 
     return (
       <Card className={classes.root}>
-        <form onSubmit={form.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <CardContent>
-            <FormItems form={form} />
+            <FormItems
+              form={form}
+              hasError={this.hasError}
+              showHelperError={this.showHelperError}
+            />
             <AdditionalFormItems />
           </CardContent>
           <CardActions>
@@ -49,49 +76,9 @@ class CargoForm extends React.Component {
 
 CargoForm.propTypes = {
   classes: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  touched: PropTypes.object.isRequired,
 }
 
-const EnhancedForm = withFormik({
-  mapPropsToValues: () => ({
-    from: '',
-    to: '',
-    time: '18:30',
-    date_from: moment().format('YYYY-MM-DD'),
-    date_to: moment().format('YYYY-MM-DD'),
-    pictures: [],
-    dimensions: '',
-    weight: '',
-    volume: '',
-    description: '',
-    transport_type: '',
-
-  }),
-
-  // Custom sync validation
-
-  validationSchema: Yup.object().shape({
-    from: Yup.string().required('Это поле является обязательным для заполнения!'),
-    to: Yup.string().required('Это поле является обязательным для заполнения!'),
-    date_from: Yup.date(),
-    date_to: Yup.date(),
-    pictures: Yup.array(),
-    dimensions: Yup.string(),
-    weight: Yup.number(),
-    volume: Yup.number(),
-    description: Yup.string(),
-    transport_type: Yup.string(),
-    payment: Yup.number(),
-  }),
-
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      // eslint-disable-next-line no-console
-      console.log(values)
-      setSubmitting(false)
-    }, 100)
-  },
-
-  displayName: 'CargoForm', // helps with React DevTools
-})(CargoForm)
-
-export default withStyles(style)(EnhancedForm)
+export default withStyles(style)(formik(CargoForm))
