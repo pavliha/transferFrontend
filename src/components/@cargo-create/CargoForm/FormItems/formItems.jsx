@@ -83,7 +83,7 @@ export default {
 
   pictures: {
     label: 'Добавить фотографий?',
-    component: <PictureUpload name="pictures" fullWidth />,
+    component: <PictureUpload name="pictures" />,
   },
 
   dimensions: {

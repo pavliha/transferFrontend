@@ -7,8 +7,18 @@ import store from '../../../store'
 export default withFormik({
   mapPropsToValues: () => ({
     title: '',
-    from: '',
-    to: '',
+    from: {
+      formatted_address: '',
+      geometry: {
+        location: {
+          lat: 0,
+          lng: 0,
+        },
+      },
+    },
+    to: {
+      formatted_address: '',
+    },
     time: '18:30',
     date_from: moment().format('YYYY-MM-DD'),
     date_to: moment().format('YYYY-MM-DD'),
@@ -39,7 +49,7 @@ export default withFormik({
   }),
 
   handleSubmit: (values, { setSubmitting }) => {
-
+    console.log(values)
     const form = {
       title: values.title,
       from: {
