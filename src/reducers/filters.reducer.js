@@ -2,6 +2,7 @@ import { ADD_FILTER, REMOVE_FILTER } from '../actions/filters.action'
 
 const initialState = {
   badges: [
+    { title: 'название' },
     { from: 'откуда' },
     { to: 'куда' },
     { time: 'время' },
@@ -15,7 +16,9 @@ const initialState = {
     { transport_type: 'тип транспорта' },
     { payment: 'оплата' },
   ],
-  selected: ['from', 'to'],
+  page: 1,
+  required: [],
+  selected: ['title'],
 }
 
 const filters = (state = initialState, { type, payload }) => {

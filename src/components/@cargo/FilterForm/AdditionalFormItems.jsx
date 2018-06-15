@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/es/Typography/Typography'
 import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import connector from './connector'
-import FilterBadges from './FilterBadges/index'
+import FilterBadges from './FormBadges/index'
 import filterBadges from '../../../utils/filterBadges'
 
 const styles = theme => ({
@@ -11,17 +11,17 @@ const styles = theme => ({
     marginBottom: theme.spacing.size3,
   },
 })
-const AdditionalFilters = ({ badges, selected, classes }) =>
+const AdditionalFormItems = ({ badges, selected, classes }) =>
   <div className={classes.root}>
     {(filterBadges(badges, selected)).length ?
-      <Typography gutterBottom variant="subheading">Дополнительные фильтры</Typography> : ''}
+      <Typography gutterBottom variant="subheading">Дополнительная информация о грузе:</Typography> : ''}
     <FilterBadges />
   </div>
 
-AdditionalFilters.propTypes = {
+AdditionalFormItems.propTypes = {
   badges: PropTypes.array.isRequired,
   selected: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
 }
 
-export default connector(withStyles(styles)(AdditionalFilters))
+export default connector(withStyles(styles)(AdditionalFormItems))

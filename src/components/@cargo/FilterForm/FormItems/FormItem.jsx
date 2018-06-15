@@ -16,26 +16,30 @@ const styles = theme => ({
   },
 })
 
-const FilterLabel = ({ title, children, classes, onClose }) =>
+const FormItem = ({ title, children, classes, onClose, isRequired }) =>
   <div className={classes.root}>
     <Typography variant="subheading">
-      <a role="button" tabIndex="1" onClick={onClose}>
-        <Icon className={classes.icon}>close</Icon>
-      </a> {title}
+      {!isRequired ?
+        <a role="button" tabIndex="1" onClick={onClose}>
+          <Icon className={classes.icon}>close</Icon>
+        </a> : <Icon className={classes.icon}>*</Icon>}
+      {title}
     </Typography>
     {children}
   </div>
 
-FilterLabel.propTypes = ({
+FormItem.propTypes = ({
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  isRequired: PropTypes.bool,
   onClose: PropTypes.func,
   classes: PropTypes.object.isRequired,
 })
 
 // noinspection JSUnusedGlobalSymbols
-FilterLabel.defaultProps = {
+FormItem.defaultProps = {
   onClose: () => {},
+  isRequired: false,
 }
 
-export default withStyles(styles)(FilterLabel)
+export default withStyles(styles)(FormItem)

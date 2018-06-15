@@ -2,7 +2,7 @@
 /* eslint-disable-next-line object-curly-newline */
 import React from 'react'
 import PropTypes from 'prop-types'
-import Badge from './FilterBadge'
+import Badge from './FormBadge'
 import connector from '../connector'
 import filterBadges from '../../../../utils/filterBadges'
 

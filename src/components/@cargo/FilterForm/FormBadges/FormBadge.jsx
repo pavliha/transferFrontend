@@ -28,7 +28,7 @@ const styles = theme => ({
     fontSize: '1rem',
   },
 })
-const FilterBadge = ({ classes, children, onClick }) =>
+const FormBadge = ({ classes, children, onClick }) =>
   <span
     role="button"
     className={classes.root}
@@ -38,15 +38,15 @@ const FilterBadge = ({ classes, children, onClick }) =>
     <span className={classes.text}>{children}</span>
   </span>
 
-FilterBadge.propTypes = {
+FormBadge.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
 }
 
 // noinspection JSUnusedGlobalSymbols
-FilterBadge.defaultProps = {
+FormBadge.defaultProps = {
   onClick: () => {},
 }
 
-export default withStyles(styles)(FilterBadge)
+export default withStyles(styles)(FormBadge)

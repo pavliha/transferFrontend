@@ -6,8 +6,9 @@ class Cargo {
     return Http.get('/cargo')
   }
 
-  paginate({ limit, page }) {
-    return Http.get(`/cargo?limit=${limit}&page=${page}`)
+  paginate({ limit = 10, page, filter }) {
+    const filterString = JSON.stringify(filter)
+    return Http.get(`/cargo?limit=${limit}&page=${page}${filterString ? `&filter=${filterString}` : ''}`)
   }
 
   find(id) {
