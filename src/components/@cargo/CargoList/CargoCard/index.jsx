@@ -9,6 +9,7 @@ import Card from '@material-ui/core/es/Card/Card'
 import Grid from '@material-ui/core/es/Grid/Grid'
 import Typography from '@material-ui/core/es/Typography/Typography'
 import Icon from '@material-ui/core/es/Icon/Icon'
+import Avatar from '@material-ui/core/es/Avatar/Avatar'
 import CargoBadges from '../../../CargoBadges'
 import PictureCargoBadge from './PictureCargoBadge'
 import CargoBadge from '../../../CargoBadges/CargoBadge'
@@ -38,6 +39,12 @@ const styles = theme => ({
     height: 200,
     background: 'rgba(0,0,0,0.1)',
   },
+  primaryPictureAvatar: {
+    borderRadius: 3,
+    width: 200,
+    height: 200,
+    background: 'rgba(0,0,0,0.1)',
+  },
 })
 
 const CargoCard = ({ classes, cargo }) => {
@@ -55,8 +62,10 @@ const CargoCard = ({ classes, cargo }) => {
                 {title}
               </Typography>
             </Grid>
-            <Grid item xs={5}>
-              <PictureCargoBadge pictures={pictures} />
+            <Grid item justify="flex-end" container xs={5}>
+              <Grid item>
+                <PictureCargoBadge pictures={pictures} />
+              </Grid>
             </Grid>
           </Grid>
           <div className={classes.locations}>
@@ -74,9 +83,7 @@ const CargoCard = ({ classes, cargo }) => {
           <CargoBadges badges={other} />
         </Grid>
         <Grid item xs={3}>
-          <div className={classes.primaryPicture}>
-            {primary_picture && <img src={primary_picture} alt="primary" width="100%" />}
-          </div>
+          <Avatar className={classes.primaryPictureAvatar} src={primary_picture} alt="primary" width="100%" />
           <Link to={`/cargo/${id}`}>
             <Button fullWidth color="primary" variant="raised" className={classes.detailsButton}>
               Подробее

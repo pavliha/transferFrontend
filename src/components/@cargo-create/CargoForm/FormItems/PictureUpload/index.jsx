@@ -96,7 +96,7 @@ class PictureUpload extends React.Component {
   }
 
   render() {
-    const { classes, name, value, ...props } = this.props
+    const { classes, name, value, helperText, ...props } = this.props
     return (
       <FormControl error={props.error}>
         <div className={classes.pictureList}>
@@ -114,7 +114,7 @@ class PictureUpload extends React.Component {
         />
         {this.state.percent ?
           <LinearProgress color="secondary" variant="determinate" value={this.state.percent} /> : null}
-        {props.helperText ? <FormHelperText id="name-error-text">{props.helperText}</FormHelperText> : null}
+        {helperText ? <FormHelperText id="name-error-text">{helperText}</FormHelperText> : null}
       </FormControl>
     )
   }
@@ -127,6 +127,7 @@ PictureUpload.propTypes = {
   value: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  helperText: PropTypes.string.isRequired,
 }
 PictureUpload.defaultProps = {
   url: '/upload',

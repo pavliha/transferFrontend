@@ -60,12 +60,12 @@ export default withFormik({
       },
       primary_picture: values.pictures[0],
       pictures: values.pictures,
-      weight: values.weight,
+      weight: `${values.weight} кг`,
       dimensions: values.dimensions,
-      volume: values.volume,
+      volume: `${values.volume} m³`,
       description: values.description,
       transport_type: values.transport_type,
-      payment: values.payment,
+      payment: `${values.payment} грн`,
     }
 
     store.dispatch(createCargoAction.submit(form))
